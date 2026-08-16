@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e17835e20448d48ab0806bd5cac243, type: 3}
+  m_Name: SO_Enemy_Shotgun
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  enemyName: Shotgun
+  maxHealth: 120
+  moveSpeed: 1.5
+  chaseSpeed: 3
+  chaseRange: 7
+  attackRange: 4.5
+  attackCooldown: 2
+  attackDamage: 8
+  attackSound: {fileID: 8300000, guid: 06e2c010947c8e04bbd89f540cb50dc8, type: 3}
+  deathSound: {fileID: 8300000, guid: f7aa3d48ed009654cbd85f97a8fa5b7b, type: 3}
+  deathVFX: {fileID: 9154276816784134912, guid: 06fe76b8c60ad194b853bd3305275ce0, type: 3}

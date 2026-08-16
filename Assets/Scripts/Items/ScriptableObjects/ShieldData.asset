@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fd7c8d47e66fa4088fda084d5dcb3a, type: 3}
+  m_Name: ShieldData
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemName: Shield
+  itemImage: {fileID: -3149887314497892203, guid: 6b7982ac53de00343a0898debcc31d45, type: 3}
+  cooldownTime: 5
+  useSound: {fileID: 8300000, guid: 999912bf072bbf246adf4f72ac107f0d, type: 3}

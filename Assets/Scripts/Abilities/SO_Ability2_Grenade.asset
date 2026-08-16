@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5571b48473eca8a4e82cf4b84989caf5, type: 3}
+  m_Name: SO_Ability2_Grenade
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityData
+  abilityName: Grenade
+  icon: {fileID: -1791783992758969951, guid: add2f5e99cd4dce4e8ff35bd2046ae6e, type: 3}
+  keybind: 50
+  cooldownTime: 5
+  activeDuration: 0.5
+  activationSound: {fileID: 8300000, guid: eae693c04664b124ba24bffb4fc71825, type: 3}
+  vfxPrefab: {fileID: 0}
