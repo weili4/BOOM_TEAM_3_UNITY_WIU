@@ -1,26 +1,81 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Inventory_Ui_Behaviour : MonoBehaviour
 {
+    /*===================================================================================================================*/
+    // Inventory Slot Panel
     [SerializeField] private Inventory inventory;
-    [SerializeField] private Transform itemsParent;
+    [SerializeField] private Transform itemsSlots;
+    [SerializeField] private int ColumnSize;
     private Inventory_Slots[] slots;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Vector2 moveSelection;
+    private bool canMoveSelect;
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
+    // Inventory Description Panel
+    [SerializeField] private TextMeshProUGUI ItemName;
+    private int selectedItemIndex = -1;
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
     void Start()
     {
         ConnectToInventoryInstance();
-        //HideAll();
-        slots = itemsParent.GetComponentsInChildren<Inventory_Slots>();
+        slots = itemsSlots.GetComponentsInChildren<Inventory_Slots>();
         RefreshInventoryUI();
-    }
 
-    // Update is called once per frame
+        ItemName.text = " ";
+    }
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
     void Update()
     {
         RefreshInventoryUI();
-    }
 
+        moveSelection = InputSystem.actions["Move"].ReadValue<Vector2>();
+
+        if (moveSelection.x == 0 && moveSelection.y == 0)
+        {
+            canMoveSelect = true;
+        }
+        else if (canMoveSelect && !(inventory.itemStacks.Count == 0))
+        {
+            int newIndex = selectedItemIndex;
+
+            if (moveSelection.x == 1)
+            {
+                newIndex += 1;
+            }
+            else if (moveSelection.x == -1)
+            {
+                newIndex -= 1;
+            }
+            else if (moveSelection.y == 1)
+            {
+                newIndex -= ColumnSize;
+            }
+            else if (moveSelection.y == -1)
+            {
+                newIndex += ColumnSize;
+            }
+
+            if (newIndex >= 0 && newIndex < inventory.itemStacks.Count)
+            {
+                selectedItemIndex = newIndex;
+                SelectedItem(selectedItemIndex);
+            }
+
+            canMoveSelect = false;
+        }
+    }
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
     private void ConnectToInventoryInstance()
     {
         if (Inventory.Instance != null)
@@ -32,12 +87,9 @@ public class Inventory_Ui_Behaviour : MonoBehaviour
             inventory = FindFirstObjectByType<Inventory>();
         }
     }
+    /*===================================================================================================================*/
 
-    //private void HideAll()
-    //{
-    //    ItemSlot_1.SetActive(false);
-    //}
-
+    /*===================================================================================================================*/
     private void RefreshInventoryUI()
     {
         for (int index = 0; index < slots.Length; index++)
@@ -52,4 +104,44 @@ public class Inventory_Ui_Behaviour : MonoBehaviour
             }
         }
     }
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
+    public void SelectedItem(int SelectedItemIndex)
+    {
+        selectedItemIndex = SelectedItemIndex;
+
+        /*================================================================================================================*/
+        for (int index = 0; index < slots.Length; index++)
+        {
+            if (index == selectedItemIndex)
+            {
+                slots[index].SetSelected(true);
+            }
+            else
+            {
+                slots[index].SetSelected(false);
+            }
+        }
+        /*================================================================================================================*/
+
+        /*================================================================================================================*/
+        // Updates the Description Panel with the selected item
+        ItemName.text = inventory.itemStacks[selectedItemIndex].itemData.itemName;
+        Debug.Log("Item Name: " + inventory.itemStacks[selectedItemIndex].itemData.itemName);
+        Debug.Log("Item Amount: " + inventory.itemStacks[selectedItemIndex].count);
+        /*================================================================================================================*/
+    }
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
+    public void OnSelectedItemUse()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null && inventory != null && selectedItemIndex != -1)
+        {
+            inventory.UseItemStack(selectedItemIndex, player);
+        }
+    }
+    /*===================================================================================================================*/
 }

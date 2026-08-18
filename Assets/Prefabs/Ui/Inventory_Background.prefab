@@ -621,6 +621,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory_Slot
       objectReference: {fileID: 0}
+    - target: {fileID: 2954953986724453183, guid: 8c6fd046d06ea224883847c89cefadf8, type: 3}
+      propertyPath: m_TagString
+      value: Respawn
+      objectReference: {fileID: 0}
     - target: {fileID: 7628820267599065290, guid: 8c6fd046d06ea224883847c89cefadf8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

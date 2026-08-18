@@ -1,25 +1,39 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Inventory_Slots : MonoBehaviour
 {
-    [SerializeField] private GameObject SlotIcon;
+    /*===================================================================================================================*/
+    // References
+    [SerializeField] private Inventory_Ui_Behaviour InventoryUiBehaviour;
     [SerializeField] private Inventory inventory;
-    [SerializeField] private int CurrentItemIndex;
+    /*===================================================================================================================*/
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    /*===================================================================================================================*/
+    // UI Elements
+    [SerializeField] private GameObject SlotIcon;
+    [SerializeField] private GameObject SlotCount;
+    [SerializeField] private GameObject SlotButton;
+    [SerializeField] private GameObject SelectedOverlay;
+    [SerializeField] private TextMeshProUGUI SlotCountText;
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
+    // Internal State
+    [SerializeField] private int CurrentItemIndex; // Testing to check if is the correct index
+    /*===================================================================================================================*/
+
+
+    /*===================================================================================================================*/
     void Start()
     {
-        Hide_Slot();
         ConnectToInventoryInstance();
+        Hide_Slot();
     }
+    /*===================================================================================================================*/
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /*===================================================================================================================*/
     private void ConnectToInventoryInstance()
     {
         if (Inventory.Instance != null)
@@ -31,14 +45,22 @@ public class Inventory_Slots : MonoBehaviour
             inventory = FindFirstObjectByType<Inventory>();
         }
     }
+    /*===================================================================================================================*/
 
+
+    /*===================================================================================================================*/
     public void Update_Slot(int ItemIndex)
     {
         CurrentItemIndex = ItemIndex;
         SlotIcon.SetActive(true);
+        SlotCount.SetActive(true);
+        SlotButton.SetActive(true);
         SlotIcon.GetComponent<Image>().sprite = inventory.itemStacks[ItemIndex].itemData.itemImage;
+        SlotCountText.text = "x " + inventory.itemStacks[ItemIndex].count;
     }
+    /*===================================================================================================================*/
 
+    /*===================================================================================================================*/
     public void OnUseItem()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -47,8 +69,29 @@ public class Inventory_Slots : MonoBehaviour
             inventory.UseItemStack(CurrentItemIndex, player);
         }
     }
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
+    public void OnSelectingItem()
+    {
+        InventoryUiBehaviour.SelectedItem(CurrentItemIndex);
+    }
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
     public void Hide_Slot()
     {
+        SelectedOverlay.SetActive(false);
         SlotIcon.SetActive(false);
+        SlotCount.SetActive(false);
+        SlotButton.SetActive(false);
     }
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
+    public void SetSelected(bool isSelected)
+    {
+        SelectedOverlay.SetActive(isSelected);
+    }
+    /*===================================================================================================================*/
 }

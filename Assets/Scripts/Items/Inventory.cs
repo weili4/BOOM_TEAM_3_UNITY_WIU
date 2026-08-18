@@ -19,6 +19,8 @@ public class Inventory : MonoBehaviour
     public List<ItemStack> itemStacks = new List<ItemStack>();
     public int maxItems = 10;
 
+    public int MaxStackSize = 5;
+
     private void Awake()
     {
         // keep one inventory instance so items dont get duplicated
@@ -46,12 +48,19 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddItemStack(ItemData data, ItemEffect effect)
+    public bool AddItemStack(ItemData data, ItemEffect effect)
     {
         // find existing stack so same item can be grouped together
         ItemStack existingStack = itemStacks.Find(s => s.itemData == data);
+
+        /*===========================================================================================================*/
+        // Check if the exisiting stack is already full if so return false to tell item to not abke to pick up anymore
         if (existingStack != null)
         {
+            if (existingStack.count >= MaxStackSize)
+            {
+                return false; // stack is already full
+            }
             existingStack.count++;
         }
         else
@@ -64,6 +73,8 @@ public class Inventory : MonoBehaviour
             newStack.currentCooldown = 0f;
             itemStacks.Add(newStack);
         }
+        return true;
+        /*===========================================================================================================*/
     }
 
     public bool AddItem(ItemInstance item)

@@ -82,17 +82,21 @@ public class Item : MonoBehaviour
 
         if (inventory != null)
         {
-            inventory.AddItemStack(itemData, itemEffect);
-
-            if (pickupSound != null)
+            /*===========================================================================================================*/
+            // Check if the is max amount dont pick up and destroy
+            if (inventory.AddItemStack(itemData, itemEffect))
             {
-                if (AudioManager.Instance != null)
-                    AudioManager.Instance.PlaySFX(pickupSound, transform.position);
-                else
-                    AudioSource.PlayClipAtPoint(pickupSound, transform.position);
-            }
+                if (pickupSound != null)
+                {
+                    if (AudioManager.Instance != null)
+                        AudioManager.Instance.PlaySFX(pickupSound, transform.position);
+                    else
+                        AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+                }
 
-            Destroy(gameObject);
+                Destroy(gameObject);
+            }
+            /*===========================================================================================================*/
         }
     }
 
