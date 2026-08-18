@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4713272095577315055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2211542893254957802}
+  - component: {fileID: 5247005596843376337}
+  m_Layer: 0
+  m_Name: PartyManager (Player Spawn)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2211542893254957802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4713272095577315055}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5247005596843376337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4713272095577315055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 047be0c1e9e64af4cb5ad83a88a58088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PartyManager
+  partyMembers:
+  - data: {fileID: 11400000, guid: b8fecf1b6586d4c42a3bac4a316eb773, type: 2}
+    isUnlocked: 1
+    isDead: 0
+    currentHealth: 100
+    switchCooldownTimer: 0
+    cooldownQ: 0
+    cooldownE: 0
+    cooldownR: 0
+    activeTimerQ: 0
+    activeTimerE: 0
+    activeTimerR: 0
+    spawnedInstance: {fileID: 0}
+    playerController: {fileID: 0}
+    followerAI: {fileID: 0}
+    damageable: {fileID: 0}
+    abilityHolder: {fileID: 0}
+  - data: {fileID: 11400000, guid: 1d178d94ab20d194b9f4bdf157c718bd, type: 2}
+    isUnlocked: 1
+    isDead: 0
+    currentHealth: 100
+    switchCooldownTimer: 0
+    cooldownQ: 0
+    cooldownE: 0
+    cooldownR: 0
+    activeTimerQ: 0
+    activeTimerE: 0
+    activeTimerR: 0
+    spawnedInstance: {fileID: 0}
+    playerController: {fileID: 0}
+    followerAI: {fileID: 0}
+    damageable: {fileID: 0}
+    abilityHolder: {fileID: 0}
+  - data: {fileID: 11400000, guid: 23ebd05fba4aa854c999e7b6635b1b90, type: 2}
+    isUnlocked: 1
+    isDead: 0
+    currentHealth: 100
+    switchCooldownTimer: 0
+    cooldownQ: 0
+    cooldownE: 0
+    cooldownR: 0
+    activeTimerQ: 0
+    activeTimerE: 0
+    activeTimerR: 0
+    spawnedInstance: {fileID: 0}
+    playerController: {fileID: 0}
+    followerAI: {fileID: 0}
+    damageable: {fileID: 0}
+    abilityHolder: {fileID: 0}
+  activeLeaderIndex: 0
+  switchCooldownDuration: 1
+  cinemachineCam: {fileID: 0}

@@ -16,10 +16,10 @@ public class PlayerController : MonoBehaviour
 
     [Header("MOVEMENT AND JUMP")]
     private Vector2 moveInput;
-    public float moveSpeed = 1.0f;
+    public float moveSpeed = 4.0f;
     private bool jumpPressed = false;
     private bool jumpReleased = false;
-    public float jumpHeight = 3.0f;
+    public float jumpHeight = 8.0f;
 
     [Header("DOUBLE JUMP SETTINGS")]
     public int maxJumps = 2;
