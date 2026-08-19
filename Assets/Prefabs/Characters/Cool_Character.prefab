@@ -257,7 +257,7 @@ MonoBehaviour:
   maxFallSpeed: 15
   ladderLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   climbSpeed: 3
   ladderSnapSpeed: 15
   isRaging: 0
