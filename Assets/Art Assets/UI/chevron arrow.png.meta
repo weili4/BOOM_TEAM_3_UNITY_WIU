@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9b4abbf71fe4f7e48b5721ecf5e2325b
+guid: 7971a8cb2442a5d45b54f1ade15d7cc1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9083362998159298969
-    second: speed_0
+      213: 1273911759982464946
+    second: chevron arrow_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: speed_0
+      name: chevron arrow_0
       rect:
         serializedVersion: 2
-        x: 5
+        x: 96
         y: 0
-        width: 22
-        height: 32
+        width: 320
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 76ea9c89a7961f180800000000000000
-      internalID: -9083362998159298969
+      spriteID: 2bf82f80ff7dda110800000000000000
+      internalID: 1273911759982464946
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      speed_0: -9083362998159298969
+      chevron arrow_0: 1273911759982464946
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
