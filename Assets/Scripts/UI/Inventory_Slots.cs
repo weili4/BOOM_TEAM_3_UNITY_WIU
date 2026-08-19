@@ -32,6 +32,13 @@ public class Inventory_Slots : MonoBehaviour
     /*===================================================================================================================*/
 
     /*===================================================================================================================*/
+    public void SetInventoryUiReference(Inventory_Ui_Behaviour InvUiBehaviour)
+    {
+        InventoryUiBehaviour = InvUiBehaviour;
+    }
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
     public void Update_Slot(int ItemIndex, Sprite ItemImage, int ItemCount)
     {
         CurrentItemIndex = ItemIndex;
@@ -39,7 +46,7 @@ public class Inventory_Slots : MonoBehaviour
         SlotCount.SetActive(true);
         SlotButton.SetActive(true);
         SlotIcon.GetComponent<Image>().sprite = ItemImage;
-        SlotCountText.text = "x " + ItemCount;
+        SlotCountText.text = "x" + ItemCount;
     }
     /*===================================================================================================================*/
 

@@ -25,7 +25,7 @@ public class Inventory_Ui_Behaviour : MonoBehaviour
 
     /*===================================================================================================================*/
     // UI References
-    [SerializeField] private GameUIManager gameUIManager;
+    //[SerializeField] private GameUIManager gameUIManager; Need to change to PauseMenuManager
     /*===================================================================================================================*/
 
     /*===================================================================================================================*/
@@ -33,34 +33,45 @@ public class Inventory_Ui_Behaviour : MonoBehaviour
     {
         ConnectToInventoryInstance();
         slots = itemsSlots.GetComponentsInChildren<Inventory_Slots>();
+        for (int index = 0; index < slots.Length; index++)
+        {
+            slots[index].SetInventoryUiReference(this.GetComponent<Inventory_Ui_Behaviour>());
+        }
+
         RefreshInventoryUI();
 
         ItemName.text = " ";
         ItemDescriptionText.text = " ";
         ItemStatText.text = " ";
 
-        if (GameUIManager.Instance != null)
-        {
-            gameUIManager = GameUIManager.Instance;
-        }
-        else if (gameUIManager == null)
-        {
-            Debug.Log("Need to Manually Find to GameUiManager");
-        }
+        //if (GameUIManager.Instance != null)
+        //{
+        //    gameUIManager = GameUIManager.Instance;
+        //}
+        //else if (gameUIManager == null)
+        //{
+        //    Debug.Log("Need to Manually Find to GameUiManager");
+        //}
     }
     /*===================================================================================================================*/
 
     /*===================================================================================================================*/
     void Update()
     {
-        if (gameUIManager.GetInventoryOpen())
-        {
-            RefreshInventoryUI();
+        //if (gameUIManager.GetInventoryOpen())
+        //{
+        //    RefreshInventoryUI();
 
-            MoveSelection();
+        //    MoveSelection();
 
-            CheckUseItemPressed();
-        }
+        //    CheckUseItemPressed();
+        //}
+
+        RefreshInventoryUI();
+
+        MoveSelection();
+
+        CheckUseItemPressed();
     }
     /*===================================================================================================================*/
 
