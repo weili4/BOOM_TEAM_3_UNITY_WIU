@@ -16,38 +16,55 @@ public class AbilityHolder : MonoBehaviour
 
     private void Update()
     {
-        // Only active leader can trigger abilities
+        // only leader can cast abilities
         if (!CompareTag("Player") || Keyboard.current == null) return;
 
         var member = PartyManager.Instance?.ActiveMember;
         if (member == null) return;
 
-        if (Keyboard.current.qKey.wasPressedThisFrame) UseAbility(abilityQ, ref member.cooldownQ, ref member.activeTimerQ);
-        if (Keyboard.current.eKey.wasPressedThisFrame) UseAbility(abilityE, ref member.cooldownE, ref member.activeTimerE);
-        if (Keyboard.current.rKey.wasPressedThisFrame) UseAbility(abilityR, ref member.cooldownR, ref member.activeTimerR);
-    }
-
-    private void UseAbility(AbilityData ability, ref float cdTimer, ref float activeTimer)
-    {
-        if (ability == null || ability.effectLogic == null) return;
-        if (cdTimer > 0) return; // Still on cooldown
-
-        cdTimer = ability.cooldownTime;
-        activeTimer = ability.activeDuration;
-
-        Vector2 mousePos = GetMouseWorldPosition();
-
-        if (ability.activationSound != null && AudioManager.Instance != null)
+        if (Keyboard.current.qKey.wasPressedThisFrame)
         {
-            AudioManager.Instance.PlaySFX(ability.activationSound, transform.position);
+            TryCastAbility(abilityQ, ref member.cooldownQ, ref member.activeTimerQ);
         }
 
+        if (Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            TryCastAbility(abilityE, ref member.cooldownE, ref member.activeTimerE);
+        }
+
+        if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            TryCastAbility(abilityR, ref member.cooldownR, ref member.activeTimerR);
+        }
+    }
+
+    private void TryCastAbility(AbilityData ability, ref float cdTimer, ref float activeTimer)
+    {
+        if (ability == null || ability.effectLogic == null) return;
+
+        // block if already on cooldown or still active
+        if (cdTimer > 0f || activeTimer > 0f) return;
+
+        // start duration and cooldown
+        activeTimer = ability.activeDuration;
+        cdTimer = ability.cooldownTime;
+
+        Vector2 mouseWorldPos = GetMouseWorldPosition();
+
+        // play ability sound
+        if (ability.activationSound != null && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(ability.activationSound, transform.position, 1.2f);
+        }
+
+        // spawn vfx on leader
         if (ability.vfxPrefab != null)
         {
             Instantiate(ability.vfxPrefab, transform.position, Quaternion.identity);
         }
 
-        ability.effectLogic.Activate(gameObject, mousePos);
+        // trigger effect logic
+        ability.effectLogic.Activate(gameObject, mouseWorldPos);
     }
 
     private Vector2 GetMouseWorldPosition()

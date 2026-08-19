@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5571b48473eca8a4e82cf4b84989caf5, type: 3}
   m_Name: SO_Ability1_Drone
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
-  abilityName: 
+  abilityName: Drone
+  abilityDescription: DRONE ABILITY, PLACEHOLDER
   icon: {fileID: 3434507650894110113, guid: 8b480fb4e258e47438a760ee5e8ef99c, type: 3}
-  keybind: 49
   cooldownTime: 10
   activeDuration: 5
   activationSound: {fileID: 8300000, guid: 967e5fa9a9df87c4194a0ab7a94acb8d, type: 3}
   vfxPrefab: {fileID: 0}
+  effectLogic: {fileID: 11400000, guid: d811f813cbea4e342a739ac6bbe89898, type: 2}

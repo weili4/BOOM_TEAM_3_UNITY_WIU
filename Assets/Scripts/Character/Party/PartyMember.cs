@@ -77,32 +77,42 @@ public class PartyMember
 
     public void TickCooldowns(float deltaTime)
     {
-        // tick down switch cooldown
+        // tick switch cooldown
         if (switchCooldownTimer > 0) switchCooldownTimer -= deltaTime;
 
+        // tick ability cooldowns
         if (cooldownQ > 0) cooldownQ -= deltaTime;
         if (cooldownE > 0) cooldownE -= deltaTime;
         if (cooldownR > 0) cooldownR -= deltaTime;
 
+        // tick active duration for Q (e.g. summons)
         if (activeTimerQ > 0)
         {
             activeTimerQ -= deltaTime;
             if (activeTimerQ <= 0 && data.abilityQ != null && data.abilityQ.effectLogic != null)
+            {
                 data.abilityQ.effectLogic.Deactivate(spawnedInstance);
+            }
         }
 
+        // tick active duration for E
         if (activeTimerE > 0)
         {
             activeTimerE -= deltaTime;
             if (activeTimerE <= 0 && data.abilityE != null && data.abilityE.effectLogic != null)
+            {
                 data.abilityE.effectLogic.Deactivate(spawnedInstance);
+            }
         }
 
+        // tick active duration for R
         if (activeTimerR > 0)
         {
             activeTimerR -= deltaTime;
             if (activeTimerR <= 0 && data.abilityR != null && data.abilityR.effectLogic != null)
+            {
                 data.abilityR.effectLogic.Deactivate(spawnedInstance);
+            }
         }
     }
 }

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: SO_Ability2_Grenade
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
   abilityName: Grenade
+  abilityDescription: GRENADE ABILITY, PLACEHOLDER, TEST TEST
   icon: {fileID: -1791783992758969951, guid: add2f5e99cd4dce4e8ff35bd2046ae6e, type: 3}
-  keybind: 50
   cooldownTime: 5
   activeDuration: 0.5
   activationSound: {fileID: 8300000, guid: eae693c04664b124ba24bffb4fc71825, type: 3}
   vfxPrefab: {fileID: 0}
+  effectLogic: {fileID: 11400000, guid: 9474b442a82c84849827bcb0be7d51fa, type: 2}
