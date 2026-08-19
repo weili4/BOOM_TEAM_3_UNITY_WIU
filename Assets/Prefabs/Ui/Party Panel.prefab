@@ -2403,6 +2403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4418407783786465636}
   - component: {fileID: 7228344845154111349}
+  - component: {fileID: 1982820989822066114}
   m_Layer: 5
   m_Name: Right Side
   m_TagString: Untagged
@@ -2459,6 +2460,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!225 &1982820989822066114
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4565619815110198341}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5526408407601300753
 GameObject:
   m_ObjectHideFlags: 0
@@ -2471,6 +2484,8 @@ GameObject:
   - component: {fileID: 6463285093992535014}
   - component: {fileID: 8981443157151516506}
   - component: {fileID: 8108587683499073500}
+  - component: {fileID: 3988573034789636039}
+  - component: {fileID: 1977542847260043697}
   m_Layer: 5
   m_Name: Party Panel
   m_TagString: Untagged
@@ -2574,6 +2589,40 @@ MonoBehaviour:
   abilityNameHeaderText: {fileID: 2564690659165034044}
   descriptionText: {fileID: 7534600772867162605}
   closeButton: {fileID: 308720024222508570}
+--- !u!95 &3988573034789636039
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5526408407601300753}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8eed53f63fcfc27448ca369ad41a0346, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!225 &1977542847260043697
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5526408407601300753}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6045366407745297341
 GameObject:
   m_ObjectHideFlags: 0
