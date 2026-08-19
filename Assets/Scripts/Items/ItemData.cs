@@ -7,4 +7,8 @@ public class ItemData : ScriptableObject
     public Sprite itemImage;
     public float cooldownTime = 3f;
     public AudioClip useSound;
+
+    /*===================================================================================================================*/
+    public string itemDescription;
+    /*===================================================================================================================*/
 }
