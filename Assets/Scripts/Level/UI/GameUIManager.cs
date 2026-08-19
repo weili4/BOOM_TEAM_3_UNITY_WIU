@@ -91,17 +91,17 @@ public class GameUIManager : MonoBehaviour
         }
         /*===================================================================================================================*/
 
-        if (pausePressed)
-        {
-            if (isPaused)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-            }
-        }
+        //if (pausePressed)
+        //{
+        //    if (isPaused)
+        //    {
+        //        ResumeGame();
+        //    }
+        //    else
+        //    {
+        //        PauseGame();
+        //    }
+        //}
 
         /*===============================================================================================================*/
         if (InventoryPressed)

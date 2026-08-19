@@ -17,7 +17,7 @@ public class Item : MonoBehaviour
 
     private void Start()
     {
-        initialPosition = transform.position; // save spawn position
+        initialPosition = transform.position;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null && itemData != null)
@@ -25,15 +25,15 @@ public class Item : MonoBehaviour
             spriteRenderer.sprite = itemData.itemImage;
         }
 
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
-        {
-            playerTransform = playerObj.transform;
-        }
+        // find active leader on spawn
+        UpdatePlayerTarget();
     }
 
     private void Update()
     {
+        // always track only the current active leader and ignore followers
+        UpdatePlayerTarget();
+
         if (playerTransform == null || itemData == null || itemEffect == null) return;
 
         float dist = Vector2.Distance(transform.position, playerTransform.position);
@@ -45,7 +45,7 @@ public class Item : MonoBehaviour
         }
         else if (dist > loseMagnetDistance)
         {
-            isMagnetized = false; // lose magnet if player gets too far
+            isMagnetized = false;
         }
 
         if (isMagnetized)
@@ -59,10 +59,27 @@ public class Item : MonoBehaviour
         }
         else
         {
-            // return smoothly to initial spawn position
+            // return to spawn position if player moves away
             if (Vector3.Distance(transform.position, initialPosition) > 0.05f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, initialPosition, magnetSpeed * 0.5f * Time.deltaTime);
+            }
+        }
+    }
+
+    // dynamically gets the active party leader from partymanager
+    private void UpdatePlayerTarget()
+    {
+        if (PartyManager.Instance != null && PartyManager.Instance.ActivePlayerObj != null)
+        {
+            playerTransform = PartyManager.Instance.ActivePlayerObj.transform;
+        }
+        else if (playerTransform == null || !playerTransform.CompareTag("Player"))
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                playerTransform = playerObj.transform;
             }
         }
     }
