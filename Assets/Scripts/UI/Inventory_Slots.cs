@@ -7,7 +7,6 @@ public class Inventory_Slots : MonoBehaviour
     /*===================================================================================================================*/
     // References
     [SerializeField] private Inventory_Ui_Behaviour InventoryUiBehaviour;
-    [SerializeField] private Inventory inventory;
     /*===================================================================================================================*/
 
     /*===================================================================================================================*/
@@ -28,46 +27,19 @@ public class Inventory_Slots : MonoBehaviour
     /*===================================================================================================================*/
     void Start()
     {
-        ConnectToInventoryInstance();
         Hide_Slot();
     }
     /*===================================================================================================================*/
 
     /*===================================================================================================================*/
-    private void ConnectToInventoryInstance()
-    {
-        if (Inventory.Instance != null)
-        {
-            inventory = Inventory.Instance;
-        }
-        else if (inventory == null)
-        {
-            inventory = FindFirstObjectByType<Inventory>();
-        }
-    }
-    /*===================================================================================================================*/
-
-
-    /*===================================================================================================================*/
-    public void Update_Slot(int ItemIndex)
+    public void Update_Slot(int ItemIndex, Sprite ItemImage, int ItemCount)
     {
         CurrentItemIndex = ItemIndex;
         SlotIcon.SetActive(true);
         SlotCount.SetActive(true);
         SlotButton.SetActive(true);
-        SlotIcon.GetComponent<Image>().sprite = inventory.itemStacks[ItemIndex].itemData.itemImage;
-        SlotCountText.text = "x " + inventory.itemStacks[ItemIndex].count;
-    }
-    /*===================================================================================================================*/
-
-    /*===================================================================================================================*/
-    public void OnUseItem()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null && inventory != null)
-        {
-            inventory.UseItemStack(CurrentItemIndex, player);
-        }
+        SlotIcon.GetComponent<Image>().sprite = ItemImage;
+        SlotCountText.text = "x " + ItemCount;
     }
     /*===================================================================================================================*/
 

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fd7c8d47e66fa4088fda084d5dcb3a, type: 3}
   m_Name: HealData
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: Heal
+  itemName: Health Potion
   itemImage: {fileID: 1309359352660515126, guid: 6b7982ac53de00343a0898debcc31d45, type: 3}
   cooldownTime: 3
   useSound: {fileID: 8300000, guid: 348dcb242c3e1bb47bb1521bbd23bccf, type: 3}
+  itemDescription: A vial of crimson elixir infused with restorative herbs. Drinking
+    it mends wounds and restores 30 HP

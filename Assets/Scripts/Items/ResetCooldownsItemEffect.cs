@@ -11,4 +11,9 @@ public class ResetCooldownsItemEffect : ItemEffect
             abilities.ResetAllAbilityCooldowns();
         }
     }
+
+    public override string GetEffectValue()
+    {
+        return string.Empty; // Ignoring the Value
+    }
 }

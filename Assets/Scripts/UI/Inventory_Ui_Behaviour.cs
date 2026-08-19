@@ -18,7 +18,14 @@ public class Inventory_Ui_Behaviour : MonoBehaviour
     /*===================================================================================================================*/
     // Inventory Description Panel
     [SerializeField] private TextMeshProUGUI ItemName;
+    [SerializeField] private TextMeshProUGUI ItemDescriptionText;
+    [SerializeField] private TextMeshProUGUI ItemStatText;
     private int selectedItemIndex = -1;
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
+    // UI References
+    [SerializeField] private GameUIManager gameUIManager;
     /*===================================================================================================================*/
 
     /*===================================================================================================================*/
@@ -29,14 +36,102 @@ public class Inventory_Ui_Behaviour : MonoBehaviour
         RefreshInventoryUI();
 
         ItemName.text = " ";
+        ItemDescriptionText.text = " ";
+        ItemStatText.text = " ";
+
+        if (GameUIManager.Instance != null)
+        {
+            gameUIManager = GameUIManager.Instance;
+        }
+        else if (gameUIManager == null)
+        {
+            Debug.Log("Need to Manually Find to GameUiManager");
+        }
     }
     /*===================================================================================================================*/
 
     /*===================================================================================================================*/
     void Update()
     {
-        RefreshInventoryUI();
+        if (gameUIManager.GetInventoryOpen())
+        {
+            RefreshInventoryUI();
 
+            MoveSelection();
+
+            CheckUseItemPressed();
+        }
+    }
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
+    private void ConnectToInventoryInstance()
+    {
+        if (Inventory.Instance != null)
+        {
+            inventory = Inventory.Instance;
+        }
+        else if (inventory == null)
+        {
+            inventory = FindFirstObjectByType<Inventory>();
+        }
+    }
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
+    private void RefreshInventoryUI()
+    {
+        for (int index = 0; index < slots.Length; index++)
+        {
+            if (index < inventory.itemStacks.Count)
+            {
+                slots[index].Update_Slot(index, inventory.itemStacks[index].itemData.itemImage, inventory.itemStacks[index].count);
+            }
+            else
+            {
+                slots[index].Hide_Slot();
+            }
+        }
+    }
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
+    public void SelectedItem(int SelectedItemIndex)
+    {
+        selectedItemIndex = SelectedItemIndex;
+        UpdateDescriptionPanel();
+
+        /*================================================================================================================*/
+        for (int index = 0; index < slots.Length; index++)
+        {
+            if (index == selectedItemIndex)
+            {
+                slots[index].SetSelected(true);
+            }
+            else
+            {
+                slots[index].SetSelected(false);
+            }
+        }
+        /*================================================================================================================*/
+    }
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
+    public void OnSelectedItemUse()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null && inventory != null && selectedItemIndex != -1)
+        {
+            inventory.UseItemStack(selectedItemIndex, player);
+            ClearSelection();
+        }
+    }
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
+    private void MoveSelection()
+    {
         moveSelection = InputSystem.actions["Move"].ReadValue<Vector2>();
 
         if (moveSelection.x == 0 && moveSelection.y == 0)
@@ -76,72 +171,47 @@ public class Inventory_Ui_Behaviour : MonoBehaviour
     /*===================================================================================================================*/
 
     /*===================================================================================================================*/
-    private void ConnectToInventoryInstance()
+    private void CheckUseItemPressed()
     {
-        if (Inventory.Instance != null)
+        bool UseItemPressed = false;
+        UseItemPressed = InputSystem.actions["UseItem"].WasPressedThisFrame();
+        if (UseItemPressed)
         {
-            inventory = Inventory.Instance;
-        }
-        else if (inventory == null)
-        {
-            inventory = FindFirstObjectByType<Inventory>();
+            OnSelectedItemUse();
+            selectedItemIndex = -1;
         }
     }
     /*===================================================================================================================*/
 
     /*===================================================================================================================*/
-    private void RefreshInventoryUI()
+    private void ClearSelection()
     {
+        if(inventory.itemStacks.Count == 0)
+        {
+            selectedItemIndex = -1;
+        }
+
         for (int index = 0; index < slots.Length; index++)
         {
-            if(index < inventory.itemStacks.Count)
-            {
-                slots[index].Update_Slot(index);
-            }
-            else
-            {
-                slots[index].Hide_Slot();
-            }
+            slots[index].SetSelected(false);
         }
+
+        ItemName.text = " ";
+        ItemDescriptionText.text = " ";
+        ItemStatText.text = " ";
     }
     /*===================================================================================================================*/
 
     /*===================================================================================================================*/
-    public void SelectedItem(int SelectedItemIndex)
+    private void UpdateDescriptionPanel()
     {
-        selectedItemIndex = SelectedItemIndex;
-
-        /*================================================================================================================*/
-        for (int index = 0; index < slots.Length; index++)
-        {
-            if (index == selectedItemIndex)
-            {
-                slots[index].SetSelected(true);
-            }
-            else
-            {
-                slots[index].SetSelected(false);
-            }
-        }
-        /*================================================================================================================*/
-
-        /*================================================================================================================*/
         // Updates the Description Panel with the selected item
         ItemName.text = inventory.itemStacks[selectedItemIndex].itemData.itemName;
-        Debug.Log("Item Name: " + inventory.itemStacks[selectedItemIndex].itemData.itemName);
-        Debug.Log("Item Amount: " + inventory.itemStacks[selectedItemIndex].count);
-        /*================================================================================================================*/
-    }
-    /*===================================================================================================================*/
-
-    /*===================================================================================================================*/
-    public void OnSelectedItemUse()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null && inventory != null && selectedItemIndex != -1)
-        {
-            inventory.UseItemStack(selectedItemIndex, player);
-        }
+        ItemDescriptionText.text = inventory.itemStacks[selectedItemIndex].itemData.itemDescription;
+        ItemStatText.text = inventory.itemStacks[selectedItemIndex].itemEffect.GetEffectValue();
+        //Debug.Log("Item Name: " + inventory.itemStacks[selectedItemIndex].itemData.itemName);
+        //Debug.Log("Item Amount: " + inventory.itemStacks[selectedItemIndex].count);
+        //Debug.Log("Item Description: " + inventory.itemStacks[selectedItemIndex].itemData.itemDescription);
     }
     /*===================================================================================================================*/
 }
