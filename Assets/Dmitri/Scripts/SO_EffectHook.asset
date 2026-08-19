@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9e25c167e330b04884680fde91d31c8, type: 3}
+  m_Name: SO_EffectHook
+  m_EditorClassIdentifier: Assembly-CSharp::SO_EffectHook
+  hookPrefab: {fileID: 6402950422891800616, guid: 5ffc2f791e1f50d49af70f1e86beeb87, type: 3}
+  throwSpeed: 25
+  pullDelay: 0.3
+  pullSpeed: 10
+  maxDistance: 5
+  stopDistance: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  attachSFX: {fileID: 0}
+  soundVolume: 1
