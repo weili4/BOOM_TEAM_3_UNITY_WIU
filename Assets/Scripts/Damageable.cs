@@ -12,6 +12,10 @@ public class Damageable : MonoBehaviour
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
 
+    [Header("damage settings")]
+    [Tooltip("Multiplier applied to incoming damage (1.0 = 100%, 0.5 = 50%, 0 = no damage).")]
+    public float incomingDamageMultiplier = 1.0f;
+
     [Header("floating health bar")]
     [SerializeField] private GameObject healthBarPrefab;
 
@@ -77,6 +81,9 @@ public class Damageable : MonoBehaviour
     {
         if (isInvulnerable || currentHealth <= 0) return;
 
+        // Apply damage reduction modifier
+        int finalDamage = Mathf.RoundToInt(damage * incomingDamageMultiplier);
+
         // screen shake
         if (source != null)
             source.GenerateImpulse(hitShakeForce);
@@ -88,7 +95,7 @@ public class Damageable : MonoBehaviour
         if (hitSound != null && AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX(hitSound, transform.position);
 
-        currentHealth -= damage;
+        currentHealth -= finalDamage;
         if (currentHealth < 0) currentHealth = 0;
         onHealthChanged?.Invoke(currentHealth, maxHealth);
 

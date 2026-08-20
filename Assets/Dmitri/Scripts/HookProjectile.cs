@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Unity.Cinemachine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(LineRenderer))]
@@ -15,7 +16,7 @@ public class HookProjectile : MonoBehaviour
 
     private float pullSpeed;
     private float enemyPullSpeed;
-    private float retractSpeed; 
+    private float retractSpeed;
     private float pullDelay;
     private float stopDistance;
     private float maxDistance;
@@ -38,6 +39,10 @@ public class HookProjectile : MonoBehaviour
     private GameObject hookedEnemy;
     private Rigidbody2D enemyRb;
 
+    [Header("Camera Shake Settings")]
+    public bool enableCameraShake = true;
+    public float shakeForce = 1.0f;
+
     private void Awake()
     {
         hookRb = GetComponent<Rigidbody2D>();
@@ -59,7 +64,9 @@ public class HookProjectile : MonoBehaviour
         GameObject groundVfx = null,
         GameObject enemyVfx = null,
         float pullTimeout = 1.0f,
-        float retractSpd = 20.0f)
+        float retractSpd = 20.0f,
+        bool enableShake = true,
+        float cameraShakeForce = 0.2f)
     {
         owner = user;
         pullSpeed = pullSpd;
@@ -76,6 +83,8 @@ public class HookProjectile : MonoBehaviour
         groundImpactVFXPrefab = groundVfx;
         enemyImpactVFXPrefab = enemyVfx;
         maxPullDuration = pullTimeout;
+        enableCameraShake = enableShake;
+        shakeForce = cameraShakeForce;
 
         if (owner != null)
         {
@@ -112,7 +121,7 @@ public class HookProjectile : MonoBehaviour
             }
         }
 
-        // 2. RETRACT BACK TO PLAYER (HITBOX STAYS ACTIVE IN HANDLEIMPACT)
+        // 2. RETRACT BACK TO PLAYER
         if (isReturning && !isAttached)
         {
             Vector2 returnDir = ((Vector2)owner.transform.position - (Vector2)transform.position).normalized;
@@ -126,7 +135,7 @@ public class HookProjectile : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, owner.transform.position, retractSpeed * Time.deltaTime);
             }
 
-            // Clean up once the returning hook reaches player
+            // Clean up once returning hook reaches player
             if (Vector2.Distance(owner.transform.position, transform.position) <= stopDistance)
             {
                 Destroy(gameObject);
@@ -211,6 +220,19 @@ public class HookProjectile : MonoBehaviour
         bool isEnemy = IsInLayerMask(hitObject, enemyLayer);
 
         if (!isGround && !isEnemy) return;
+
+        // Trigger Cinemachine Camera Shake on owner (player) upon valid hook attach
+        if (enableCameraShake && owner != null)
+        {
+            if (owner.TryGetComponent<CinemachineImpulseSource>(out CinemachineImpulseSource impulse))
+            {
+                impulse.GenerateImpulseWithForce(shakeForce);
+            }
+            else if (owner.GetComponentInChildren<CinemachineImpulseSource>() is CinemachineImpulseSource childImpulse)
+            {
+                childImpulse.GenerateImpulseWithForce(shakeForce);
+            }
+        }
 
         // Stop returning sequence since hook has latched onto something
         isReturning = false;
