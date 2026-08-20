@@ -230,3 +230,5 @@ MonoBehaviour:
   EnemyAndGroundLayer:
     serializedVersion: 2
     m_Bits: 64
+  FiringCooldown: 1
+  DestroyEffectPrefab: {fileID: 1356224632819356813, guid: 4ce68d2c81a4f5d4f9a8b83eeee7004e, type: 3}

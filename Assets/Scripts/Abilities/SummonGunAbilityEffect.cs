@@ -27,6 +27,7 @@ public class SummonGunAbilityEffect : AbilityEffect
         {
             GunPositions[i] = user.transform.position + GunOffsets[i];
             GunObjects[i] = Instantiate(GunPrefab, GunPositions[i], Quaternion.identity);
+            GunObjects[i].GetComponent<AutoAimGun_Behaviour>().SetFollowTarget(user.transform, GunOffsets[i]);
         }
 
         user.GetComponent<Animator>().SetTrigger("IsAbilityOneUsed");
@@ -36,6 +37,7 @@ public class SummonGunAbilityEffect : AbilityEffect
     {
         for (int i = 0; i < GunObjects.Length; i++)
         {
+            GunObjects[i].GetComponent<AutoAimGun_Behaviour>().SpawnParticleOnDestroy();
             Destroy(GunObjects[i]);
         }
         

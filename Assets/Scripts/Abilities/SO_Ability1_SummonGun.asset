@@ -15,8 +15,8 @@ MonoBehaviour:
   abilityName: SummonGun
   abilityDescription: Summon Gun to help Shoot at Enemy Targets
   icon: {fileID: -2494067699363254937, guid: 5e421ce921c1bdc46ba08912f4beeda3, type: 3}
-  cooldownTime: 3
-  activeDuration: 2
+  cooldownTime: 11
+  activeDuration: 10
   activationSound: {fileID: 0}
   vfxPrefab: {fileID: 0}
   effectLogic: {fileID: 11400000, guid: b9938458c0bd4834cbd8cef8f80cd006, type: 2}
