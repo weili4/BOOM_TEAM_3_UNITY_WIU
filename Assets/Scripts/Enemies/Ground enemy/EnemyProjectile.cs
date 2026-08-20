@@ -6,6 +6,7 @@ public class EnemyProjectile : MonoBehaviour
     public float speed = 12f;
     public float lifetime = 4f;
     public LayerMask hitLayers;
+    public float knockbackForce = 6.0f;
 
     private Rigidbody2D rb;
 
@@ -26,12 +27,25 @@ public class EnemyProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (((1 << collision.gameObject.layer) & hitLayers) != 0 || collision.CompareTag("Player"))
+        // ignore benched followers tagged Ally
+        if (collision.CompareTag("Ally")) return;
+
+        // hit the active leader
+        if (collision.CompareTag("Player"))
         {
             if (collision.TryGetComponent<Damageable>(out Damageable playerHealth))
             {
-                playerHealth.TakeDamage(damage);
+                // knock player away in the direction the bullet was flying
+                Vector2 bulletDirection = rb != null ? rb.linearVelocity.normalized : transform.right;
+                playerHealth.TakeDamage(damage, bulletDirection, knockbackForce);
             }
+            Destroy(gameObject);
+            return;
+        }
+
+        // hit ground or walls
+        if (((1 << collision.gameObject.layer) & hitLayers) != 0)
+        {
             Destroy(gameObject);
         }
     }

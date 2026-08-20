@@ -60,6 +60,12 @@ public class PlayerController : MonoBehaviour
     public bool isRaging = false;
     public bool attackedPressed = false;
 
+    private float knockbackTimer = 0f;
+    public void ApplyKnockback(Vector2 knockbackVector, float duration = 0.2f)
+    {
+        knockbackTimer = duration;
+        body.linearVelocity = knockbackVector;
+    }
     void Awake()
     {
         animator = GetComponent<Animator>();
@@ -263,35 +269,44 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isOnLadderTrigger && currentLadderCollider != null)
+        // 1. while in knockback, do not overwrite horizontal velocity with walking input
+        if (knockbackTimer > 0f)
         {
-            if (Mathf.Abs(moveInput.y) > 0.1f)
-            {
-                if (!isClimbing) StartClimbing();
-            }
-
-            if (isClimbing)
-            {
-                body.linearVelocityX = 0;
-                body.linearVelocityY = moveInput.y * climbSpeed;
-
-                float centerX = currentLadderCollider.bounds.center.x;
-                float newX = Mathf.MoveTowards(transform.position.x, centerX, ladderSnapSpeed * Time.fixedDeltaTime);
-                transform.position = new Vector2(newX, transform.position.y);
-
-                animator.SetBool("IsMoving", Mathf.Abs(moveInput.y) > 0.1f);
-                return;
-            }
+            knockbackTimer -= Time.fixedDeltaTime;
         }
+        else
+        {
+            // normal movement handling
+            if (isOnLadderTrigger && currentLadderCollider != null)
+            {
+                if (Mathf.Abs(moveInput.y) > 0.1f)
+                {
+                    if (!isClimbing) StartClimbing();
+                }
 
-        body.gravityScale = originalGravity;
+                if (isClimbing)
+                {
+                    body.linearVelocityX = 0;
+                    body.linearVelocityY = moveInput.y * climbSpeed;
 
-        float speedToUse = isGrounded ? moveSpeed : Mathf.Max(moveSpeed, 5.0f);
-        body.linearVelocityX = moveInput.x * speedToUse;
-        animator.SetBool("IsMoving", (Mathf.Abs(moveInput.x) > 0f));
+                    float centerX = currentLadderCollider.bounds.center.x;
+                    float newX = Mathf.MoveTowards(transform.position.x, centerX, ladderSnapSpeed * Time.fixedDeltaTime);
+                    transform.position = new Vector2(newX, transform.position.y);
 
-        if (moveInput.x < 0) transform.localScale = new Vector3(-2, 2, 2);
-        else if (moveInput.x > 0) transform.localScale = new Vector3(2, 2, 2);
+                    animator.SetBool("IsMoving", Mathf.Abs(moveInput.y) > 0.1f);
+                    return;
+                }
+            }
+
+            body.gravityScale = originalGravity > 0f ? originalGravity : 2.5f;
+
+            float speedToUse = isGrounded ? moveSpeed : Mathf.Max(moveSpeed, 5.0f);
+            body.linearVelocityX = moveInput.x * speedToUse;
+            animator.SetBool("IsMoving", (Mathf.Abs(moveInput.x) > 0f));
+
+            if (moveInput.x < 0) transform.localScale = new Vector3(-2, 2, 2);
+            else if (moveInput.x > 0) transform.localScale = new Vector3(2, 2, 2);
+        }
 
         if (!isGrounded && body.linearVelocityY < 0)
         {
