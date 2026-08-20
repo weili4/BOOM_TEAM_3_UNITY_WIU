@@ -19,4 +19,4 @@ MonoBehaviour:
   activeDuration: 2
   activationSound: {fileID: 0}
   vfxPrefab: {fileID: 0}
-  effectLogic: {fileID: 11400000, guid: b9938458c0bd4834cbd8cef8f80cd006, type: 2}
+  effectLogic: {fileID: 11400000, guid: 51bb5caa4c24cb642bcd8a24555f3e05, type: 2}

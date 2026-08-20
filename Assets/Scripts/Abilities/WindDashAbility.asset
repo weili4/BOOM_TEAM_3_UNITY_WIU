@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d88c7cb4483b354391ef7a89b259444, type: 3}
   m_Name: WindDashAbility
   m_EditorClassIdentifier: Assembly-CSharp::WindDashAbilityEffect
-  DashForce: 15
+  dashForce: 18
+  dashDuration: 0.16
+  dashDamage: 25
+  enemyKnockback: 7
+  hitRadius: 1.1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  frontVFXPrefab: {fileID: 0}

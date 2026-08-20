@@ -27,9 +27,9 @@ public class SummonGunAbilityEffect : AbilityEffect
 
         for (int i = 0; i < gunOffsets.Length; i++)
         {
-            Vector3 spawnPos = user.transform.position + gunOffsets[i];
-            GameObject gun = Instantiate(gunPrefab, spawnPos, Quaternion.identity);
-            guns.Add(gun);
+            GunPositions[i] = user.transform.position + GunOffsets[i];
+            GunObjects[i] = Instantiate(GunPrefab, GunPositions[i], Quaternion.identity);
+            GunObjects[i].GetComponent<AutoAimGun_Behaviour>().SetFollowTarget(user.transform, GunOffsets[i]);
         }
 
         spawnedGunsPerUser[user] = guns;
@@ -44,11 +44,8 @@ public class SummonGunAbilityEffect : AbilityEffect
     {
         if (user != null && spawnedGunsPerUser.TryGetValue(user, out var guns))
         {
-            foreach (var gun in guns)
-            {
-                if (gun != null) Destroy(gun);
-            }
-            spawnedGunsPerUser.Remove(user);
+            GunObjects[i].GetComponent<AutoAimGun_Behaviour>().SpawnParticleOnDestroy();
+            Destroy(GunObjects[i]);
         }
     }
 }
