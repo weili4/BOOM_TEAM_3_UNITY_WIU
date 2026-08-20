@@ -1,43 +1,54 @@
+using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
-[CreateAssetMenu(fileName = "SummonGunAbility", menuName = "Scriptable Objects/Effects/SummonGunAbility")]
+[CreateAssetMenu(fileName = "SummonGunAbility", menuName = "Party/Effects/SummonGunAbility")]
 public class SummonGunAbilityEffect : AbilityEffect
 {
-    public GameObject GunPrefab;
+    public GameObject gunPrefab;
 
     [SerializeField]
-    private Vector3[] GunOffsets = new Vector3[]
+    private Vector3[] gunOffsets = new Vector3[]
     {
-            new Vector3(0.5f, -0.2f, 0),
-            new Vector3(0.35f, 0.25f, 0),
-            new Vector3(-0.5f, -0.2f, 0),
-            new Vector3(-0.35f, 0.25f, 0)
+        new Vector3(0.5f, -0.2f, 0),
+        new Vector3(0.35f, 0.25f, 0),
+        new Vector3(-0.5f, -0.2f, 0),
+        new Vector3(-0.35f, 0.25f, 0)
     };
 
-    private GameObject[] GunObjects;
-    private Vector3[] GunPositions;
+    private Dictionary<GameObject, List<GameObject>> spawnedGunsPerUser = new Dictionary<GameObject, List<GameObject>>();
 
     public override void Activate(GameObject user, Vector2 mouseWorldPos)
     {
-        GunObjects = new GameObject[GunOffsets.Length];
-        GunPositions = new Vector3[GunOffsets.Length];
+        if (user == null || gunPrefab == null) return;
 
-        for (int i = 0; i < GunObjects.Length; i++)
+        Deactivate(user);
+
+        List<GameObject> guns = new List<GameObject>();
+
+        for (int i = 0; i < gunOffsets.Length; i++)
         {
-            GunPositions[i] = user.transform.position + GunOffsets[i];
-            GunObjects[i] = Instantiate(GunPrefab, GunPositions[i], Quaternion.identity);
+            Vector3 spawnPos = user.transform.position + gunOffsets[i];
+            GameObject gun = Instantiate(gunPrefab, spawnPos, Quaternion.identity);
+            guns.Add(gun);
         }
 
-        user.GetComponent<Animator>().SetTrigger("IsAbilityOneUsed");
+        spawnedGunsPerUser[user] = guns;
+
+        if (user.TryGetComponent<Animator>(out var anim))
+        {
+            anim.SetTrigger("IsAbilityOneUsed");
+        }
     }
 
     public override void Deactivate(GameObject user)
     {
-        for (int i = 0; i < GunObjects.Length; i++)
+        if (user != null && spawnedGunsPerUser.TryGetValue(user, out var guns))
         {
-            Destroy(GunObjects[i]);
+            foreach (var gun in guns)
+            {
+                if (gun != null) Destroy(gun);
+            }
+            spawnedGunsPerUser.Remove(user);
         }
-        
     }
 }

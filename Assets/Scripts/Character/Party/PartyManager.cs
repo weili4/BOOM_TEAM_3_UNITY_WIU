@@ -134,19 +134,9 @@ public class PartyManager : MonoBehaviour
         int oldIndex = activeLeaderIndex;
         Vector3 switchPos = Vector3.zero;
 
-        // 1. clean up previous leader and apply switch cooldown to them
+        // 1. clean up previous leader
         if (ActiveMember != null && ActiveMember.spawnedInstance != null)
         {
-            // revert inverted gravity if active on old leader
-            if (ActiveMember.playerController != null && ActiveMember.playerController.IsGravityInverted)
-            {
-                ActiveMember.playerController.SetGravityInverted(false);
-
-                // restore camera roll back to 0
-                CinemachineCamera cam = FindFirstObjectByType<CinemachineCamera>();
-                if (cam != null) cam.Lens.Dutch = 0f;
-            }
-
             switchPos = ActiveMember.spawnedInstance.transform.position;
 
             if (!isInitialSetup)
@@ -154,15 +144,40 @@ public class PartyManager : MonoBehaviour
                 ActiveMember.switchCooldownTimer = switchCooldownDuration;
             }
 
+            // deactivate any running active abilities on the old leader (e.g. invert gravity, summons)
+            if (ActiveMember.data != null)
+            {
+                if (ActiveMember.data.abilityQ != null && ActiveMember.data.abilityQ.effectLogic != null)
+                    ActiveMember.data.abilityQ.effectLogic.Deactivate(ActiveMember.spawnedInstance);
+                if (ActiveMember.data.abilityE != null && ActiveMember.data.abilityE.effectLogic != null)
+                    ActiveMember.data.abilityE.effectLogic.Deactivate(ActiveMember.spawnedInstance);
+                if (ActiveMember.data.abilityR != null && ActiveMember.data.abilityR.effectLogic != null)
+                    ActiveMember.data.abilityR.effectLogic.Deactivate(ActiveMember.spawnedInstance);
+            }
+
+            // restore normal downward gravity on old leader
+            if (ActiveMember.playerController != null)
+            {
+                ActiveMember.playerController.gravityDirection = Vector2.down;
+                ActiveMember.playerController.ClearForcedVelocity();
+                ActiveMember.playerController.enabled = false;
+            }
+
+            // make sure sprite is right-side up
+            Vector3 s = ActiveMember.spawnedInstance.transform.localScale;
+            ActiveMember.spawnedInstance.transform.localScale = new Vector3(s.x, 2f, 2f);
+
+            // restore cinemachine camera roll back to 0
+            CinemachineCamera cam = FindFirstObjectByType<CinemachineCamera>();
+            if (cam != null)
+            {
+                cam.Lens.Dutch = 0f;
+            }
+
             if (ActiveMember.spawnedInstance.TryGetComponent<Rigidbody2D>(out var oldRb))
             {
                 oldRb.linearVelocity = Vector2.zero;
-            }
-
-            if (ActiveMember.playerController != null)
-            {
-                ActiveMember.playerController.animator?.Play("Idle", 0, 0f);
-                ActiveMember.playerController.enabled = false;
+                oldRb.gravityScale = Mathf.Abs(oldRb.gravityScale); // enforce positive gravity
             }
 
             if (ActiveMember.spawnedInstance.TryGetComponent<AttackEventHandler>(out var attackHandler))
@@ -188,6 +203,7 @@ public class PartyManager : MonoBehaviour
             if (newLeader.spawnedInstance.TryGetComponent<Rigidbody2D>(out var newRb))
             {
                 newRb.linearVelocity = Vector2.zero;
+                newRb.gravityScale = Mathf.Abs(newRb.gravityScale);
             }
 
             newLeader.spawnedInstance.SetActive(true);
@@ -195,6 +211,7 @@ public class PartyManager : MonoBehaviour
 
             if (newLeader.playerController != null)
             {
+                newLeader.playerController.gravityDirection = Vector2.down;
                 newLeader.playerController.enabled = true;
             }
 

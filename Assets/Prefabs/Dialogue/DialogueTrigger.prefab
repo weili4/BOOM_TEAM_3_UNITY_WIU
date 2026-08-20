@@ -1,0 +1,185 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1099455476309931225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1448555095356720604}
+  - component: {fileID: 2876563507355621916}
+  - component: {fileID: 3169902739311595065}
+  m_Layer: 0
+  m_Name: DialogueTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1448555095356720604
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099455476309931225}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2876563507355621916
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099455476309931225}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &3169902739311595065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099455476309931225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8b5b8d79c477941aa7d02fd1ca65dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
+  triggerMode: 0
+  isCinematicCutscene: 1
+  triggerOnlyOnce: 0
+  dialogueLines:
+  - speakerName: Cool
+    speakerPortrait: {fileID: -855298285791758126, guid: a6147a3ba6c28204a977d788110dc104, type: 3}
+    sentence: HELLO THIS IS A TEST!!!!!!
+    typingSpeed: 0
+    voiceBlipSFX: {fileID: 0}
+    enableCameraShake: 0
+    shakeForce: 0
+    onLineEndEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    hasChoices: 0
+    choiceA:
+      choiceText: 
+      jumpToLineIndex: 0
+    choiceB:
+      choiceText: 
+      jumpToLineIndex: 0
+  - speakerName: Android
+    speakerPortrait: {fileID: -6470460504253458178, guid: 3c9609695ba952b469f537b1db1b3888, type: 3}
+    sentence: YOOOOOOO
+    typingSpeed: 0
+    voiceBlipSFX: {fileID: 0}
+    enableCameraShake: 0
+    shakeForce: 0
+    onLineEndEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    hasChoices: 1
+    choiceA:
+      choiceText: GO
+      jumpToLineIndex: 2
+    choiceB:
+      choiceText: NO
+      jumpToLineIndex: 4
+  - speakerName: Barbara
+    speakerPortrait: {fileID: -855298285791758126, guid: 12c364b6894da44459c3af98fdc34424, type: 3}
+    sentence: TIME TO GO
+    typingSpeed: 0
+    voiceBlipSFX: {fileID: 0}
+    enableCameraShake: 0
+    shakeForce: 0
+    onLineEndEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    hasChoices: 0
+    choiceA:
+      choiceText: GO
+      jumpToLineIndex: 2
+    choiceB:
+      choiceText: NO
+      jumpToLineIndex: 4
+  - speakerName: Barbara
+    speakerPortrait: {fileID: -855298285791758126, guid: 12c364b6894da44459c3af98fdc34424, type: 3}
+    sentence: TIME TO GO 2
+    typingSpeed: 0
+    voiceBlipSFX: {fileID: 0}
+    enableCameraShake: 0
+    shakeForce: 0
+    onLineEndEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    hasChoices: 0
+    choiceA:
+      choiceText: GO
+      jumpToLineIndex: 2
+    choiceB:
+      choiceText: NO
+      jumpToLineIndex: 4
+  - speakerName: Android
+    speakerPortrait: {fileID: 6937817954938267909, guid: 35379ad2117c1f541b8729ff61ce5328, type: 3}
+    sentence: Dialogue 1 test
+    typingSpeed: 0
+    voiceBlipSFX: {fileID: 0}
+    enableCameraShake: 0
+    shakeForce: 0
+    onLineEndEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    hasChoices: 0
+    choiceA:
+      choiceText: GO
+      jumpToLineIndex: 2
+    choiceB:
+      choiceText: NO
+      jumpToLineIndex: 4
+  onDialogueCompleted:
+    m_PersistentCalls:
+      m_Calls: []

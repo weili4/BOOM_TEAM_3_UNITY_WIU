@@ -1,27 +1,39 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "RageAbility", menuName = "Scriptable Objects/Effects/RageAbility")]
+[CreateAssetMenu(fileName = "RageAbility", menuName = "Party/Effects/RageAbility")]
 public class RageAbilityEffect : AbilityEffect
 {
+    [Header("rage multipliers")]
     public float animSpeedMultiplier = 1.5f;
+    public float moveSpeedMultiplier = 1.3f;
 
     public override void Activate(GameObject user, Vector2 mouseWorldPos)
     {
-        PlayerController controller = user.GetComponent<PlayerController>();
-        if (controller != null)
+        if (user == null) return;
+
+        if (user.TryGetComponent<PlayerController>(out var controller))
         {
-            controller.isRaging = true;
-            controller.animator.speed = animSpeedMultiplier;
+            controller.moveSpeedMultiplier = moveSpeedMultiplier;
+
+            if (controller.animator != null)
+            {
+                controller.animator.speed = animSpeedMultiplier;
+            }
         }
     }
 
     public override void Deactivate(GameObject user)
     {
-        PlayerController controller = user.GetComponent<PlayerController>();
-        if (controller != null)
+        if (user == null) return;
+
+        if (user.TryGetComponent<PlayerController>(out var controller))
         {
-            controller.isRaging = false;
-            controller.animator.speed = 1.0f;
+            controller.moveSpeedMultiplier = 1.0f;
+
+            if (controller.animator != null)
+            {
+                controller.animator.speed = 1.0f;
+            }
         }
     }
 }

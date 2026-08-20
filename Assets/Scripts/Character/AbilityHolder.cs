@@ -6,6 +6,12 @@ public class AbilityHolder : MonoBehaviour
     private AbilityData abilityQ;
     private AbilityData abilityE;
     private AbilityData abilityR;
+    private PlayerController playerController;
+
+    private void Awake()
+    {
+        playerController = GetComponent<PlayerController>();
+    }
 
     public void SetupAbilities(AbilityData q, AbilityData e, AbilityData r)
     {
@@ -16,8 +22,11 @@ public class AbilityHolder : MonoBehaviour
 
     private void Update()
     {
-        // only leader can cast abilities
+        // only active leader can cast abilities
         if (!CompareTag("Player") || Keyboard.current == null) return;
+
+        // block ability usage while climbing ladders
+        if (playerController != null && playerController.IsClimbing) return;
 
         var member = PartyManager.Instance?.ActiveMember;
         if (member == null) return;
@@ -41,29 +50,23 @@ public class AbilityHolder : MonoBehaviour
     private void TryCastAbility(AbilityData ability, ref float cdTimer, ref float activeTimer)
     {
         if (ability == null || ability.effectLogic == null) return;
-
-        // block if already on cooldown or still active
         if (cdTimer > 0f || activeTimer > 0f) return;
 
-        // start duration and cooldown
         activeTimer = ability.activeDuration;
         cdTimer = ability.cooldownTime;
 
         Vector2 mouseWorldPos = GetMouseWorldPosition();
 
-        // play ability sound
         if (ability.activationSound != null && AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySFX(ability.activationSound, transform.position, 1.2f);
         }
 
-        // spawn vfx on leader
         if (ability.vfxPrefab != null)
         {
             Instantiate(ability.vfxPrefab, transform.position, Quaternion.identity);
         }
 
-        // trigger effect logic
         ability.effectLogic.Activate(gameObject, mouseWorldPos);
     }
 

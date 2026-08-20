@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Unity.Cinemachine;
 
-[CreateAssetMenu(fileName = "InvertGravityAbility", menuName = "Scriptable Objects/Effects/InvertGravityAbility")]
+[CreateAssetMenu(fileName = "InvertGravityAbility", menuName = "Party/Effects/InvertGravityAbility")]
 public class InvertGravityAbilityEffect : AbilityEffect
 {
     [Header("camera dutch roll")]
@@ -16,17 +16,17 @@ public class InvertGravityAbilityEffect : AbilityEffect
         PlayerController controller = user.GetComponent<PlayerController>();
         if (controller == null) return;
 
-        // toggle gravity state (normal -> inverted -> normal)
-        bool targetInverted = !controller.IsGravityInverted;
-        controller.SetGravityInverted(targetInverted);
+        // toggle gravity direction vector on playercontroller
+        bool isCurrentlyInverted = (controller.gravityDirection.y > 0);
+        bool targetInverted = !isCurrentlyInverted;
 
-        // trigger screen flash
+        controller.gravityDirection = targetInverted ? Vector2.up : Vector2.down;
+
         if (ScreenFlashUI.Instance != null)
         {
             ScreenFlashUI.Instance.TriggerRedFlash();
         }
 
-        // rotate cinemachine camera 180 degrees
         if (rotateCamera180)
         {
             CinemachineCamera cam = FindFirstObjectByType<CinemachineCamera>();
@@ -40,14 +40,28 @@ public class InvertGravityAbilityEffect : AbilityEffect
 
     public override void Deactivate(GameObject user)
     {
-        // cleanup failsafe
         if (user == null) return;
+
         PlayerController controller = user.GetComponent<PlayerController>();
-        if (controller != null && controller.IsGravityInverted)
+        if (controller != null)
         {
-            controller.SetGravityInverted(false);
-            CinemachineCamera cam = FindFirstObjectByType<CinemachineCamera>();
-            if (cam != null) cam.Lens.Dutch = 0f;
+            controller.gravityDirection = Vector2.down;
+        }
+
+        // flip sprite upright
+        Vector3 s = user.transform.localScale;
+        user.transform.localScale = new Vector3(s.x, 2f, 2f);
+
+        if (user.TryGetComponent<Rigidbody2D>(out var rb))
+        {
+            rb.gravityScale = Mathf.Abs(rb.gravityScale);
+        }
+
+        // return camera roll back to 0
+        CinemachineCamera cam = FindFirstObjectByType<CinemachineCamera>();
+        if (cam != null)
+        {
+            cam.Lens.Dutch = 0f;
         }
     }
 
