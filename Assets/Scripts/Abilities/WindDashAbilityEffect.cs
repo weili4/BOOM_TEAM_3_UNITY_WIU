@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "WindDashAbility", menuName = "Scriptable Objects/Effects/WindDashAbility")]
 public class WindDashAbilityEffect : AbilityEffect
@@ -15,7 +14,7 @@ public class WindDashAbilityEffect : AbilityEffect
     [SerializeField] private LayerMask enemyLayer;
 
     [Header("optional front vfx")]
-    [SerializeField] private GameObject frontVFXPrefab; // ASSIGN VFX HERE JUN LOONG
+    [SerializeField] private GameObject frontVFXPrefab;
 
     public override void Activate(GameObject user, Vector2 mouseWorldPos)
     {
@@ -24,34 +23,25 @@ public class WindDashAbilityEffect : AbilityEffect
         PlayerController controller = user.GetComponent<PlayerController>();
         if (controller == null) return;
 
-        // 1. read 8 directional input from WASD or move stick
-        Vector2 inputDir = Vector2.zero;
+        // calculate direct aim vector from player to mouse cursor
+        Vector2 directionToMouse = (mouseWorldPos - (Vector2)user.transform.position).normalized;
 
-        try
+        // fallback if cursor is right on top of player center
+        if (directionToMouse.sqrMagnitude < 0.01f)
         {
-            if (InputSystem.actions != null && InputSystem.actions["Move"] != null)
-            {
-                inputDir = InputSystem.actions["Move"].ReadValue<Vector2>();
-            }
-        }
-        catch { }
-
-        if (inputDir.sqrMagnitude < 0.01f && Keyboard.current != null)
-        {
-            float x = 0f;
-            float y = 0f;
-
-            if (Keyboard.current.wKey.isPressed || Keyboard.current.upArrowKey.isPressed) y += 1f;
-            if (Keyboard.current.sKey.isPressed || Keyboard.current.downArrowKey.isPressed) y -= 1f;
-            if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed) x += 1f;
-            if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed) x -= 1f;
-
-            inputDir = new Vector2(x, y);
+            directionToMouse = new Vector2(Mathf.Sign(user.transform.localScale.x), 0f);
         }
 
-        // 2. perform dash with combat damage and front vfx
+        // flip character sprite to face mouse direction
+        if (Mathf.Abs(directionToMouse.x) > 0.1f)
+        {
+            float dirSign = Mathf.Sign(directionToMouse.x);
+            user.transform.localScale = new Vector3(dirSign * Mathf.Abs(user.transform.localScale.x), user.transform.localScale.y, user.transform.localScale.z);
+        }
+
+        // execute dash directly towards mouse cursor
         controller.PerformDash(
-            inputDir,
+            directionToMouse,
             dashForce,
             dashDuration,
             dashDamage,
