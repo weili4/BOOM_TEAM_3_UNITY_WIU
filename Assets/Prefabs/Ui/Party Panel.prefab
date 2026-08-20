@@ -68,8 +68,8 @@ MonoBehaviour:
   m_text: Ability Description. The quick brown fox jumps over the lazy dog. The quick
     brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a8b7a9a4df1f6854288595798eae84a9, type: 2}
+  m_sharedMaterial: {fileID: 3445532756872766450, guid: a8b7a9a4df1f6854288595798eae84a9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 8179981945747207868}
   - component: {fileID: 7774538746070081102}
   - component: {fileID: 308720024222508570}
+  - component: {fileID: 6394878075700284147}
   m_Layer: 5
   m_Name: Close Button
   m_TagString: Untagged
@@ -205,8 +206,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -259,6 +260,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6394878075700284147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275611158250381776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63fa4deec54cff448f5859574c46d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverElevate
+  hoverDistanceY: 0
+  transitionSpeed: 14
+  enableSubtleScale: 1
+  hoverScale: 1.04
+  targetRect: {fileID: 0}
 --- !u!1 &523434066553569243
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +592,7 @@ GameObject:
   - component: {fileID: 7932665350685967928}
   - component: {fileID: 5175676159301326248}
   - component: {fileID: 6826997874587585932}
+  - component: {fileID: 6527786484277853047}
   m_Layer: 5
   m_Name: Health BANNER (1)
   m_TagString: Untagged
@@ -630,8 +649,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -655,7 +674,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
+    m_Top: 10
     m_Bottom: 0
   m_ChildAlignment: 4
   m_Spacing: 0
@@ -710,6 +729,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6527786484277853047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860840255642423587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63fa4deec54cff448f5859574c46d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverElevate
+  hoverDistanceY: 8
+  transitionSpeed: 14
+  enableSubtleScale: 1
+  hoverScale: 1.04
+  targetRect: {fileID: 0}
 --- !u!1 &900430027614650308
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,8 +966,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -953,6 +989,7 @@ GameObject:
   - component: {fileID: 5180485194668773581}
   - component: {fileID: 8350325898903764948}
   - component: {fileID: 3320784206445333573}
+  - component: {fileID: 5911735463453879132}
   m_Layer: 5
   m_Name: Ability (2)
   m_TagString: Untagged
@@ -1055,9 +1092,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.007843138, g: 0.5176471, b: 0.78039217, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1076,6 +1113,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5911735463453879132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748067190431143133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63fa4deec54cff448f5859574c46d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverElevate
+  hoverDistanceY: 8
+  transitionSpeed: 14
+  enableSubtleScale: 1
+  hoverScale: 1.04
+  targetRect: {fileID: 0}
 --- !u!1 &1975944195920821866
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,6 +1502,7 @@ GameObject:
   - component: {fileID: 7386719204382096391}
   - component: {fileID: 7702280387524968858}
   - component: {fileID: 5458043928962392957}
+  - component: {fileID: 535645654330621007}
   m_Layer: 5
   m_Name: Health BANNER
   m_TagString: Untagged
@@ -1504,8 +1559,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1529,7 +1584,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
+    m_Top: 10
     m_Bottom: 0
   m_ChildAlignment: 4
   m_Spacing: 0
@@ -1584,6 +1639,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &535645654330621007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3309718307616810862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63fa4deec54cff448f5859574c46d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverElevate
+  hoverDistanceY: 8
+  transitionSpeed: 14
+  enableSubtleScale: 1
+  hoverScale: 1.04
+  targetRect: {fileID: 0}
 --- !u!1 &3719607074469151836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,6 +1669,7 @@ GameObject:
   - component: {fileID: 5412998641421507032}
   - component: {fileID: 8335132277947186774}
   - component: {fileID: 5017602292705122132}
+  - component: {fileID: 3343807187573009211}
   m_Layer: 5
   m_Name: Ability
   m_TagString: Untagged
@@ -1699,9 +1772,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.007843138, g: 0.5176471, b: 0.78039217, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1720,6 +1793,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3343807187573009211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3719607074469151836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63fa4deec54cff448f5859574c46d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverElevate
+  hoverDistanceY: 8
+  transitionSpeed: 14
+  enableSubtleScale: 1
+  hoverScale: 1.04
+  targetRect: {fileID: 0}
 --- !u!1 &3890448548243969690
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,8 +1877,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: CHARACTER NAME
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e295dce7eb0036940a78522de6d49e7e, type: 2}
+  m_sharedMaterial: {fileID: -4509937277238365285, guid: e295dce7eb0036940a78522de6d49e7e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1818,7 +1908,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 5
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2022,8 +2112,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: X
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e295dce7eb0036940a78522de6d49e7e, type: 2}
+  m_sharedMaterial: {fileID: -4509937277238365285, guid: e295dce7eb0036940a78522de6d49e7e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2159,8 +2249,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2182,6 +2272,7 @@ GameObject:
   - component: {fileID: 858428302664050820}
   - component: {fileID: 8108721709341963123}
   - component: {fileID: 973678813129048068}
+  - component: {fileID: 3752436253270786029}
   m_Layer: 5
   m_Name: Health BANNER (2)
   m_TagString: Untagged
@@ -2238,8 +2329,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2263,7 +2354,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
+    m_Top: 10
     m_Bottom: 0
   m_ChildAlignment: 4
   m_Spacing: 0
@@ -2318,6 +2409,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3752436253270786029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4451064934789094097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63fa4deec54cff448f5859574c46d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverElevate
+  hoverDistanceY: 8
+  transitionSpeed: 14
+  enableSubtleScale: 1
+  hoverScale: 1.04
+  targetRect: {fileID: 0}
 --- !u!1 &4501445896875545432
 GameObject:
   m_ObjectHideFlags: 0
@@ -2767,8 +2875,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e295dce7eb0036940a78522de6d49e7e, type: 2}
+  m_sharedMaterial: {fileID: -4509937277238365285, guid: e295dce7eb0036940a78522de6d49e7e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3193,6 +3301,7 @@ GameObject:
   - component: {fileID: 7666286638696239519}
   - component: {fileID: 7648223572098503722}
   - component: {fileID: 7823451053939438051}
+  - component: {fileID: 148047324064035369}
   m_Layer: 5
   m_Name: Ability (1)
   m_TagString: Untagged
@@ -3295,9 +3404,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.007843138, g: 0.5176471, b: 0.78039217, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3316,6 +3425,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &148047324064035369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6805179200354346044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63fa4deec54cff448f5859574c46d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverElevate
+  hoverDistanceY: 8
+  transitionSpeed: 14
+  enableSubtleScale: 1
+  hoverScale: 1.04
+  targetRect: {fileID: 0}
 --- !u!1 &6808072021510134038
 GameObject:
   m_ObjectHideFlags: 0
@@ -3365,6 +3491,7 @@ GameObject:
   - component: {fileID: 8943135632392111650}
   - component: {fileID: 6050492230425381693}
   - component: {fileID: 8211336669782061304}
+  - component: {fileID: 6901684670193787951}
   m_Layer: 5
   m_Name: Next
   m_TagString: Untagged
@@ -3473,6 +3600,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6901684670193787951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7039299558113954763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63fa4deec54cff448f5859574c46d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverElevate
+  hoverDistanceY: 8
+  transitionSpeed: 14
+  enableSubtleScale: 1
+  hoverScale: 1.04
+  targetRect: {fileID: 0}
 --- !u!1 &7399925468302639635
 GameObject:
   m_ObjectHideFlags: 0
@@ -3539,8 +3683,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4220,6 +4364,7 @@ GameObject:
   - component: {fileID: 7957634013678788642}
   - component: {fileID: 9007303799374347413}
   - component: {fileID: 2795859757446784425}
+  - component: {fileID: 601256295984293955}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -4328,6 +4473,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &601256295984293955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8877644202123516901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63fa4deec54cff448f5859574c46d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverElevate
+  hoverDistanceY: 8
+  transitionSpeed: 14
+  enableSubtleScale: 1
+  hoverScale: 1.04
+  targetRect: {fileID: 0}
 --- !u!1 &8887788245658174087
 GameObject:
   m_ObjectHideFlags: 0
@@ -4546,8 +4708,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PARTY MENU
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e295dce7eb0036940a78522de6d49e7e, type: 2}
+  m_sharedMaterial: {fileID: -4509937277238365285, guid: e295dce7eb0036940a78522de6d49e7e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

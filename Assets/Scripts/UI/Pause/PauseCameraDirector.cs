@@ -9,9 +9,9 @@ public class PauseCameraDirector : MonoBehaviour
     [Header("cinemachine references")]
     [SerializeField] private CinemachineCamera cinemachineCam;
 
-    [Header("screen framing (left side center is 0.25)")]
+    [Header("screen framing")]
     [SerializeField] private float defaultScreenX = 0.5f;
-    [SerializeField] private float pausedScreenX = 0.25f; // centers leader in left half
+    [SerializeField] private float pausedScreenX = 0.25f; // frames leader on left half
     [SerializeField] private float defaultScreenY = 0.5f;
     [SerializeField] private float pausedScreenY = 0.45f;
 
@@ -21,10 +21,10 @@ public class PauseCameraDirector : MonoBehaviour
 
     [Header("perspective fov zoom")]
     [SerializeField] private float defaultFOV = 60f;
-    [SerializeField] private float pausedFOV = 40f; // zoom in on leader
+    [SerializeField] private float pausedFOV = 40f;
 
     [Header("transition duration")]
-    [SerializeField] private float transitionDuration = 0.16f; // 10 frames at 60fps
+    [SerializeField] private float transitionDuration = 0.16f;
 
     private CinemachinePositionComposer positionComposer;
     private Transform camTransform;
@@ -80,7 +80,6 @@ public class PauseCameraDirector : MonoBehaviour
         float startY = positionComposer != null ? positionComposer.Composition.ScreenPosition.y : defaultScreenY;
         float targetY = isPausing ? pausedScreenY : defaultScreenY;
 
-        // remove damping during pause transition so camera catches a running player immediately
         if (positionComposer != null)
         {
             positionComposer.Damping = isPausing ? Vector3.zero : originalDamping;
@@ -92,17 +91,11 @@ public class PauseCameraDirector : MonoBehaviour
         {
             elapsed += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(elapsed / transitionDuration);
-
-            // smooth ease out curve
             float easeOut = 1f - Mathf.Pow(1f - t, 3f);
 
-            // 1. tilt rotation
             camTransform.localRotation = Quaternion.Slerp(startRot, targetRot, easeOut);
-
-            // 2. fov zoom
             cinemachineCam.Lens.FieldOfView = Mathf.Lerp(startFOV, targetFOV, easeOut);
 
-            // 3. shift screen framing to left half (screen x = 0.25)
             if (positionComposer != null)
             {
                 var comp = positionComposer.Composition;
@@ -116,7 +109,6 @@ public class PauseCameraDirector : MonoBehaviour
             yield return null;
         }
 
-        // snap final values
         camTransform.localRotation = targetRot;
         cinemachineCam.Lens.FieldOfView = targetFOV;
 

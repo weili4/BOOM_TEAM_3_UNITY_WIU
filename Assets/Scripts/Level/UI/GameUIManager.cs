@@ -122,7 +122,7 @@ public class GameUIManager : MonoBehaviour
     public void InventoryMenu()
     {
         isInventoryOpen = true;
-        Time.timeScale = 0f;
+        // Time.timeScale = 0f;
 
         if (inventoryPanel != null) inventoryPanel.SetActive(true);
     }
@@ -140,7 +140,7 @@ public class GameUIManager : MonoBehaviour
     public void PauseGame()
     {
         isPaused = true;
-        Time.timeScale = 0f;
+        // Time.timeScale = 0f;
 
         if (pausePanel != null) pausePanel.SetActive(true);
         if (cheatsPanel != null) cheatsPanel.SetActive(false);

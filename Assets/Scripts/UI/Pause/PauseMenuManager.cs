@@ -6,8 +6,8 @@ public class PauseMenuManager : MonoBehaviour
 {
     public static PauseMenuManager Instance { get; private set; }
 
-    [Header("root panel")]
-    [SerializeField] private GameObject pausePanelRoot;
+    [Header("root panel to show/hide")]
+    [SerializeField] private GameObject pausePanelRoot; // the Panel GameObject inside Canvas
 
     [Header("top tab buttons")]
     [SerializeField] private Button partyTabButton;
@@ -19,8 +19,8 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private GameObject settingsPanel;
 
+    private int currentActiveTab = 2; // 0 = party, 1 = inventory, 2 = settings
     private bool isPaused = false;
-    private bool isTransitioning = false;
     public bool IsPaused => isPaused;
 
     private void Awake()
@@ -35,17 +35,19 @@ public class PauseMenuManager : MonoBehaviour
 
     private void Start()
     {
+        // ensure game starts unpaused and menu hidden
         if (pausePanelRoot != null) pausePanelRoot.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     private void Update()
     {
-        if (isTransitioning) return;
         CheckHotkeyInputs();
     }
 
     private void CheckHotkeyInputs()
     {
+        // 1. check escape or P (settings toggle)
         bool escapeOrP = false;
         if (Keyboard.current != null)
         {
@@ -54,11 +56,18 @@ public class PauseMenuManager : MonoBehaviour
 
         if (escapeOrP)
         {
-            if (isPaused) ResumeGame();
-            else PauseGame(2); // open to settings
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame(2); // open directly to settings
+            }
             return;
         }
 
+        // 2. check I or B (inventory toggle)
         bool iOrB = false;
         if (Keyboard.current != null)
         {
@@ -67,63 +76,74 @@ public class PauseMenuManager : MonoBehaviour
 
         if (iOrB)
         {
-            if (isPaused && inventoryPanel != null && inventoryPanel.activeSelf) ResumeGame();
-            else PauseGame(1); // open to inventory
+            if (isPaused)
+            {
+                // if already on inventory tab pressing I closes the menu
+                if (currentActiveTab == 1)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    // if paused on another tab switch to inventory
+                    SwitchTab(1);
+                }
+            }
+            else
+            {
+                // open directly to inventory with 3d camera tilt
+                PauseGame(1);
+            }
         }
     }
 
     public void PauseGame(int startingTabIndex)
     {
-        if (isPaused || isTransitioning) return;
         isPaused = true;
-        isTransitioning = true;
 
         if (pausePanelRoot != null) pausePanelRoot.SetActive(true);
         SwitchTab(startingTabIndex);
 
-        // tilt camera for 10 frames while animator plays then freeze timescale
+        // hide party hud with animation
+        PartyHUD.Instance?.HideHUD();
+
+        // tilt camera for 10 frames then freeze timescale to 0
         if (PauseCameraDirector.Instance != null)
         {
             PauseCameraDirector.Instance.AnimateToPauseView(true, () =>
             {
-                Time.timeScale = 0f; // freeze time after 10-frame transition completes
-                isTransitioning = false;
+                Time.timeScale = 0f;
             });
         }
         else
         {
             Time.timeScale = 0f;
-            isTransitioning = false;
         }
     }
 
     public void ResumeGame()
     {
-        if (!isPaused || isTransitioning) return;
         isPaused = false;
-        isTransitioning = true;
 
         // unpause time instantly
         Time.timeScale = 1f;
 
         if (pausePanelRoot != null) pausePanelRoot.SetActive(false);
 
-        // return camera to normal 2d view
+        // show party hud with animation
+        PartyHUD.Instance?.ShowHUD();
+
+        // return camera to flat 2d view
         if (PauseCameraDirector.Instance != null)
         {
-            PauseCameraDirector.Instance.AnimateToPauseView(false, () =>
-            {
-                isTransitioning = false;
-            });
-        }
-        else
-        {
-            isTransitioning = false;
+            PauseCameraDirector.Instance.AnimateToPauseView(false);
         }
     }
 
     public void SwitchTab(int tabIndex)
     {
+        currentActiveTab = tabIndex;
+
         if (partyPanel != null) partyPanel.SetActive(tabIndex == 0);
         if (inventoryPanel != null) inventoryPanel.SetActive(tabIndex == 1);
         if (settingsPanel != null) settingsPanel.SetActive(tabIndex == 2);

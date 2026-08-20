@@ -30,12 +30,42 @@ public class PartyHUD : MonoBehaviour
     [SerializeField] private float followerScale = 0.95f;
     [SerializeField] private float scaleSpeed = 9.0f;
 
+    [Header("hud animator")]
+    [SerializeField] private Animator hudAnimator;
+
     private int activeLeaderIndex = 0;
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        if (hudAnimator == null)
+            hudAnimator = GetComponent<Animator>();
+
+        // make sure animator works during pause menu timescale 0
+        if (hudAnimator != null)
+        {
+            hudAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        }
+    }
+
+    // plays the show animation when returning to gameplay
+    public void ShowHUD()
+    {
+        if (hudAnimator != null)
+        {
+            hudAnimator.Play("Show", 0, 0f);
+        }
+    }
+
+    // plays the hide animation when pause menu opens
+    public void HideHUD()
+    {
+        if (hudAnimator != null)
+        {
+            hudAnimator.Play("Hide", 0, 0f);
+        }
     }
 
     private void OnEnable()
