@@ -284,7 +284,7 @@ MonoBehaviour:
   flashSpeed: 25
   source: {fileID: 0}
   hitShakeForce: 1
-  hitVFXPrefab: {fileID: 1792412140663129171, guid: 3bcb4c6972706e146a4148ab7ec17180, type: 3}
+  hitVFXPrefab: {fileID: 3809979095271460427, guid: f9a9962ef94987d4fa16e169ac02d268, type: 3}
   hitSound: {fileID: 0}
   onHealthChanged:
     m_PersistentCalls:
