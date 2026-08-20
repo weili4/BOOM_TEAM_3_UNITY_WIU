@@ -17,6 +17,7 @@ public class ChunkManager : MonoBehaviour
     [SerializeField] private ObjectiveType objectiveType = ObjectiveType.ReachGate;
     [SerializeField] private Gate exitGate;
     [SerializeField] private Gate entranceGate;
+    [SerializeField] private bool isStartingChunk = false;
 
     [Header("CHUNK MUSIC")]
     [SerializeField] private AudioClip chunkBGM;
@@ -74,8 +75,16 @@ public class ChunkManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return null;
+
+        // Only force UI update on Start if this is designated as the starting chunk
+        if (isStartingChunk)
+        {
+            ActivateChunk();
+        }
+
         if (objectiveType == ObjectiveType.KillAllEnemies)
         {
             totalEnemies = chunkEnemies.Count;
@@ -191,7 +200,7 @@ public class ChunkManager : MonoBehaviour
             exitGate.SlamCloseGate();
         }
 
-        LevelObjectiveUI.Instance?.SetObjectiveText("Time Expired! Step on the start trigger to retry!");
+        LevelObjectiveUI.Instance?.SetObjectiveText("Time ran out! Try again from the start!");
     }
 
     private void OnEnemyHealthChanged(Damageable enemy, int currentHealth)
@@ -228,7 +237,7 @@ public class ChunkManager : MonoBehaviour
             if (bossZoneClearedSound != null && AudioManager.Instance != null)
             {
                 if (AudioManager.Instance != null)
-                AudioManager.Instance.PlaySFX(bossZoneClearedSound, transform.position, 1.4f);
+                    AudioManager.Instance.PlaySFX(bossZoneClearedSound, transform.position, 1.4f);
             }
 
             if (AudioManager.Instance != null)
@@ -247,7 +256,7 @@ public class ChunkManager : MonoBehaviour
         if (waveStartSound != null && AudioManager.Instance != null)
         {
             if (AudioManager.Instance != null)
-            AudioManager.Instance.PlaySFX(waveStartSound, transform.position, 1.2f);
+                AudioManager.Instance.PlaySFX(waveStartSound, transform.position, 1.2f);
         }
 
         yield return new WaitForSeconds(delayBetweenWaves);
@@ -265,7 +274,7 @@ public class ChunkManager : MonoBehaviour
             if (enemySpawnSound != null && AudioManager.Instance != null)
             {
                 if (AudioManager.Instance != null)
-                AudioManager.Instance.PlaySFX(enemySpawnSound, sp.position, 1.0f);
+                    AudioManager.Instance.PlaySFX(enemySpawnSound, sp.position, 1.0f);
             }
 
             if (spawnedEnemy.TryGetComponent<Damageable>(out Damageable health))
@@ -289,7 +298,7 @@ public class ChunkManager : MonoBehaviour
                 if (waveClearedSound != null && AudioManager.Instance != null)
                 {
                     if (AudioManager.Instance != null)
-                    AudioManager.Instance.PlaySFX(waveClearedSound, transform.position, 1.2f);
+                        AudioManager.Instance.PlaySFX(waveClearedSound, transform.position, 1.2f);
                 }
 
                 currentWaveIndex++;
@@ -310,7 +319,8 @@ public class ChunkManager : MonoBehaviour
 
     public void UpdateChunkObjectiveUI()
     {
-        if (isChunkCleared)
+        // Exclude ReachGate here so ReachGate chunks display "Get to the Gate!" instead of defaulting to cleared
+        if (IsChunkCleared && objectiveType != ObjectiveType.ReachGate)
         {
             LevelObjectiveUI.Instance?.SetObjectiveText("Proceed through the Unlocked Gate!");
             return;

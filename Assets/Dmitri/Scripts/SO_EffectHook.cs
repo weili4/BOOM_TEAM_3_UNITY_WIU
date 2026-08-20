@@ -1,22 +1,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SO_EffectHook", menuName = "Scriptable Objects/Effects/Hook")]
+[CreateAssetMenu(fileName = "SO_EffectHook", menuName = "Party/Effects/Hook Effect")]
 public class SO_EffectHook : AbilityEffect
 {
     [Header("Hook Prefab")]
     public GameObject hookPrefab;
 
+    [Header("Visual Effects (VFX)")]
+    public GameObject groundImpactVFXPrefab;
+    public GameObject enemyImpactVFXPrefab;
+
+    [Header("Damage Settings")]
+    public int damage = 25;
+
     [Header("Hook Physics & Speeds")]
     public float throwSpeed = 25f;
-    [Tooltip("Pause in seconds between hitting the surface and pulling the player.")]
+    [Tooltip("Pause in seconds between hitting a surface/target and starting the reel.")]
     public float pullDelay = 0.15f;
     public float pullSpeed = 18f;
+    public float enemyPullSpeed = 22f;
     public float maxDistance = 20f;
     public float stopDistance = 1.2f;
 
     [Header("Layer Collision")]
     public LayerMask groundLayer;
+    public LayerMask enemyLayer;
 
     [Header("Audio Settings (Impact/Attach)")]
     public AudioClip attachSFX;
@@ -26,6 +35,8 @@ public class SO_EffectHook : AbilityEffect
 
     public override void Activate(GameObject user, Vector2 mouseWorldPos)
     {
+        if (user == null) return;
+
         if (user.TryGetComponent<Animator>(out Animator animator))
         {
             animator.SetTrigger("DoubleJump");
@@ -50,12 +61,17 @@ public class SO_EffectHook : AbilityEffect
                 hook.Initialize(
                     user,
                     pullSpeed,
-                    pullDelay, // Passed delay parameter here
+                    enemyPullSpeed,
+                    pullDelay,
                     stopDistance,
                     maxDistance,
+                    damage,
                     groundLayer,
+                    enemyLayer,
                     attachSFX,
-                    soundVolume
+                    soundVolume,
+                    groundImpactVFXPrefab,
+                    enemyImpactVFXPrefab
                 );
             }
 

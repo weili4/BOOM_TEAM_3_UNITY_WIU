@@ -93,6 +93,7 @@ public class TeleportInteract : MonoBehaviour
         // Teleport player
         playerObject.transform.position = teleportPoint.position;
 
+        isPlayerInside = false;
         RestorePreviousUI();
     }
 

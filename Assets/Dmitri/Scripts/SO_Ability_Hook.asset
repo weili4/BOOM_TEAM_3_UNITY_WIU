@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: SO_Ability_Hook
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
   abilityName: Hook
+  abilityDescription: Ability description details go here...
   icon: {fileID: -1946562993798070428, guid: fa94de70e499ee44799f8fd2e8950f1e, type: 3}
-  keybind: 49
   cooldownTime: 2
-  activeDuration: 1
-  activationSound: {fileID: 0}
+  activeDuration: 0
+  activationSound: {fileID: 8300000, guid: 9a2c69403fa1e654799fc54d6fcfb23b, type: 3}
   vfxPrefab: {fileID: 0}
+  effectLogic: {fileID: 11400000, guid: a0b14af0d86e7e94b89bd73a93aee546, type: 2}

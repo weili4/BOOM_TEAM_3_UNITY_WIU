@@ -5,22 +5,38 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class HookProjectile : MonoBehaviour
 {
+    private enum HookTargetType { None, Ground, Enemy }
+
     private GameObject owner;
     private Rigidbody2D playerRb;
+    private Animator ownerAnimator;
     private LineRenderer lineRenderer;
     private Rigidbody2D hookRb;
 
     private float pullSpeed;
+    private float enemyPullSpeed;
+    private float retractSpeed; 
     private float pullDelay;
     private float stopDistance;
     private float maxDistance;
+    private float maxPullDuration;
+    private int damageAmount;
     private LayerMask groundLayer;
+    private LayerMask enemyLayer;
     private AudioClip attachSFX;
     private float soundVolume;
 
+    private GameObject groundImpactVFXPrefab;
+    private GameObject enemyImpactVFXPrefab;
+
     private bool isAttached = false;
     private bool isPulling = false;
-    private Vector2 hitPoint;
+    private bool isReturning = false;
+    private HookTargetType targetType = HookTargetType.None;
+
+    private Vector2 groundHitPoint;
+    private GameObject hookedEnemy;
+    private Rigidbody2D enemyRb;
 
     private void Awake()
     {
@@ -31,25 +47,44 @@ public class HookProjectile : MonoBehaviour
     public void Initialize(
         GameObject user,
         float pullSpd,
+        float enemyPullSpd,
         float delay,
         float stopDist,
         float maxDist,
-        LayerMask layer,
+        int damage,
+        LayerMask gLayer,
+        LayerMask eLayer,
         AudioClip sfx,
-        float vol)
+        float vol,
+        GameObject groundVfx = null,
+        GameObject enemyVfx = null,
+        float pullTimeout = 1.0f,
+        float retractSpd = 20.0f)
     {
         owner = user;
         pullSpeed = pullSpd;
+        enemyPullSpeed = enemyPullSpd;
+        retractSpeed = retractSpd;
         pullDelay = delay;
         stopDistance = stopDist;
         maxDistance = maxDist;
-        groundLayer = layer;
+        damageAmount = damage;
+        groundLayer = gLayer;
+        enemyLayer = eLayer;
         attachSFX = sfx;
         soundVolume = vol;
+        groundImpactVFXPrefab = groundVfx;
+        enemyImpactVFXPrefab = enemyVfx;
+        maxPullDuration = pullTimeout;
 
         if (owner != null)
         {
             playerRb = owner.GetComponent<Rigidbody2D>();
+            ownerAnimator = owner.GetComponent<Animator>();
+            if (ownerAnimator == null)
+            {
+                ownerAnimator = owner.GetComponentInChildren<Animator>();
+            }
         }
 
         if (lineRenderer != null)
@@ -68,10 +103,31 @@ public class HookProjectile : MonoBehaviour
 
         DrawRopeLine();
 
-        // Range check while flying
-        if (!isAttached)
+        // 1. CHECK FOR MAXIMUM EXTENSION TO TRIGGER RETRACTION
+        if (!isAttached && !isReturning)
         {
             if (Vector2.Distance(owner.transform.position, transform.position) >= maxDistance)
+            {
+                isReturning = true;
+            }
+        }
+
+        // 2. RETRACT BACK TO PLAYER (HITBOX STAYS ACTIVE IN HANDLEIMPACT)
+        if (isReturning && !isAttached)
+        {
+            Vector2 returnDir = ((Vector2)owner.transform.position - (Vector2)transform.position).normalized;
+
+            if (hookRb != null && hookRb.bodyType != RigidbodyType2D.Kinematic)
+            {
+                hookRb.linearVelocity = returnDir * retractSpeed;
+            }
+            else
+            {
+                transform.position = Vector2.MoveTowards(transform.position, owner.transform.position, retractSpeed * Time.deltaTime);
+            }
+
+            // Clean up once the returning hook reaches player
+            if (Vector2.Distance(owner.transform.position, transform.position) <= stopDistance)
             {
                 Destroy(gameObject);
             }
@@ -80,14 +136,54 @@ public class HookProjectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Only pull after attachment AND the pull delay timer finishes
-        if (isAttached && isPulling && playerRb != null && owner != null)
+        if (!isAttached || !isPulling || owner == null) return;
+
+        // Set player animation only during ground pull
+        if (ownerAnimator != null && targetType == HookTargetType.Ground)
         {
-            Vector2 pullDir = (hitPoint - (Vector2)owner.transform.position).normalized;
+            ownerAnimator.SetBool("IsFalling", true);
+            ownerAnimator.SetBool("IsJumping", false);
+        }
+
+        // 1. PULL PLAYER TO GROUND
+        if (targetType == HookTargetType.Ground && playerRb != null)
+        {
+            Vector2 pullDir = (groundHitPoint - (Vector2)owner.transform.position).normalized;
             playerRb.linearVelocity = pullDir * pullSpeed;
 
-            if (Vector2.Distance(owner.transform.position, hitPoint) <= stopDistance)
+            if (Vector2.Distance(owner.transform.position, groundHitPoint) <= stopDistance)
             {
+                Destroy(gameObject);
+            }
+        }
+        // 2. PULL ENEMY TO PLAYER
+        else if (targetType == HookTargetType.Enemy)
+        {
+            if (hookedEnemy == null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Vector2 enemyPos = hookedEnemy.transform.position;
+            Vector2 playerPos = owner.transform.position;
+            Vector2 pullDir = (playerPos - enemyPos).normalized;
+
+            if (enemyRb != null)
+            {
+                enemyRb.linearVelocity = pullDir * enemyPullSpeed;
+            }
+            else
+            {
+                hookedEnemy.transform.position = Vector2.MoveTowards(enemyPos, playerPos, enemyPullSpeed * Time.fixedDeltaTime);
+            }
+
+            if (Vector2.Distance(enemyPos, playerPos) <= stopDistance)
+            {
+                if (enemyRb != null)
+                {
+                    enemyRb.linearVelocity = Vector2.zero;
+                }
                 Destroy(gameObject);
             }
         }
@@ -105,42 +201,102 @@ public class HookProjectile : MonoBehaviour
 
     private void HandleImpact(GameObject hitObject)
     {
+        // Don't trigger if already attached to a target
         if (isAttached) return;
 
-        bool isGround = ((1 << hitObject.layer) & groundLayer) != 0;
+        // Ignore collisions with the owner (Player)
+        if (hitObject == owner || hitObject.transform.IsChildOf(owner.transform)) return;
 
-        if (!isGround && hitObject.transform.parent != null)
+        bool isGround = IsInLayerMask(hitObject, groundLayer);
+        bool isEnemy = IsInLayerMask(hitObject, enemyLayer);
+
+        if (!isGround && !isEnemy) return;
+
+        // Stop returning sequence since hook has latched onto something
+        isReturning = false;
+        isAttached = true;
+
+        if (isEnemy)
         {
-            isGround = ((1 << hitObject.transform.parent.gameObject.layer) & groundLayer) != 0;
-        }
+            targetType = HookTargetType.Enemy;
+            hookedEnemy = GetRootHitObject(hitObject);
+            enemyRb = hookedEnemy.GetComponent<Rigidbody2D>();
 
-        if (isGround)
-        {
-            isAttached = true;
-            hitPoint = transform.position;
+            if (hookedEnemy.TryGetComponent<Damageable>(out Damageable damageable))
+            {
+                damageable.TakeDamage(damageAmount);
+            }
 
-            // Lock hook position in place instantly
+            transform.SetParent(hookedEnemy.transform);
+
             if (hookRb != null)
             {
                 hookRb.linearVelocity = Vector2.zero;
                 hookRb.bodyType = RigidbodyType2D.Kinematic;
             }
 
-            // Play impact sound
-            if (attachSFX != null && AudioManager.Instance != null)
+            SpawnImpactVFX(enemyImpactVFXPrefab);
+        }
+        else if (isGround)
+        {
+            targetType = HookTargetType.Ground;
+            groundHitPoint = transform.position;
+
+            if (hookRb != null)
             {
-                AudioManager.Instance.PlaySFX(attachSFX, hitPoint, soundVolume);
+                hookRb.linearVelocity = Vector2.zero;
+                hookRb.bodyType = RigidbodyType2D.Kinematic;
             }
 
-            // Start delay timer before pulling
-            if (pullDelay > 0f)
-            {
-                StartCoroutine(PullDelayRoutine());
-            }
-            else
-            {
-                StartPulling();
-            }
+            SpawnImpactVFX(groundImpactVFXPrefab);
+        }
+
+        if (attachSFX != null && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(attachSFX, transform.position, soundVolume);
+        }
+
+        if (pullDelay > 0f)
+        {
+            StartCoroutine(PullDelayRoutine());
+        }
+        else
+        {
+            StartPulling();
+        }
+    }
+
+    private bool IsInLayerMask(GameObject obj, LayerMask mask)
+    {
+        if (((1 << obj.layer) & mask) != 0) return true;
+        if (obj.transform.parent != null && ((1 << obj.transform.parent.gameObject.layer) & mask) != 0) return true;
+        return false;
+    }
+
+    private GameObject GetRootHitObject(GameObject obj)
+    {
+        if (((1 << obj.layer) & enemyLayer) != 0) return obj;
+        if (obj.transform.parent != null && ((1 << obj.transform.parent.gameObject.layer) & enemyLayer) != 0)
+        {
+            return obj.transform.parent.gameObject;
+        }
+        return obj;
+    }
+
+    private void SpawnImpactVFX(GameObject vfxPrefab)
+    {
+        if (vfxPrefab == null) return;
+
+        GameObject vfxInstance = Instantiate(vfxPrefab, transform.position, transform.rotation);
+
+        if (vfxInstance.TryGetComponent<ParticleSystem>(out ParticleSystem ps))
+        {
+            float totalDuration = ps.main.duration + ps.main.startLifetime.constantMax;
+            Destroy(vfxInstance, totalDuration);
+        }
+        else
+        {
+            Destroy(vfxInstance, 2.0f);
         }
     }
 
@@ -154,12 +310,36 @@ public class HookProjectile : MonoBehaviour
     {
         isPulling = true;
 
-        // Apply initial impulse velocity
-        if (playerRb != null && owner != null)
+        if (ownerAnimator != null && targetType == HookTargetType.Ground)
         {
-            Vector2 pullDir = (hitPoint - (Vector2)owner.transform.position).normalized;
+            ownerAnimator.SetBool("IsFalling", true);
+            ownerAnimator.SetBool("IsJumping", false);
+        }
+
+        if (maxPullDuration > 0f)
+        {
+            StartCoroutine(PullTimeoutRoutine());
+        }
+
+        if (targetType == HookTargetType.Ground && playerRb != null && owner != null)
+        {
+            Vector2 pullDir = (groundHitPoint - (Vector2)owner.transform.position).normalized;
             playerRb.linearVelocity = pullDir * pullSpeed;
         }
+        else if (targetType == HookTargetType.Enemy && hookedEnemy != null && owner != null)
+        {
+            Vector2 pullDir = ((Vector2)owner.transform.position - (Vector2)hookedEnemy.transform.position).normalized;
+            if (enemyRb != null)
+            {
+                enemyRb.linearVelocity = pullDir * enemyPullSpeed;
+            }
+        }
+    }
+
+    private IEnumerator PullTimeoutRoutine()
+    {
+        yield return new WaitForSeconds(maxPullDuration);
+        Destroy(gameObject);
     }
 
     private void DrawRopeLine()
@@ -169,6 +349,14 @@ public class HookProjectile : MonoBehaviour
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, owner.transform.position);
             lineRenderer.SetPosition(1, transform.position);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (ownerAnimator != null && isPulling && targetType == HookTargetType.Ground)
+        {
+            ownerAnimator.SetBool("IsFalling", false);
         }
     }
 }
