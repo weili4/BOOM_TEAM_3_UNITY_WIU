@@ -137,6 +137,16 @@ public class PartyManager : MonoBehaviour
         // 1. clean up previous leader and apply switch cooldown to them
         if (ActiveMember != null && ActiveMember.spawnedInstance != null)
         {
+            // revert inverted gravity if active on old leader
+            if (ActiveMember.playerController != null && ActiveMember.playerController.IsGravityInverted)
+            {
+                ActiveMember.playerController.SetGravityInverted(false);
+
+                // restore camera roll back to 0
+                CinemachineCamera cam = FindFirstObjectByType<CinemachineCamera>();
+                if (cam != null) cam.Lens.Dutch = 0f;
+            }
+
             switchPos = ActiveMember.spawnedInstance.transform.position;
 
             if (!isInitialSetup)

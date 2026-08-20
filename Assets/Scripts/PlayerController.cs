@@ -73,11 +73,30 @@ public class PlayerController : MonoBehaviour
     private LayerMask dashEnemyLayer;
     private HashSet<Damageable> enemiesHitThisDash = new HashSet<Damageable>();
     private GhostTrail ghostTrail;
-
     public bool IsDashing => isDashing;
+
+    private bool isGravityInverted = false;
+    public bool IsGravityInverted => isGravityInverted;
+
+    private float currentFacingDirection = 1f;
+
+    public void SetGravityInverted(bool inverted)
+    {
+        isGravityInverted = inverted;
+
+        float baseGrav = originalGravity > 0f ? originalGravity : 2.5f;
+        body.gravityScale = isGravityInverted ? -baseGrav : baseGrav;
+
+        // refresh jumps upon flipping gravity
+        currentJumps = 0;
+        coyoteTimer = coyoteTime;
+    }
 
     public void ApplyKnockback(Vector2 knockbackVector, float duration = 0.2f)
     {
+        // ignore all knockback forces while upside down on inverted gravity
+        if (isGravityInverted) return;
+
         knockbackTimer = duration;
         body.linearVelocity = knockbackVector;
     }
@@ -151,11 +170,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // check if player is touching the ground
-        isGrounded = Physics2D.OverlapBox(groundChecker.position, groundCheckSize, 0f, groundLayer);
+        // 1. ground check (checks floor when normal, ceiling when inverted)
+        float checkDist = groundChecker != null ? Mathf.Abs(groundChecker.localPosition.y) : 0.8f;
+        Vector2 checkPos = (Vector2)transform.position + (isGravityInverted ? Vector2.up : Vector2.down) * checkDist;
+
+        isGrounded = Physics2D.OverlapBox(checkPos, groundCheckSize, 0f, groundLayer);
         animator.SetBool("IsGrounded", isGrounded);
 
-        if (isGrounded && !wasGrounded) // play landing sound only when player just landed
+        if (isGrounded && !wasGrounded)
         {
             if (AudioManager.Instance != null)
                 AudioManager.Instance.PlaySFX(landSound, transform.position, 0.5f);
@@ -166,23 +188,10 @@ public class PlayerController : MonoBehaviour
         jumpPressed = InputSystem.actions["Jump"].WasPressedThisFrame();
         jumpReleased = InputSystem.actions["Jump"].WasReleasedThisFrame();
 
-        if (isGrounded && Mathf.Abs(moveInput.x) > 0.1f && !isClimbing)
-        {
-            footstepTimer -= Time.deltaTime;
-            if (footstepTimer <= 0f)
-            {
-                if (AudioManager.Instance != null)
-                    AudioManager.Instance.PlaySFX(footstepSound, transform.position, 0.3f);
-                footstepTimer = footstepInterval;
-            }
-        }
+        // 2. jump reset
+        bool isMovingTowardsSurface = isGravityInverted ? body.linearVelocityY >= -0.1f : body.linearVelocityY <= 0.1f;
 
-        if (isOnLadderTrigger && isClimbing && Mathf.Abs(moveInput.x) > 0.1f && Mathf.Abs(moveInput.y) <= 0.1f)
-        {
-            ExitLadder();
-        }
-
-        if (isGrounded && body.linearVelocityY <= 0.05f) // reset jumps and coyote time when player is on ground
+        if (isGrounded && isMovingTowardsSurface)
         {
             currentJumps = 0;
             coyoteTimer = coyoteTime;
@@ -190,33 +199,21 @@ public class PlayerController : MonoBehaviour
         else
         {
             coyoteTimer -= Time.deltaTime;
-
-            if (coyoteTimer <= 0f && currentJumps == 0) // use one jump when coyote time finish
+            if (coyoteTimer <= 0f && currentJumps == 0)
             {
                 currentJumps = 1;
             }
         }
 
-        if (jumpPressed)
-        {
-            jumpBufferTimer = jumpBufferTime;
-        }
-        else
-        {
-            jumpBufferTimer -= Time.deltaTime;
-        }
+        if (jumpPressed) jumpBufferTimer = jumpBufferTime;
+        else jumpBufferTimer -= Time.deltaTime;
 
         bool canJump = (currentJumps < maxJumps);
 
-        if (jumpBufferTimer > 0f && canJump)
+        // 3. jump execution (pushes away from ceiling when inverted)
+        if (jumpBufferTimer > 0f && canJump && !isClimbing)
         {
-            // if on a ladder, dismount immediately when jumping
-            if (isClimbing)
-            {
-                ExitLadder();
-            }
-
-            body.linearVelocityY = jumpHeight;
+            body.linearVelocityY = isGravityInverted ? -jumpHeight : jumpHeight;
             currentJumps++;
             jumpBufferTimer = 0f;
 
@@ -241,13 +238,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (jumpReleased && body.linearVelocityY > 0)
+        if (jumpReleased)
         {
-            body.linearVelocityY *= 0.5f;
+            if (!isGravityInverted && body.linearVelocityY > 0) body.linearVelocityY *= 0.5f;
+            else if (isGravityInverted && body.linearVelocityY < 0) body.linearVelocityY *= 0.5f;
         }
 
         attackedPressed = InputSystem.actions["Attack"].WasPressedThisFrame();
-
         if (attackedPressed && isGrounded && !isClimbing)
         {
             animator.SetTrigger("IsAttacking");
@@ -335,82 +332,55 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // 1. dash execution and enemy hit detection
-        if (isDashing)
-        {
-            body.gravityScale = 0f;
-            body.linearVelocity = dashDirection * dashSpeed;
+        if (isDashing) return;
+        if (knockbackTimer > 0f) return;
 
-            // check and damage enemies passed through
-            CheckDashEnemyCollisions();
+        float baseGrav = originalGravity > 0f ? originalGravity : 2.5f;
+        body.gravityScale = isGravityInverted ? -baseGrav : baseGrav;
 
-            dashTimer -= Time.fixedDeltaTime;
-            if (dashTimer <= 0f)
-            {
-                isDashing = false;
-                body.gravityScale = originalGravity > 0f ? originalGravity : 2.5f;
-                body.linearVelocity = dashDirection * (moveSpeed * 1.2f);
-                enemiesHitThisDash.Clear();
-            }
-            return;
-        }
-
-        // 2. knockback execution
-        if (knockbackTimer > 0f)
-        {
-            knockbackTimer -= Time.fixedDeltaTime;
-            return;
-        }
-
-        // 3. normal movement
-        if (isOnLadderTrigger && currentLadderCollider != null)
-        {
-            if (Mathf.Abs(moveInput.y) > 0.1f)
-            {
-                if (!isClimbing) StartClimbing();
-            }
-
-            if (isClimbing)
-            {
-                body.linearVelocityX = 0;
-                body.linearVelocityY = moveInput.y * climbSpeed;
-
-                float centerX = currentLadderCollider.bounds.center.x;
-                float newX = Mathf.MoveTowards(transform.position.x, centerX, ladderSnapSpeed * Time.fixedDeltaTime);
-                transform.position = new Vector2(newX, transform.position.y);
-
-                animator.SetBool("IsMoving", Mathf.Abs(moveInput.y) > 0.1f);
-                return;
-            }
-        }
-
-        body.gravityScale = originalGravity > 0f ? originalGravity : 2.5f;
-
+        // screen-relative controls (pressing D always moves right on screen)
+        float moveX = isGravityInverted ? -moveInput.x : moveInput.x;
         float speedToUse = isGrounded ? moveSpeed : Mathf.Max(moveSpeed, 5.0f);
-        body.linearVelocityX = moveInput.x * speedToUse;
+        body.linearVelocityX = moveX * speedToUse;
+
         animator.SetBool("IsMoving", (Mathf.Abs(moveInput.x) > 0f));
 
-        if (moveInput.x < 0) transform.localScale = new Vector3(-2, 2, 2);
-        else if (moveInput.x > 0) transform.localScale = new Vector3(2, 2, 2);
-
-        if (!isGrounded && body.linearVelocityY < 0)
+        // update facing direction only when there is actual movement input
+        if (Mathf.Abs(moveInput.x) > 0.05f)
         {
-            animator.SetBool("IsFalling", true);
-            animator.SetBool("IsJumping", false);
+            currentFacingDirection = Mathf.Sign(moveInput.x);
+        }
+
+        // apply screen-relative facing direction without reading raw localscale
+        float visualDirX = isGravityInverted ? -currentFacingDirection : currentFacingDirection;
+        float scaleX = visualDirX * 2f;
+        float scaleY = isGravityInverted ? -2f : 2f;
+
+        transform.localScale = new Vector3(scaleX, scaleY, 2f);
+
+        // fall animation logic
+        if (!isGrounded)
+        {
+            bool isFalling = isGravityInverted ? (body.linearVelocityY > 0.1f) : (body.linearVelocityY < -0.1f);
+            animator.SetBool("IsFalling", isFalling);
+            animator.SetBool("IsJumping", !isFalling);
         }
         else
         {
             animator.SetBool("IsFalling", false);
+            animator.SetBool("IsJumping", false);
         }
 
-        if (body.linearVelocityY < 0)
+        // fall multiplier
+        if (!isGravityInverted)
         {
-            body.linearVelocityY += Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+            if (body.linearVelocityY < 0)
+                body.linearVelocityY += Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
-
-        if (body.linearVelocityY < -maxFallSpeed)
+        else
         {
-            body.linearVelocityY = -maxFallSpeed;
+            if (body.linearVelocityY > 0)
+                body.linearVelocityY -= Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
     }
 
@@ -438,7 +408,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, doubleJumpAttackRadius);
+        float checkDist = groundChecker != null ? Mathf.Abs(groundChecker.localPosition.y) : 0.8f;
+        Vector2 checkPos = (Vector2)transform.position + (isGravityInverted ? Vector2.up : Vector2.down) * checkDist;
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(checkPos, groundCheckSize);
     }
 }

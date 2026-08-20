@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5571b48473eca8a4e82cf4b84989caf5, type: 3}
-  m_Name: InvertGravityAbility 1
+  m_Name: InvertGravityAbilityData
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
-  abilityName: Ability Name
-  abilityDescription: Ability description details go here...
+  abilityName: Invert Gravity
+  abilityDescription: Invert Gravity description
   icon: {fileID: 0}
-  cooldownTime: 5
+  cooldownTime: 1
   activeDuration: 0
   activationSound: {fileID: 0}
   vfxPrefab: {fileID: 0}
-  effectLogic: {fileID: 0}
+  effectLogic: {fileID: 11400000, guid: 23e7d50929c333c4486e2fd7017206fa, type: 2}
