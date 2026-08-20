@@ -386,7 +386,7 @@ public class PlayerController : MonoBehaviour
 
         body.gravityScale = originalGravity > 0f ? originalGravity : 2.5f;
 
-        float speedToUse = isGrounded ? moveSpeed : Mathf.Max(moveSpeed, 5.0f);
+        float speedToUse = moveSpeed;
         body.linearVelocityX = moveInput.x * speedToUse;
         animator.SetBool("IsMoving", (Mathf.Abs(moveInput.x) > 0f));
 

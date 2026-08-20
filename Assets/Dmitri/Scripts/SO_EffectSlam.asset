@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f26788aa14569a4f8a6ea9208007212, type: 3}
+  m_Name: SO_EffectSlam
+  m_EditorClassIdentifier: Assembly-CSharp::SO_EffectSlam
+  groundImpactVFXPrefab: {fileID: 2754264475341354822, guid: 5f0730fb4cdad244ea99a6221e4731c6, type: 3}
+  damage: 20
+  slamRadius: 1.5
+  hitboxSpawnDelay: 0
+  hitboxLifetime: 0
+  groundSlamJumpForce: 8
+  jumpUpDuration: 0.2
+  downwardForce: 10
+  groundCheckDistance: 0.3
+  enableCameraShake: 1
+  shakeForce: 0.3
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  slamSFX: {fileID: 8300000, guid: b0dbe99c7b817184eaf12058245986d1, type: 3}
+  soundVolume: 1
+  showGizmos: 1
+  gizmoColor: {r: 1, g: 0, b: 0, a: 1}
+  gizmoDisplayDuration: 1

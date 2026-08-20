@@ -431,7 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeleportInteract
   teleportPoint: {fileID: 0}
   currentChunkManager: {fileID: 0}
-  interactMessage: Press 'E' to Interact
+  interactMessage: Press 'F' to Interact
   lineRenderer: {fileID: 1268279072840759153}
   lineDisplayDuration: 0.25
   teleportSFX: {fileID: 8300000, guid: 348dcb242c3e1bb47bb1521bbd23bccf, type: 3}
