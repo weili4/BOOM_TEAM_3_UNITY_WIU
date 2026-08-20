@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -61,11 +62,76 @@ public class PlayerController : MonoBehaviour
     public bool attackedPressed = false;
 
     private float knockbackTimer = 0f;
+
+    private bool isDashing = false;
+    private float dashTimer = 0f;
+    private Vector2 dashDirection;
+    private float dashSpeed = 16.0f;
+    private int currentDashDamage = 25;
+    private float currentDashKnockback = 6.0f;
+    private float dashHitRadius = 1.0f;
+    private LayerMask dashEnemyLayer;
+    private HashSet<Damageable> enemiesHitThisDash = new HashSet<Damageable>();
+    private GhostTrail ghostTrail;
+
+    public bool IsDashing => isDashing;
+
     public void ApplyKnockback(Vector2 knockbackVector, float duration = 0.2f)
     {
         knockbackTimer = duration;
         body.linearVelocity = knockbackVector;
     }
+
+    public void PerformDash(
+        Vector2 direction,
+        float speed = 18.0f,
+        float duration = 0.16f,
+        int damage = 25,
+        float enemyKnockback = 6.0f,
+        float hitRadius = 1.0f,
+        LayerMask enemyLayer = default,
+        GameObject vfxPrefab = null)
+    {
+        isDashing = true;
+        dashTimer = duration;
+        dashSpeed = speed;
+        currentDashDamage = damage;
+        currentDashKnockback = enemyKnockback;
+        dashHitRadius = hitRadius;
+        dashEnemyLayer = enemyLayer;
+
+        // reset list so each enemy is only hit once per dash
+        enemiesHitThisDash.Clear();
+
+        if (direction.sqrMagnitude < 0.01f)
+        {
+            direction = new Vector2(Mathf.Sign(transform.localScale.x), 0f);
+        }
+
+        dashDirection = direction.normalized;
+
+        // 1. spawn ghost trail afterimages
+        if (ghostTrail == null) ghostTrail = GetComponent<GhostTrail>();
+        if (ghostTrail == null) ghostTrail = gameObject.AddComponent<GhostTrail>();
+        ghostTrail.StartTrail(duration);
+
+        // 2. spawn front vfx (meteorite / wind cone) facing dash direction
+        if (vfxPrefab != null)
+        {
+            float angle = Mathf.Atan2(dashDirection.y, dashDirection.x) * Mathf.Rad2Deg;
+            Quaternion rot = Quaternion.Euler(0f, 0f, angle);
+            Vector3 spawnPos = transform.position + (Vector3)(dashDirection * 0.5f);
+
+            GameObject vfxObj = Instantiate(vfxPrefab, spawnPos, rot, transform);
+            Destroy(vfxObj, duration + 0.1f);
+        }
+
+        if (animator != null)
+        {
+            animator.SetTrigger("IsAttacking");
+        }
+    }
+
     void Awake()
     {
         animator = GetComponent<Animator>();
@@ -269,44 +335,63 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // 1. while in knockback, do not overwrite horizontal velocity with walking input
+        // 1. dash execution and enemy hit detection
+        if (isDashing)
+        {
+            body.gravityScale = 0f;
+            body.linearVelocity = dashDirection * dashSpeed;
+
+            // check and damage enemies passed through
+            CheckDashEnemyCollisions();
+
+            dashTimer -= Time.fixedDeltaTime;
+            if (dashTimer <= 0f)
+            {
+                isDashing = false;
+                body.gravityScale = originalGravity > 0f ? originalGravity : 2.5f;
+                body.linearVelocity = dashDirection * (moveSpeed * 1.2f);
+                enemiesHitThisDash.Clear();
+            }
+            return;
+        }
+
+        // 2. knockback execution
         if (knockbackTimer > 0f)
         {
             knockbackTimer -= Time.fixedDeltaTime;
+            return;
         }
-        else
+
+        // 3. normal movement
+        if (isOnLadderTrigger && currentLadderCollider != null)
         {
-            // normal movement handling
-            if (isOnLadderTrigger && currentLadderCollider != null)
+            if (Mathf.Abs(moveInput.y) > 0.1f)
             {
-                if (Mathf.Abs(moveInput.y) > 0.1f)
-                {
-                    if (!isClimbing) StartClimbing();
-                }
-
-                if (isClimbing)
-                {
-                    body.linearVelocityX = 0;
-                    body.linearVelocityY = moveInput.y * climbSpeed;
-
-                    float centerX = currentLadderCollider.bounds.center.x;
-                    float newX = Mathf.MoveTowards(transform.position.x, centerX, ladderSnapSpeed * Time.fixedDeltaTime);
-                    transform.position = new Vector2(newX, transform.position.y);
-
-                    animator.SetBool("IsMoving", Mathf.Abs(moveInput.y) > 0.1f);
-                    return;
-                }
+                if (!isClimbing) StartClimbing();
             }
 
-            body.gravityScale = originalGravity > 0f ? originalGravity : 2.5f;
+            if (isClimbing)
+            {
+                body.linearVelocityX = 0;
+                body.linearVelocityY = moveInput.y * climbSpeed;
 
-            float speedToUse = isGrounded ? moveSpeed : Mathf.Max(moveSpeed, 5.0f);
-            body.linearVelocityX = moveInput.x * speedToUse;
-            animator.SetBool("IsMoving", (Mathf.Abs(moveInput.x) > 0f));
+                float centerX = currentLadderCollider.bounds.center.x;
+                float newX = Mathf.MoveTowards(transform.position.x, centerX, ladderSnapSpeed * Time.fixedDeltaTime);
+                transform.position = new Vector2(newX, transform.position.y);
 
-            if (moveInput.x < 0) transform.localScale = new Vector3(-2, 2, 2);
-            else if (moveInput.x > 0) transform.localScale = new Vector3(2, 2, 2);
+                animator.SetBool("IsMoving", Mathf.Abs(moveInput.y) > 0.1f);
+                return;
+            }
         }
+
+        body.gravityScale = originalGravity > 0f ? originalGravity : 2.5f;
+
+        float speedToUse = isGrounded ? moveSpeed : Mathf.Max(moveSpeed, 5.0f);
+        body.linearVelocityX = moveInput.x * speedToUse;
+        animator.SetBool("IsMoving", (Mathf.Abs(moveInput.x) > 0f));
+
+        if (moveInput.x < 0) transform.localScale = new Vector3(-2, 2, 2);
+        else if (moveInput.x > 0) transform.localScale = new Vector3(2, 2, 2);
 
         if (!isGrounded && body.linearVelocityY < 0)
         {
@@ -326,6 +411,28 @@ public class PlayerController : MonoBehaviour
         if (body.linearVelocityY < -maxFallSpeed)
         {
             body.linearVelocityY = -maxFallSpeed;
+        }
+    }
+
+    private void CheckDashEnemyCollisions()
+    {
+        // detect all enemies in dash hitbox radius
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, dashHitRadius, dashEnemyLayer);
+
+        foreach (var col in hits)
+        {
+            if (col.CompareTag("Player") || col.CompareTag("Ally")) continue;
+
+            if (col.TryGetComponent<Damageable>(out var enemyHealth))
+            {
+                if (!enemiesHitThisDash.Contains(enemyHealth))
+                {
+                    enemiesHitThisDash.Add(enemyHealth);
+
+                    // damage enemy and knock them in dash travel direction
+                    enemyHealth.TakeDamage(currentDashDamage, dashDirection, currentDashKnockback);
+                }
+            }
         }
     }
 
