@@ -14,6 +14,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private GameObject cheatsPanel;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject winPanel;
+    [SerializeField] private GameObject inventoryPanel;
 
     [Header("GAME OVER DELAYED BUTTONS CONTAINER")]
     [SerializeField] private GameObject gameOverButtonsContainer; // to disable later (cause i keep accidentally pressing the buttons)
@@ -28,6 +29,10 @@ public class GameUIManager : MonoBehaviour
     private bool isPaused = false;
     private bool isGameOver = false;
 
+    /*===============================================================================================================*/
+    private bool isInventoryOpen= false;
+    /*===============================================================================================================*/
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -41,6 +46,7 @@ public class GameUIManager : MonoBehaviour
         if (cheatsPanel != null) cheatsPanel.SetActive(false);
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
         if (winPanel != null) winPanel.SetActive(false);
+        if (inventoryPanel != null) inventoryPanel.SetActive(false);
 
         if (playerDamageable == null)
         {
@@ -71,25 +77,70 @@ public class GameUIManager : MonoBehaviour
             pausePressed = Keyboard.current.escapeKey.wasPressedThisFrame;
         }
 
-        if (pausePressed)
+        /*===================================================================================================================*/
+        bool InventoryPressed = false;
+        var InventoryAction = InputSystem.actions != null ? InputSystem.actions.FindAction("Inventory") : null;
+
+        if (InventoryAction != null)
         {
-            if (isPaused)
+            InventoryPressed = InventoryAction.WasPressedThisFrame();
+        }
+        else if (Keyboard.current != null)
+        {
+            InventoryPressed = Keyboard.current.escapeKey.wasPressedThisFrame;
+        }
+        /*===================================================================================================================*/
+
+        //if (pausePressed)
+        //{
+        //    if (isPaused)
+        //    {
+        //        ResumeGame();
+        //    }
+        //    else
+        //    {
+        //        PauseGame();
+        //    }
+        //}
+
+        /*===============================================================================================================*/
+        if (InventoryPressed)
+        {
+            if(isInventoryOpen)
             {
                 ResumeGame();
             }
             else
             {
-                PauseGame();
+                InventoryMenu();
             }
         }
+        /*===============================================================================================================*/
     }
+
+    /*===================================================================================================================*/
+    public void InventoryMenu()
+    {
+        isInventoryOpen = true;
+        // Time.timeScale = 0f;
+
+        if (inventoryPanel != null) inventoryPanel.SetActive(true);
+    }
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
+    public bool GetInventoryOpen()
+    {
+        return isInventoryOpen;
+    }
+    /*===================================================================================================================*/
 
     // PAUSE MENU
 
     public void PauseGame()
     {
         isPaused = true;
-        Time.timeScale = 0f;
+        // Time.timeScale = 0f;
 
         if (pausePanel != null) pausePanel.SetActive(true);
         if (cheatsPanel != null) cheatsPanel.SetActive(false);
@@ -98,10 +149,12 @@ public class GameUIManager : MonoBehaviour
     public void ResumeGame()
     {
         isPaused = false;
+        isInventoryOpen = false;
         Time.timeScale = 1f;
 
         if (pausePanel != null) pausePanel.SetActive(false);
         if (cheatsPanel != null) cheatsPanel.SetActive(false);
+        if (inventoryPanel != null) inventoryPanel.SetActive(false);
     }
 
     // CHEATS MENU

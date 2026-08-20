@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5746ae3e4cea54393724989d8bdd92, type: 3}
+  m_Name: Barbara
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  characterName: Barbara
+  characterIndex: 0
+  portraitIcon: {fileID: 0}
+  characterPrefab: {fileID: 8741427890136185514, guid: a2507e45dc3c0cb42a2d0c98cb5640b5, type: 3}
+  maxHealth: 120
+  moveSpeed: 4
+  jumpHeight: 8
+  maxJumps: 2
+  baseAttackDamage: 10
+  animatorController: {fileID: 9100000, guid: e83b6fbc84f27c645af5528182e4a2f8, type: 2}
+  switchInSound: {fileID: 0}
+  jumpSound: {fileID: 0}
+  attackSound: {fileID: 0}
+  hitSound: {fileID: 0}
+  deathSound: {fileID: 0}
+  switchVFXPrefab: {fileID: 5299204820297015541, guid: f23aa577ad7d3584994308934b17150b, type: 3}
+  attackVFXPrefab: {fileID: 1792412140663129171, guid: 3bcb4c6972706e146a4148ab7ec17180, type: 3}
+  abilityQ: {fileID: 11400000, guid: eabefb0f5a7ea71409cd8555aee32b8a, type: 2}
+  abilityE: {fileID: 11400000, guid: 524832b3a758341498f87cca0e86a9c1, type: 2}
+  abilityR: {fileID: 11400000, guid: 1939625207d01804abfb39b1f864c1af, type: 2}

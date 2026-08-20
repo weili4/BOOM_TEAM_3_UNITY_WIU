@@ -16,10 +16,10 @@ public class PlayerController : MonoBehaviour
 
     [Header("MOVEMENT AND JUMP")]
     private Vector2 moveInput;
-    public float moveSpeed = 1.0f;
+    public float moveSpeed = 4.0f;
     private bool jumpPressed = false;
     private bool jumpReleased = false;
-    public float jumpHeight = 3.0f;
+    public float jumpHeight = 8.0f;
 
     [Header("DOUBLE JUMP SETTINGS")]
     public int maxJumps = 2;
@@ -136,8 +136,14 @@ public class PlayerController : MonoBehaviour
 
         bool canJump = (currentJumps < maxJumps);
 
-        if (jumpBufferTimer > 0f && canJump && !isClimbing)
+        if (jumpBufferTimer > 0f && canJump)
         {
+            // if on a ladder, dismount immediately when jumping
+            if (isClimbing)
+            {
+                ExitLadder();
+            }
+
             body.linearVelocityY = jumpHeight;
             currentJumps++;
             jumpBufferTimer = 0f;
@@ -216,14 +222,25 @@ public class PlayerController : MonoBehaviour
     private void StartClimbing()
     {
         isClimbing = true;
-        body.gravityScale = 0;
+        body.gravityScale = 0f;
+        body.linearVelocity = Vector2.zero;
 
-        float centerX = currentLadderCollider.bounds.center.x;
-        transform.position = new Vector2(centerX, transform.position.y);
+        // reset jump counter so player has full jumps refreshed from ladder
+        currentJumps = 0;
+        coyoteTimer = coyoteTime;
 
-        animator.SetBool("IsOnLadder", true);
-        animator.SetBool("IsFalling", false);
-        animator.SetBool("IsJumping", false);
+        if (currentLadderCollider != null)
+        {
+            float centerX = currentLadderCollider.bounds.center.x;
+            transform.position = new Vector2(centerX, transform.position.y);
+        }
+
+        if (animator != null)
+        {
+            animator.SetBool("IsOnLadder", true);
+            animator.SetBool("IsFalling", false);
+            animator.SetBool("IsJumping", false);
+        }
     }
 
     private void ExitLadder()
@@ -231,10 +248,17 @@ public class PlayerController : MonoBehaviour
         isOnLadderTrigger = false;
         isClimbing = false;
         currentLadderCollider = null;
-        body.gravityScale = originalGravity;
+        body.gravityScale = originalGravity > 0f ? originalGravity : 2.5f;
 
-        animator.SetBool("IsOnLadder", false);
-        animator.SetBool("IsMoving", false);
+        // refresh jumps upon leaving ladder
+        currentJumps = 0;
+        coyoteTimer = coyoteTime;
+
+        if (animator != null)
+        {
+            animator.SetBool("IsOnLadder", false);
+            animator.SetBool("IsMoving", false);
+        }
     }
 
     void FixedUpdate()

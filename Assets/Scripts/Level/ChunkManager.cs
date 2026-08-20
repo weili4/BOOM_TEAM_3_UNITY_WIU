@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ChunkManager : MonoBehaviour
 {
-    // CHUNK MANAGER WITH MUSIC TRANSITION
-    public enum ObjectiveType { ReachGate, KillAllEnemies, WaveCombat }
+    public enum ObjectiveType { ReachGate, KillAllEnemies, WaveCombat, Keycard, Timer }
 
     [System.Serializable]
     public class Wave
@@ -18,6 +17,7 @@ public class ChunkManager : MonoBehaviour
     [SerializeField] private ObjectiveType objectiveType = ObjectiveType.ReachGate;
     [SerializeField] private Gate exitGate;
     [SerializeField] private Gate entranceGate;
+    [SerializeField] private bool isStartingChunk = false;
 
     [Header("CHUNK MUSIC")]
     [SerializeField] private AudioClip chunkBGM;
@@ -29,6 +29,13 @@ public class ChunkManager : MonoBehaviour
     [SerializeField] private List<Transform> arenaSpawnPoints;
     [SerializeField] private List<Wave> waves;
     [SerializeField] private float delayBetweenWaves = 2.0f;
+
+    [Header("KEYCARD CONFIG")]
+    [SerializeField] private GameObject keycardObject;
+
+    [Header("TIMER CONFIG")]
+    [SerializeField] private float timeLimit = 30.0f;
+    [SerializeField] private GameObject timerStartTriggerObject;
 
     [Header("WAVE COMBAT AUDIO CLIPS")]
     [SerializeField] private AudioClip waveStartSound;
@@ -47,10 +54,37 @@ public class ChunkManager : MonoBehaviour
     private int currentWaveIndex = 0;
     private bool isWaveCombatStarted = false;
 
-    public bool IsChunkCleared => isChunkCleared || objectiveType == ObjectiveType.ReachGate;
+    // Timer Variables
+    private float currentTimeLeft;
+    private bool isTimerRunning = false;
+    private bool isTimerFailed = false;
+    private Coroutine timerCoroutine;
 
-    private void Start()
+    // Public getter for GateApproachTrigger
+    public ObjectiveType CurrentObjectiveType => objectiveType;
+
+    // IsChunkCleared logic
+    public bool IsChunkCleared
     {
+        get
+        {
+            if (objectiveType == ObjectiveType.ReachGate) return true;
+            if (objectiveType == ObjectiveType.Keycard) return keycardObject == null;
+            if (objectiveType == ObjectiveType.Timer) return isChunkCleared || (isTimerRunning && !isTimerFailed);
+            return isChunkCleared;
+        }
+    }
+
+    private IEnumerator Start()
+    {
+        yield return null;
+
+        // Only force UI update on Start if this is designated as the starting chunk
+        if (isStartingChunk)
+        {
+            ActivateChunk();
+        }
+
         if (objectiveType == ObjectiveType.KillAllEnemies)
         {
             totalEnemies = chunkEnemies.Count;
@@ -102,6 +136,73 @@ public class ChunkManager : MonoBehaviour
         }
     }
 
+    // Called by TimerStartTrigger script when player hits the start trigger
+    public void StartTimerObjective()
+    {
+        if (objectiveType != ObjectiveType.Timer || isChunkCleared) return;
+
+        // Reset fail state & open gate
+        isTimerFailed = false;
+
+        if (exitGate != null)
+        {
+            exitGate.OpenGate();
+        }
+
+        // Restart timer coroutine
+        if (timerCoroutine != null)
+        {
+            StopCoroutine(timerCoroutine);
+        }
+
+        timerCoroutine = StartCoroutine(TimerRoutine());
+    }
+
+    // Called when player successfully reaches the gate on time
+    public void CompleteChunk()
+    {
+        isChunkCleared = true;
+        if (timerCoroutine != null)
+        {
+            StopCoroutine(timerCoroutine);
+            isTimerRunning = false;
+        }
+    }
+
+    private IEnumerator TimerRoutine()
+    {
+        isTimerRunning = true;
+        currentTimeLeft = timeLimit;
+
+        while (currentTimeLeft > 0)
+        {
+            if (isChunkCleared)
+            {
+                isTimerRunning = false;
+                yield break;
+            }
+
+            currentTimeLeft -= Time.deltaTime;
+
+            int secondsLeft = Mathf.Max(0, Mathf.CeilToInt(currentTimeLeft));
+            LevelObjectiveUI.Instance?.SetObjectiveText($"Escape before gate locks! Time Left: {secondsLeft}s");
+
+            yield return null;
+        }
+
+        // Timer Expired Logic
+        currentTimeLeft = 0;
+        isTimerRunning = false;
+        isTimerFailed = true;
+
+        if (exitGate != null)
+        {
+            exitGate.SlamCloseGate();
+        }
+
+        LevelObjectiveUI.Instance?.SetObjectiveText("Time ran out! Try again from the start!");
+    }
+
     private void OnEnemyHealthChanged(Damageable enemy, int currentHealth)
     {
         if (currentHealth <= 0 && chunkEnemies.Contains(enemy))
@@ -133,7 +234,7 @@ public class ChunkManager : MonoBehaviour
             isChunkCleared = true;
             LevelObjectiveUI.Instance?.SetObjectiveText("Boss Zone Cleared! Proceed through the Unlocked Gate.");
 
-            if (bossZoneClearedSound != null)
+            if (bossZoneClearedSound != null && AudioManager.Instance != null)
             {
                 if (AudioManager.Instance != null)
                     AudioManager.Instance.PlaySFX(bossZoneClearedSound, transform.position, 1.4f);
@@ -152,7 +253,7 @@ public class ChunkManager : MonoBehaviour
         int waveNum = currentWaveIndex + 1;
         LevelObjectiveUI.Instance?.SetObjectiveText($"Wave {waveNum}/{waves.Count} Starting...");
 
-        if (waveStartSound != null)
+        if (waveStartSound != null && AudioManager.Instance != null)
         {
             if (AudioManager.Instance != null)
                 AudioManager.Instance.PlaySFX(waveStartSound, transform.position, 1.2f);
@@ -170,7 +271,7 @@ public class ChunkManager : MonoBehaviour
             GameObject spawnedEnemy = Instantiate(prefab, sp.position, Quaternion.identity);
             activeWaveEnemies.Add(spawnedEnemy);
 
-            if (enemySpawnSound != null)
+            if (enemySpawnSound != null && AudioManager.Instance != null)
             {
                 if (AudioManager.Instance != null)
                     AudioManager.Instance.PlaySFX(enemySpawnSound, sp.position, 1.0f);
@@ -194,7 +295,7 @@ public class ChunkManager : MonoBehaviour
 
             if (activeWaveEnemies.Count == 0)
             {
-                if (waveClearedSound != null)
+                if (waveClearedSound != null && AudioManager.Instance != null)
                 {
                     if (AudioManager.Instance != null)
                         AudioManager.Instance.PlaySFX(waveClearedSound, transform.position, 1.2f);
@@ -218,7 +319,8 @@ public class ChunkManager : MonoBehaviour
 
     public void UpdateChunkObjectiveUI()
     {
-        if (isChunkCleared)
+        // Exclude ReachGate here so ReachGate chunks display "Get to the Gate!" instead of defaulting to cleared
+        if (IsChunkCleared && objectiveType != ObjectiveType.ReachGate)
         {
             LevelObjectiveUI.Instance?.SetObjectiveText("Proceed through the Unlocked Gate!");
             return;
@@ -235,6 +337,26 @@ public class ChunkManager : MonoBehaviour
         else if (objectiveType == ObjectiveType.WaveCombat)
         {
             UpdateWaveUI();
+        }
+        else if (objectiveType == ObjectiveType.Keycard)
+        {
+            LevelObjectiveUI.Instance?.SetObjectiveText("Find a Keycard to unlock the Gate!");
+        }
+        else if (objectiveType == ObjectiveType.Timer)
+        {
+            if (isTimerFailed)
+            {
+                LevelObjectiveUI.Instance?.SetObjectiveText("Time Expired! Retry from the start!");
+            }
+            else if (isTimerRunning)
+            {
+                int secondsLeft = Mathf.Max(0, Mathf.CeilToInt(currentTimeLeft));
+                LevelObjectiveUI.Instance?.SetObjectiveText($"Escape before gate locks! Time Left: {secondsLeft}s");
+            }
+            else
+            {
+                LevelObjectiveUI.Instance?.SetObjectiveText("Reach the end before time runs out!");
+            }
         }
     }
 }

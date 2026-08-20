@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: SO_Effect_Grenade
   m_EditorClassIdentifier: Assembly-CSharp::GrenadeAbilityEffect
   grenadePrefab: {fileID: 6743243923203643138, guid: f80dfa22bfb7153478857dae53890db7, type: 3}
+  throwSpeed: 8

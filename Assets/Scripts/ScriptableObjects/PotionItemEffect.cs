@@ -11,4 +11,9 @@ public class PotionItemEffect : ItemEffect
             health.Heal(healAmount);
         }
     }
+
+    public override string GetEffectValue()
+    {
+        return string.Empty; // Please Change to the item Effect Value with Text
+    }
 }

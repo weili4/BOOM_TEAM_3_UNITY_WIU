@@ -13,4 +13,9 @@ public class ShieldItemEffect : ItemEffect
             health.TakeDamage(0); // triggers iframe flash without losing hp
         }
     }
+
+    public override string GetEffectValue()
+    {
+        return string.Empty; // Please Change to the item Effect Value with Text
+    }
 }

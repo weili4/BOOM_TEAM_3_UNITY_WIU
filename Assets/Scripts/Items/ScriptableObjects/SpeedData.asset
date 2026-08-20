@@ -16,3 +16,5 @@ MonoBehaviour:
   itemImage: {fileID: 4074175187089551160, guid: 6b7982ac53de00343a0898debcc31d45, type: 3}
   cooldownTime: 5
   useSound: {fileID: 8300000, guid: d246d66ac40b43f44a7d4b333eec0d37, type: 3}
+  itemDescription: A rapid-release neural stimulant that overclocks reflexes and
+    stride length for a short burst.

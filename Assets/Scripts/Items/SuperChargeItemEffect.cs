@@ -17,4 +17,9 @@ public class SuperChargeItemEffect : ItemEffect
             attack.OnComboReady(true);
         }
     }
+
+    public override string GetEffectValue()
+    {
+        return string.Empty; // Please Change to the item Effect Value with Text
+    }
 }
