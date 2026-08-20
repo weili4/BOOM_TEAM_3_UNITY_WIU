@@ -167,17 +167,4 @@ public abstract class GroundEnemyController : EnemyBase
         animator.SetBool("IsRunning", isRunning);
         animator.SetBool("IsGrounded", isGrounded);
     }
-
-    protected override void OnDrawGizmosSelected()
-    {
-        base.OnDrawGizmosSelected();
-
-        Vector2 left = Application.isPlaying ? patrolPointA : (Vector2)transform.position + Vector2.left * patrolDistance;
-        Vector2 right = Application.isPlaying ? patrolPointB : (Vector2)transform.position + Vector2.right * patrolDistance;
-
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawLine(left, right);
-        Gizmos.DrawWireSphere(left, 0.3f);
-        Gizmos.DrawWireSphere(right, 0.3f);
-    }
 }

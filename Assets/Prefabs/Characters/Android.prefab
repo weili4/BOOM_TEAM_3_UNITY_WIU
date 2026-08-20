@@ -98,7 +98,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 153a73f7785bc354b90ffeb351d62b22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -277,13 +277,14 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   healthBarPrefab: {fileID: 0}
-  enableIFrames: 0
+  hitFlashDuration: 0.08
+  spriteRenderer: {fileID: 37168971486437739}
+  enableIFrames: 1
   iFrameDuration: 1
-  translucentAlpha: 0.3
-  spriteRenderer: {fileID: 0}
+  flashSpeed: 25
   source: {fileID: 0}
   hitShakeForce: 1
-  hitVFXPrefab: {fileID: 0}
+  hitVFXPrefab: {fileID: 1792412140663129171, guid: 3bcb4c6972706e146a4148ab7ec17180, type: 3}
   hitSound: {fileID: 0}
   onHealthChanged:
     m_PersistentCalls:

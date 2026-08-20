@@ -1,11 +1,10 @@
 using System.Collections;
 using UnityEngine;
+using Pathfinding;
 
 [RequireComponent(typeof(Damageable))]
 public abstract class EnemyBase : MonoBehaviour
 {
-    // ENEMY BASE CLASS
-
     [Header("configuration")]
     public EnemyData enemyData;
     [SerializeField] protected GameObject healthBarPrefab;
@@ -14,19 +13,31 @@ public abstract class EnemyBase : MonoBehaviour
     protected Damageable damageable;
     protected Animator animator;
     protected Transform playerTarget;
+    protected AIDestinationSetter aiDestSetter;
     protected bool isDead = false;
 
     protected virtual void Awake()
     {
         damageable = GetComponent<Damageable>();
         animator = GetComponent<Animator>();
+        aiDestSetter = GetComponent<AIDestinationSetter>();
+    }
+
+    protected virtual void OnEnable()
+    {
+        // listen to leader swap events to switch targets instantly
+        PartyManager.OnLeaderSwapped += HandleLeaderSwapped;
+    }
+
+    protected virtual void OnDisable()
+    {
+        PartyManager.OnLeaderSwapped -= HandleLeaderSwapped;
     }
 
     protected virtual void Start()
     {
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
-            playerTarget = playerObj.transform;
+        IgnorePartyCollisions();
+        UpdatePlayerTarget();
 
         if (!CompareTag("Player") && healthBarPrefab != null && damageable != null)
         {
@@ -40,13 +51,74 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
+    // makes sure enemies never physically block or push players or followers
+    protected void IgnorePartyCollisions()
+    {
+        Collider2D myCol = GetComponent<Collider2D>();
+        if (myCol == null) return;
+
+        // ignore active player
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (var p in players)
+        {
+            foreach (var c in p.GetComponentsInChildren<Collider2D>())
+            {
+                Physics2D.IgnoreCollision(myCol, c, true);
+            }
+        }
+
+        // ignore benched followers
+        GameObject[] allies = GameObject.FindGameObjectsWithTag("Ally");
+        foreach (var a in allies)
+        {
+            foreach (var c in a.GetComponentsInChildren<Collider2D>())
+            {
+                Physics2D.IgnoreCollision(myCol, c, true);
+            }
+        }
+    }
+
     protected virtual void Update()
     {
         if (isDead) return;
 
+        // failsafe target check
+        if (playerTarget == null || playerTarget.CompareTag("Ally"))
+        {
+            UpdatePlayerTarget();
+        }
+
         if (damageable != null && damageable.CurrentHealth <= 0)
         {
             Die();
+        }
+    }
+
+    private void HandleLeaderSwapped(int oldLeaderIdx, int newLeaderIdx)
+    {
+        UpdatePlayerTarget();
+    }
+
+    // finds the current active leader with tag Player
+    protected virtual void UpdatePlayerTarget()
+    {
+        if (PartyManager.Instance != null && PartyManager.Instance.ActivePlayerObj != null)
+        {
+            playerTarget = PartyManager.Instance.ActivePlayerObj.transform;
+        }
+        else
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                playerTarget = playerObj.transform;
+            }
+        }
+
+        // update pathfinding destination if using astar
+        if (aiDestSetter != null && playerTarget != null)
+        {
+            aiDestSetter.target = playerTarget;
         }
     }
 
@@ -64,14 +136,8 @@ public abstract class EnemyBase : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        // play death sfx
-        if (enemyData != null && enemyData.deathSound != null)
-        {
-            if (AudioManager.Instance != null)
-                AudioManager.Instance.PlaySFX(enemyData.deathSound, transform.position);
-            else
-                AudioSource.PlayClipAtPoint(enemyData.deathSound, transform.position);
-        }
+        if (enemyData != null && enemyData.deathSound != null && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(enemyData.deathSound, transform.position);
 
         if (enemyData != null && enemyData.deathVFX != null)
             Instantiate(enemyData.deathVFX, transform.position, Quaternion.identity);
@@ -106,16 +172,5 @@ public abstract class EnemyBase : MonoBehaviour
         }
 
         Destroy(gameObject);
-    }
-
-    protected virtual void OnDrawGizmosSelected()
-    {
-        if (enemyData == null) return;
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, enemyData.chaseRange);
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, enemyData.attackRange);
     }
 }
