@@ -49,8 +49,15 @@ public class FollowerAI : MonoBehaviour
         targetAlpha = followerAlpha;
         isActivelyMoving = false;
 
-        // stop any old momentum instantly so they dont slide
-        if (rb != null) rb.linearVelocity = Vector2.zero;
+        // make sure follower always has normal positive gravity and upright scale
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.gravityScale = Mathf.Abs(rb.gravityScale);
+        }
+
+        // ensure sprite is upright
+        transform.localScale = new Vector3(transform.localScale.x, 2f, 2f);
 
         StopAllCoroutines();
         StartCoroutine(SpreadOutRoutine());

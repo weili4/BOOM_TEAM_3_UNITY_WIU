@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adef80e33849a8945bc5ef612d4c2450, type: 3}
+  m_Name: SummonGunAbility
+  m_EditorClassIdentifier: Assembly-CSharp::SummonGunAbilityEffect
+  gunPrefab: {fileID: 4041879558803148335, guid: 84f71a3815159f94a88a88ae98fc2ec2, type: 3}
+  gunOffsets:
+  - {x: 0.5, y: -0.2, z: 0}
+  - {x: 0.35, y: 0.25, z: 0}
+  - {x: -0.5, y: -0.2, z: 0}
+  - {x: -0.35, y: 0.25, z: 0}

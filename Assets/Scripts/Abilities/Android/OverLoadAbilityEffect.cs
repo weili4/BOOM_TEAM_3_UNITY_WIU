@@ -1,29 +1,60 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "OverloadAbility", menuName = "Scriptable Objects/Effects/OverloadAbility")]
-
-public class OverLoadAbilityEffect : AbilityEffect
+[CreateAssetMenu(fileName = "OverloadAbility", menuName = "Party/Effects/OverloadAbility")]
+public class OverloadAbilityEffect : AbilityEffect
 {
-    public PlayerController controller;
-    public Animator animator;
+    [Header("stat multipliers")]
+    [SerializeField] private float leaderSpeedMultiplier = 2.0f;
+    [SerializeField] private float allySpeedMultiplier = 1.3f;
+
     public override void Activate(GameObject user, Vector2 mouseWorldPos)
     {
-        controller = user.GetComponent<PlayerController>();
+        if (user == null) return;
 
-        controller.moveSpeed = controller.moveSpeed * 2;
-        animator = user.GetComponent<Animator>();
+        // buff active leader speed
+        if (user.TryGetComponent<PlayerController>(out var player))
+        {
+            player.moveSpeedMultiplier = leaderSpeedMultiplier;
+        }
 
-        animator.speed = animator.speed * 2;
-
+        // buff followers if partymanager exists
+        if (PartyManager.Instance != null)
+        {
+            foreach (var member in PartyManager.Instance.partyMembers)
+            {
+                if (member.spawnedInstance != null && member.spawnedInstance != user)
+                {
+                    if (member.spawnedInstance.TryGetComponent<FollowerAI>(out var ai))
+                    {
+                        ai.followSpeed *= allySpeedMultiplier;
+                    }
+                }
+            }
+        }
     }
 
     public override void Deactivate(GameObject user)
     {
-        controller = user.GetComponent<PlayerController>();
-        controller.moveSpeed = controller.moveSpeed / 2;
+        if (user == null) return;
 
-        animator = user.GetComponent<Animator>();
+        // restore normal speed
+        if (user.TryGetComponent<PlayerController>(out var player))
+        {
+            player.moveSpeedMultiplier = 1.0f;
+        }
 
-        animator.speed = animator.speed / 2;
+        if (PartyManager.Instance != null)
+        {
+            foreach (var member in PartyManager.Instance.partyMembers)
+            {
+                if (member.spawnedInstance != null && member.spawnedInstance != user)
+                {
+                    if (member.spawnedInstance.TryGetComponent<FollowerAI>(out var ai))
+                    {
+                        ai.followSpeed = 6.0f; // default follow speed
+                    }
+                }
+            }
+        }
     }
 }

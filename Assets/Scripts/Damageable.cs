@@ -9,20 +9,23 @@ public class Damageable : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int currentHealth = 100;
 
+    // abilities like flurry can tweak this multiplier directly
+    [Range(0f, 1f)] public float incomingDamageMultiplier = 1.0f;
+
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
 
     [Header("floating health bar")]
     [SerializeField] private GameObject healthBarPrefab;
 
-    [Header("hit flash settings (enemies and player)")]
-    [SerializeField] private float hitFlashDuration = 0.08f; // brief solid white impact flash
+    [Header("hit flash settings")]
+    [SerializeField] private float hitFlashDuration = 0.08f;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     [Header("player invulnerability i-frames")]
     [SerializeField] private bool enableIFrames = true;
     [SerializeField] private float iFrameDuration = 0.8f;
-    [SerializeField] private float flashSpeed = 25f; // speed of player flicker
+    [SerializeField] private float flashSpeed = 25f;
 
     [Header("hit feedback and screen shake")]
     [SerializeField] private CinemachineImpulseSource source;
@@ -35,7 +38,6 @@ public class Damageable : MonoBehaviour
     private bool isInvulnerable = false;
     private float iFrameTimer = 0f;
     private float hitFlashTimer = 0f;
-    private Rigidbody2D rb;
     private MaterialPropertyBlock propBlock;
     private static readonly int FlashAmountProp = Shader.PropertyToID("_FlashAmount");
 
@@ -44,7 +46,6 @@ public class Damageable : MonoBehaviour
     private void Awake()
     {
         currentHealth = maxHealth;
-        rb = GetComponent<Rigidbody2D>();
         propBlock = new MaterialPropertyBlock();
 
         if (spriteRenderer == null)
@@ -73,29 +74,27 @@ public class Damageable : MonoBehaviour
         onHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
-    public void TakeDamage(int damage, Vector2 hitDirection, float knockbackForce = 8.0f)
+    public void TakeDamage(int damage, Vector2 hitDirection = default, float knockbackForce = 8.0f)
     {
         if (isInvulnerable || currentHealth <= 0) return;
 
-        // screen shake
+        int finalDamage = Mathf.RoundToInt(damage * incomingDamageMultiplier);
+
         if (source != null)
             source.GenerateImpulse(hitShakeForce);
 
-        // vfx and sfx
         if (hitVFXPrefab != null)
             Instantiate(hitVFXPrefab, transform.position, Quaternion.identity);
 
         if (hitSound != null && AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX(hitSound, transform.position);
 
-        currentHealth -= damage;
+        currentHealth -= finalDamage;
         if (currentHealth < 0) currentHealth = 0;
         onHealthChanged?.Invoke(currentHealth, maxHealth);
 
-        // trigger instant solid white hit flash on anyone who gets hit
         hitFlashTimer = hitFlashDuration;
 
-        // player specific reactions
         if (CompareTag("Player"))
         {
             if (ScreenFlashUI.Instance != null)
@@ -103,16 +102,18 @@ public class Damageable : MonoBehaviour
                 ScreenFlashUI.Instance.TriggerRedFlash();
             }
 
+            // apply knockback through the generic velocity override on playercontroller
             if (TryGetComponent<PlayerController>(out var controller))
             {
-                float dirX = Mathf.Sign(hitDirection.x);
-                if (Mathf.Abs(hitDirection.x) < 0.01f)
+                // ignore knockback on ceiling so player doesnt fall off
+                if (controller.gravityDirection.y < 0)
                 {
-                    dirX = -transform.localScale.x;
-                }
+                    float dirX = Mathf.Sign(hitDirection.x);
+                    if (Mathf.Abs(hitDirection.x) < 0.01f) dirX = -transform.localScale.x;
 
-                Vector2 knockbackVelocity = new Vector2(dirX * knockbackForce, knockbackForce * 0.45f);
-                controller.ApplyKnockback(knockbackVelocity, 0.2f);
+                    Vector2 knockbackVelocity = new Vector2(dirX * knockbackForce, knockbackForce * 0.45f);
+                    controller.SetForcedVelocity(knockbackVelocity, 0.2f, false);
+                }
             }
 
             if (enableIFrames && currentHealth > 0)
@@ -141,7 +142,6 @@ public class Damageable : MonoBehaviour
 
         float flashAmount = 0f;
 
-        // 1. player i-frame flicker
         if (isInvulnerable)
         {
             iFrameTimer -= Time.deltaTime;
@@ -154,14 +154,12 @@ public class Damageable : MonoBehaviour
                 flashAmount = 0f;
             }
         }
-        // 2. enemy/player instant hit impact flash
         else if (hitFlashTimer > 0f)
         {
             hitFlashTimer -= Time.deltaTime;
-            flashAmount = 1f; // solid white
+            flashAmount = 1f;
         }
 
-        // apply to shader property block
         spriteRenderer.GetPropertyBlock(propBlock);
         propBlock.SetFloat(FlashAmountProp, flashAmount);
         spriteRenderer.SetPropertyBlock(propBlock);

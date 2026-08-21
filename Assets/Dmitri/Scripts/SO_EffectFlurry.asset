@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c852f1e92d58b42969c9317ae7e040, type: 3}
+  m_Name: SO_EffectFlurry
+  m_EditorClassIdentifier: Assembly-CSharp::SO_EffectContinuousHit
+  skillDuration: 2
+  tickInterval: 0.15
+  moveSpeedMultiplier: 0
+  incomingDamageMultiplier: 0.8
+  damagePerTick: 5
+  hitBoxSize: {x: 2.5, y: 1.5}
+  hitBoxOffset: {x: 0.5, y: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  hitVFXPrefab: {fileID: 2519594527230406922, guid: 2df776c75d0fbc1409aae2e2c2587e0a, type: 3}
+  enableCameraShake: 1
+  shakeForce: 0.02
+  hitSFX: {fileID: 0}
+  soundVolume: 1
+  showGizmos: 1
+  gizmoColor: {r: 1, g: 0, b: 0, a: 1}
+  gizmoDisplayDuration: 0.1

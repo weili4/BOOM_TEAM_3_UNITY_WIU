@@ -59,9 +59,7 @@ public class TeleportInteract : MonoBehaviour
 
     private void Update()
     {
-        bool eKeyPressed = Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame;
-
-        if (isPlayerInside && eKeyPressed && teleportPoint != null)
+        if (InputSystem.actions["Interact"].WasPressedThisFrame())
         {
             TeleportPlayer();
         }

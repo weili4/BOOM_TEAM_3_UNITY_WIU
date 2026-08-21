@@ -28,5 +28,5 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  attachSFX: {fileID: 8300000, guid: 2b25eb61f103314449bf847632cc040e, type: 3}
+  attachSFX: {fileID: 8300000, guid: 55c99531e04aa2f44928b2008003fff8, type: 3}
   soundVolume: 1

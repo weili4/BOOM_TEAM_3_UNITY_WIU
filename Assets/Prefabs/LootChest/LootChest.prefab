@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4520140693922680576}
   - component: {fileID: 4462278180804529293}
   - component: {fileID: 1668255633261608131}
-  - component: {fileID: 806578291708972961}
+  - component: {fileID: 4584007353540800321}
+  - component: {fileID: 5460622670775280279}
   m_Layer: 0
   m_Name: LootChest
   m_TagString: Untagged
@@ -83,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -6315012907933805668, guid: 243024aa07ea35a4f89f9326ca373982, type: 3}
+  m_Sprite: {fileID: -790410345991088130, guid: 12bd56eddd886f34b89c46c584fbb7ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,11 +128,11 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.05}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.68, y: 0.58}
+    oldSize: {x: 0.875, y: 0.53125}
     newSize: {x: 0.34, y: 0.29}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -139,7 +140,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 0.75}
   m_EdgeRadius: 0
---- !u!114 &806578291708972961
+--- !u!114 &4584007353540800321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,9 +149,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 3960036905393467950}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dbe7616ed9b57c4f9fff240eb8877b1, type: 3}
+  m_Script: {fileID: 11500000, guid: eb99c14abee76a4479ddde0e1287607b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  PlayerNearChest: 0
-  IsChestOpen: 0
-  ArrayOfItemDrop: []
+  m_EditorClassIdentifier: Assembly-CSharp::LootChestChanceDrop
+  DropItemsList:
+  - DropItems: {fileID: 1561197391565245501, guid: e100b360244261849b6078dbd2eea296, type: 3}
+    DropChance: 100
+  NeedItemToOpen: 0
+  inventory: {fileID: 0}
+  ItemNameToSearch: Key
+  ShowDebugLogs: 0
+--- !u!95 &5460622670775280279
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3960036905393467950}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2cb1b1bf982bf646ae47fe5b5d8f06e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

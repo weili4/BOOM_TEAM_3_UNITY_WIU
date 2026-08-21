@@ -47,8 +47,12 @@ public class PauseMenuManager : MonoBehaviour
 
     private void CheckHotkeyInputs()
     {
-        // 1. check escape or P (settings toggle)
+        // block opening pause menu if a cutscene or dialogue is currently running
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueRunning) return;
+
         bool escapeOrP = false;
+
+        // 1. check escape or P (settings toggle)
         if (Keyboard.current != null)
         {
             escapeOrP = Keyboard.current.escapeKey.wasPressedThisFrame || Keyboard.current.pKey.wasPressedThisFrame;
