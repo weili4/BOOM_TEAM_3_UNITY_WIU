@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5571b48473eca8a4e82cf4b84989caf5, type: 3}
-  m_Name: OverloadAbilityData
+  m_Name: OverloadAbility
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
-  abilityName: Ability Name
-  abilityDescription: Ability description details go here...
-  icon: {fileID: 0}
-  cooldownTime: 5
-  activeDuration: 0
+  abilityName: Overload
+  abilityDescription: Boosts speed
+  icon: {fileID: -855298285791758126, guid: 01b0ed824e7e6a7449c35567b98d2858, type: 3}
+  cooldownTime: 10
+  activeDuration: 5
   activationSound: {fileID: 0}
   vfxPrefab: {fileID: 0}
-  effectLogic: {fileID: 0}
+  effectLogic: {fileID: 11400000, guid: 0f0fc4b5eef5cc44490db1ed816339df, type: 2}
