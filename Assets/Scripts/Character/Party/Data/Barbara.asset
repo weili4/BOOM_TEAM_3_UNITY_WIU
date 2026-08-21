@@ -31,4 +31,4 @@ MonoBehaviour:
   attackVFXPrefab: {fileID: 1792412140663129171, guid: 3bcb4c6972706e146a4148ab7ec17180, type: 3}
   abilityQ: {fileID: 11400000, guid: 14b0db73fddb9214498c74bce16493dd, type: 2}
   abilityE: {fileID: 11400000, guid: f4d1f758d0fea1b4d9eceb8037f72fad, type: 2}
-  abilityR: {fileID: 0}
+  abilityR: {fileID: 11400000, guid: 09bc285b8e154394da5faf9e8e840056, type: 2}

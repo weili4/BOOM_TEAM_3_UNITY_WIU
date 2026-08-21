@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
   abilityName: Gliding
   abilityDescription: Glides :|
-  icon: {fileID: -2494067699363254937, guid: 5e421ce921c1bdc46ba08912f4beeda3, type: 3}
-  cooldownTime: 3
-  activeDuration: 2
+  icon: {fileID: 3465286685962602723, guid: bfdbd5bb9037b2348a5eea9d2a79a7f8, type: 3}
+  cooldownTime: 15
+  activeDuration: 10
   activationSound: {fileID: 0}
   vfxPrefab: {fileID: 0}
-  effectLogic: {fileID: 11400000, guid: 51bb5caa4c24cb642bcd8a24555f3e05, type: 2}
+  effectLogic: {fileID: 11400000, guid: 7dc973c5f7e134e48be1bbfc429b7266, type: 2}

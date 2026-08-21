@@ -1,22 +1,19 @@
 fileFormatVersion: 2
-guid: 7caa37146dc035b42a95e8753bcade25
+guid: 79a7367afadf6f04395a1d313dd6cb88
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1601457941457400959
-    second: SummonGunAttack_0
+      213: -7848039375673857549
+    second: Dash_0
   - first:
-      213: -5678325510552290560
-    second: SummonGunAttack_1
+      213: 1228786266525858794
+    second: Dash_1
   - first:
-      213: -3996617090390841739
-    second: SummonGunAttack_2
+      213: -8184982077848143418
+    second: Dash_2
   - first:
-      213: 5799502411257692272
-    second: SummonGunAttack_3
-  - first:
-      213: -2254283419458093551
-    second: SummonGunAttack_4
+      213: 3821791876570597701
+    second: Dash_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +57,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 64
@@ -87,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -125,7 +122,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SummonGunAttack_0
+      name: Dash_0
       rect:
         serializedVersion: 2
         x: 0
@@ -140,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 18b04b4bc7a76c9e0800000000000000
-      internalID: -1601457941457400959
+      spriteID: 3f96eadb4c9261390800000000000000
+      internalID: -7848039375673857549
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SummonGunAttack_1
+      name: Dash_1
       rect:
         serializedVersion: 2
         x: 48
@@ -162,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 00bfd7088098231b0800000000000000
-      internalID: -5678325510552290560
+      spriteID: aebf62959968d0110800000000000000
+      internalID: 1228786266525858794
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SummonGunAttack_2
+      name: Dash_2
       rect:
         serializedVersion: 2
         x: 96
@@ -184,14 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 576aff76ee92988c0800000000000000
-      internalID: -3996617090390841739
+      spriteID: 6c93ce48a2a196e80800000000000000
+      internalID: -8184982077848143418
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SummonGunAttack_3
+      name: Dash_3
       rect:
         serializedVersion: 2
         x: 144
@@ -206,30 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 070490947b8fb7050800000000000000
-      internalID: 5799502411257692272
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SummonGunAttack_4
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.2708333, y: 0.375}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 11eb5287c2d27b0e0800000000000000
-      internalID: -2254283419458093551
+      spriteID: 549c678867bb90530800000000000000
+      internalID: 3821791876570597701
       vertices: []
       indices: 
       edges: []
@@ -238,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: dca5c2b042028184ca4bdf0fb0f6f7ef
+    spriteID: 13238d86fdc060f419211a26be82b6e1
     internalID: 0
     vertices: []
     indices: 
@@ -248,13 +223,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.2708333134651184,"y":0.375},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      SummonGunAttack_0: -1601457941457400959
-      SummonGunAttack_1: -5678325510552290560
-      SummonGunAttack_2: -3996617090390841739
-      SummonGunAttack_3: 5799502411257692272
-      SummonGunAttack_4: -2254283419458093551
+      Dash_0: -7848039375673857549
+      Dash_1: 1228786266525858794
+      Dash_2: -8184982077848143418
+      Dash_3: 3821791876570597701
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

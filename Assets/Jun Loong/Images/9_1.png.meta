@@ -1,22 +1,25 @@
 fileFormatVersion: 2
-guid: 7caa37146dc035b42a95e8753bcade25
+guid: ea7288a740ea1d9479e477f9c3019c8d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1601457941457400959
-    second: SummonGunAttack_0
+      213: 6603768529591910757
+    second: 9_1_0
   - first:
-      213: -5678325510552290560
-    second: SummonGunAttack_1
+      213: 3016698761658213268
+    second: 9_1_1
   - first:
-      213: -3996617090390841739
-    second: SummonGunAttack_2
+      213: -4128549144389089367
+    second: 9_1_2
   - first:
-      213: 5799502411257692272
-    second: SummonGunAttack_3
+      213: 5058375754526189346
+    second: 9_1_3
   - first:
-      213: -2254283419458093551
-    second: SummonGunAttack_4
+      213: 9115072561198159699
+    second: 9_1_4
+  - first:
+      213: -8875118961182607894
+    second: 9_1_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +52,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -63,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -87,7 +90,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -125,111 +128,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SummonGunAttack_0
+      name: 9_1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.2708333, y: 0.375}
+        y: 19
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 18b04b4bc7a76c9e0800000000000000
-      internalID: -1601457941457400959
+      spriteID: 561ca394d7c45ab50800000000000000
+      internalID: 6603768529591910757
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SummonGunAttack_1
+      name: 9_1_1
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.2708333, y: 0.375}
+        x: 47
+        y: 16
+        width: 28
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 00bfd7088098231b0800000000000000
-      internalID: -5678325510552290560
+      spriteID: 493aff26a877dd920800000000000000
+      internalID: 3016698761658213268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SummonGunAttack_2
+      name: 9_1_2
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.2708333, y: 0.375}
+        x: 97
+        y: 16
+        width: 29
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 576aff76ee92988c0800000000000000
-      internalID: -3996617090390841739
+      spriteID: 9a702fa5d6274b6c0800000000000000
+      internalID: -4128549144389089367
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SummonGunAttack_3
+      name: 9_1_3
       rect:
         serializedVersion: 2
-        x: 144
-        y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.2708333, y: 0.375}
+        x: 149
+        y: 13
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 070490947b8fb7050800000000000000
-      internalID: 5799502411257692272
+      spriteID: 2276bf4c2f5f23640800000000000000
+      internalID: 5058375754526189346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SummonGunAttack_4
+      name: 9_1_4
       rect:
         serializedVersion: 2
-        x: 192
-        y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.2708333, y: 0.375}
+        x: 157
+        y: 22
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 11eb5287c2d27b0e0800000000000000
-      internalID: -2254283419458093551
+      spriteID: 3575020633e3f7e70800000000000000
+      internalID: 9115072561198159699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_1_5
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 18
+        width: 73
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae57063c35e35d480800000000000000
+      internalID: -8875118961182607894
       vertices: []
       indices: 
       edges: []
@@ -238,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: dca5c2b042028184ca4bdf0fb0f6f7ef
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -246,15 +271,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      SummonGunAttack_0: -1601457941457400959
-      SummonGunAttack_1: -5678325510552290560
-      SummonGunAttack_2: -3996617090390841739
-      SummonGunAttack_3: 5799502411257692272
-      SummonGunAttack_4: -2254283419458093551
+      9_1_0: 6603768529591910757
+      9_1_1: 3016698761658213268
+      9_1_2: -4128549144389089367
+      9_1_3: 5058375754526189346
+      9_1_4: 9115072561198159699
+      9_1_5: -8875118961182607894
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

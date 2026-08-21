@@ -13,6 +13,11 @@ public class GlidingAbilityEffect : AbilityEffect
         if (controller == null) return;
 
         controller.fallMultiplier = SetFallMultiplier;
+
+        if (user.TryGetComponent<Animator>(out var anim))
+        {
+            anim.SetBool("IsGliding" , true);
+        }
     }
 
     public override void Deactivate(GameObject user)
@@ -23,5 +28,10 @@ public class GlidingAbilityEffect : AbilityEffect
         if (controller == null) return;
 
         controller.fallMultiplier = 2.5f;
+
+        if (user.TryGetComponent<Animator>(out var anim))
+        {
+            anim.SetBool("IsGliding", false);
+        }
     }
 }
