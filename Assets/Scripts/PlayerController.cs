@@ -60,7 +60,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     private bool jumpPressed = false;
     private bool jumpReleased = false;
-    private bool attackPressed = false;
     private float currentFacingDirection = 1f;
 
     // backwards compatibility helpers for teammates
@@ -109,7 +108,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // 1. ground check dynamically follows gravity direction (floor or ceiling)
+        // 1. ground check
         float checkDist = groundChecker != null ? Mathf.Abs(groundChecker.localPosition.y) : 0.8f;
         Vector2 checkPos = (Vector2)transform.position + gravityDirection * checkDist;
 
@@ -123,20 +122,25 @@ public class PlayerController : MonoBehaviour
         }
         wasGrounded = isGrounded;
 
-        // 2. read input (cleared when input is locked during cutscenes)
+        // 2. read input (cleared when input is locked during cutscenes, shooting, or charging)
         if (isInputLocked)
         {
             moveInput = Vector2.zero;
             jumpPressed = false;
             jumpReleased = false;
-            attackPressed = false;
+            jumpBufferTimer = 0f; // block jumps completely
         }
         else
         {
-            moveInput = InputSystem.actions != null ? InputSystem.actions["Move"].ReadValue<Vector2>() : Vector2.zero;
-            jumpPressed = InputSystem.actions != null && InputSystem.actions["Jump"].WasPressedThisFrame();
-            jumpReleased = InputSystem.actions != null && InputSystem.actions["Jump"].WasReleasedThisFrame();
-            attackPressed = InputSystem.actions != null && InputSystem.actions["Attack"].WasPressedThisFrame();
+            moveInput = InputSystem.actions != null && InputSystem.actions["Move"] != null ? InputSystem.actions["Move"].ReadValue<Vector2>() : Vector2.zero;
+            jumpPressed = InputSystem.actions != null && InputSystem.actions["Jump"] != null && InputSystem.actions["Jump"].WasPressedThisFrame();
+            jumpReleased = InputSystem.actions != null && InputSystem.actions["Jump"] != null && InputSystem.actions["Jump"].WasReleasedThisFrame();
+        }
+
+        // dismount ladder if player pushes left or right
+        if (isClimbing && Mathf.Abs(moveInput.x) > 0.3f)
+        {
+            ExitLadder();
         }
 
         // footsteps
@@ -168,15 +172,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (jumpPressed) jumpBufferTimer = jumpBufferTime;
+        if (jumpPressed && !isInputLocked) jumpBufferTimer = jumpBufferTime;
         else jumpBufferTimer -= Time.deltaTime;
 
         bool canJump = (currentJumps < maxJumps);
 
-        // 2. jump execution (allows leaping directly off the ladder)
-        if (jumpBufferTimer > 0f && canJump && !isInputLocked)
+        // 4. jump execution
+        if (jumpBufferTimer > 0f && canJump && !isClimbing && !isInputLocked)
         {
-            // dismount immediately when jumping off a ladder
             if (isClimbing)
             {
                 ExitLadder();
@@ -216,16 +219,10 @@ public class PlayerController : MonoBehaviour
             if (gravityDirection.y < 0 && body.linearVelocityY > 0) body.linearVelocityY *= 0.5f;
             else if (gravityDirection.y > 0 && body.linearVelocityY < 0) body.linearVelocityY *= 0.5f;
         }
-
-        if (attackPressed && isGrounded && !isClimbing && !isInputLocked && animator != null)
-        {
-            animator.SetTrigger("IsAttacking");
-        }
     }
 
     void FixedUpdate()
     {
-        // 1. handle forced velocity overrides (dash, knockback, hook pull)
         if (isVelocityOverridden)
         {
             body.gravityScale = overrideZeroGravity ? 0f : (originalGravity * gravityScaleMultiplier);
@@ -239,7 +236,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // 2. ladder climbing
         if (isOnLadderTrigger && currentLadderCollider != null)
         {
             if (Mathf.Abs(moveInput.y) > 0.1f && !isClimbing) StartClimbing();
@@ -258,33 +254,36 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // 1. dismount ladder if player pushes left or right (A / D)
-        if (isClimbing && Mathf.Abs(moveInput.x) > 0.3f)
-        {
-            ExitLadder();
-        }
-
-        // 3. standard movement
         float baseGrav = originalGravity > 0f ? originalGravity : 2.5f;
         body.gravityScale = (gravityDirection.y < 0 ? baseGrav : -baseGrav) * gravityScaleMultiplier;
 
-        float moveDirX = gravityDirection.y < 0 ? moveInput.x : -moveInput.x;
-        float finalSpeed = (isGrounded ? moveSpeed : Mathf.Max(moveSpeed, 5.0f)) * moveSpeedMultiplier;
-        body.linearVelocityX = moveDirX * finalSpeed;
-
-        if (animator != null) animator.SetBool("IsMoving", Mathf.Abs(moveInput.x) > 0f);
-
-        // facing direction
-        if (Mathf.Abs(moveInput.x) > 0.05f)
+        // while input is locked, freeze horizontal movement completely
+        if (isInputLocked)
         {
-            currentFacingDirection = Mathf.Sign(moveInput.x);
+            body.linearVelocityX = 0f;
+            if (animator != null) animator.SetBool("IsMoving", false);
+        }
+        else
+        {
+            float moveDirX = gravityDirection.y < 0 ? moveInput.x : -moveInput.x;
+            float finalSpeed = (isGrounded ? moveSpeed : Mathf.Max(moveSpeed, 5.0f)) * moveSpeedMultiplier;
+            body.linearVelocityX = moveDirX * finalSpeed;
+
+            if (animator != null) animator.SetBool("IsMoving", Mathf.Abs(moveInput.x) > 0f);
+
+            // only update facing direction from wasd when not locked by attack/shoot aim
+            if (Mathf.Abs(moveInput.x) > 0.05f)
+            {
+                currentFacingDirection = Mathf.Sign(moveInput.x);
+            }
         }
 
+        // render facing direction
         float visualDirX = gravityDirection.y < 0 ? currentFacingDirection : -currentFacingDirection;
         float scaleY = gravityDirection.y < 0 ? 2f : -2f;
         transform.localScale = new Vector3(visualDirX * 2f, scaleY, 2f);
 
-        // fall animation logic
+        // fall animation
         if (!isGrounded && animator != null)
         {
             bool isFalling = gravityDirection.y < 0 ? (body.linearVelocityY < -0.1f) : (body.linearVelocityY > 0.1f);
@@ -387,5 +386,13 @@ public class PlayerController : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(checkPos, groundCheckSize);
+    }
+
+    public void SetFacingDirection(float dir)
+    {
+        if (Mathf.Abs(dir) > 0.05f)
+        {
+            currentFacingDirection = Mathf.Sign(dir);
+        }
     }
 }
