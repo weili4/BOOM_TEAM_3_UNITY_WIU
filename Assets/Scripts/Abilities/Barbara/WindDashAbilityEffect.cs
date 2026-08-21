@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 [CreateAssetMenu(fileName = "WindDashAbility", menuName = "Party/Effects/WindDashAbility")]
 public class WindDashAbilityEffect : AbilityEffect
@@ -37,6 +39,11 @@ public class WindDashAbilityEffect : AbilityEffect
         // 1. tell playercontroller to lock velocity in this direction with zero gravity
         controller.SetForcedVelocity(direction * dashSpeed, dashDuration, true);
 
+        /*===================================================================================================*/
+        // Flip to Direction is facing
+        controller.transform.localScale = new Vector3(Mathf.Sign(direction.x) * 2f, 2f, 2f);
+        /*===================================================================================================*/
+
         // 2. start ghost trail
         GhostTrail trail = user.GetComponent<GhostTrail>();
         if (trail == null) trail = user.AddComponent<GhostTrail>();
@@ -54,7 +61,7 @@ public class WindDashAbilityEffect : AbilityEffect
 
         if (controller.animator != null)
         {
-            controller.animator.SetTrigger("IsAttacking");
+            controller.animator.SetTrigger("IsDashing");
         }
 
         // 4. run self-contained damage collision loop

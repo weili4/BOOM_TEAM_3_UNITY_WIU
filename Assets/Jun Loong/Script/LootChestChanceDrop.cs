@@ -96,7 +96,13 @@ public class LootChestChanceDrop : MonoBehaviour
                 }
 
                 BoxAnimator.SetBool("IsBoxOpen", true);
-                Instantiate(ItemToSpawn, transform.position, Quaternion.identity);
+                Vector2 SpawnItemLocation = new Vector2(transform.position.x , transform.position.y + 0.50f);
+
+                GameObject ItemDrop = Instantiate(ItemToSpawn, SpawnItemLocation, Quaternion.identity);
+                if (ItemDrop.TryGetComponent<Item>(out Item itemScript))
+                {
+                    itemScript.StartLaunchEffect(true);
+                }
             }
         }
     }

@@ -1,22 +1,19 @@
 fileFormatVersion: 2
-guid: 7caa37146dc035b42a95e8753bcade25
+guid: 49006983a987863478f2029a9fd7e8a7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1601457941457400959
-    second: SummonGunAttack_0
+      213: 5374266967164004705
+    second: HandGliding_0
   - first:
-      213: -5678325510552290560
-    second: SummonGunAttack_1
+      213: -4933732795007157061
+    second: HandGliding_1
   - first:
-      213: -3996617090390841739
-    second: SummonGunAttack_2
+      213: -1457293394045263342
+    second: HandGliding_2
   - first:
-      213: 5799502411257692272
-    second: SummonGunAttack_3
-  - first:
-      213: -2254283419458093551
-    second: SummonGunAttack_4
+      213: 1362640935972340882
+    second: HandGliding_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +57,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 64
@@ -87,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -125,7 +122,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SummonGunAttack_0
+      name: HandGliding_0
       rect:
         serializedVersion: 2
         x: 0
@@ -140,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 18b04b4bc7a76c9e0800000000000000
-      internalID: -1601457941457400959
+      spriteID: 1692de1255b359a40800000000000000
+      internalID: 5374266967164004705
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SummonGunAttack_1
+      name: HandGliding_1
       rect:
         serializedVersion: 2
         x: 48
@@ -162,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 00bfd7088098231b0800000000000000
-      internalID: -5678325510552290560
+      spriteID: bbc37e8b92cd78bb0800000000000000
+      internalID: -4933732795007157061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SummonGunAttack_2
+      name: HandGliding_2
       rect:
         serializedVersion: 2
         x: 96
@@ -184,14 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 576aff76ee92988c0800000000000000
-      internalID: -3996617090390841739
+      spriteID: 212a8621167a6cbe0800000000000000
+      internalID: -1457293394045263342
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SummonGunAttack_3
+      name: HandGliding_3
       rect:
         serializedVersion: 2
         x: 144
@@ -206,30 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 070490947b8fb7050800000000000000
-      internalID: 5799502411257692272
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SummonGunAttack_4
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.2708333, y: 0.375}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 11eb5287c2d27b0e0800000000000000
-      internalID: -2254283419458093551
+      spriteID: 294890136b219e210800000000000000
+      internalID: 1362640935972340882
       vertices: []
       indices: 
       edges: []
@@ -238,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: dca5c2b042028184ca4bdf0fb0f6f7ef
+    spriteID: 44c095f5ef69eb5479ef289b5e114afa
     internalID: 0
     vertices: []
     indices: 
@@ -250,11 +225,10 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      SummonGunAttack_0: -1601457941457400959
-      SummonGunAttack_1: -5678325510552290560
-      SummonGunAttack_2: -3996617090390841739
-      SummonGunAttack_3: 5799502411257692272
-      SummonGunAttack_4: -2254283419458093551
+      HandGliding_0: 5374266967164004705
+      HandGliding_1: -4933732795007157061
+      HandGliding_2: -1457293394045263342
+      HandGliding_3: 1362640935972340882
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
