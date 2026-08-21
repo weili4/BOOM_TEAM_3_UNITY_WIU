@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class TestingLootChanceDrop : MonoBehaviour
+public class LootChestChanceDrop : MonoBehaviour
 {
     /*===================================================================================================================*/
     private bool PlayerNearChest = false;
@@ -27,12 +27,17 @@ public class TestingLootChanceDrop : MonoBehaviour
     [SerializeField] private string ItemNameToSearch = "Key";
     /*===================================================================================================================*/
 
+    /*===================================================================================================================*/
+    private Animator BoxAnimator;
+    /*===================================================================================================================*/
+
     [Header("Debugging")]
     [SerializeField] private bool ShowDebugLogs = false;
 
     void Start()
     {
         ConnectToInventoryInstance();
+        BoxAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -90,6 +95,7 @@ public class TestingLootChanceDrop : MonoBehaviour
                     }
                 }
 
+                BoxAnimator.SetBool("IsBoxOpen", true);
                 Instantiate(ItemToSpawn, transform.position, Quaternion.identity);
             }
         }

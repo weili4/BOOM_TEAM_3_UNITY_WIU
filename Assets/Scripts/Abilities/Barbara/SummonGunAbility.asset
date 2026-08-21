@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adef80e33849a8945bc5ef612d4c2450, type: 3}
   m_Name: SummonGunAbility
   m_EditorClassIdentifier: Assembly-CSharp::SummonGunAbilityEffect
-  GunPrefab: {fileID: 4041879558803148335, guid: 84f71a3815159f94a88a88ae98fc2ec2, type: 3}
-  GunOffsets:
+  gunPrefab: {fileID: 4041879558803148335, guid: 84f71a3815159f94a88a88ae98fc2ec2, type: 3}
+  gunOffsets:
   - {x: 0.5, y: -0.2, z: 0}
   - {x: 0.35, y: 0.25, z: 0}
   - {x: -0.5, y: -0.2, z: 0}

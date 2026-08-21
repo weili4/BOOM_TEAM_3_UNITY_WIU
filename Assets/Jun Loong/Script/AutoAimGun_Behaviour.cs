@@ -128,9 +128,13 @@ public class AutoAimGun_Behaviour : MonoBehaviour
                 {
                     GunSprite.flipY = true;
                 }
+                else
+                {
+                    GunSprite.flipY = false;
+                }
                 /*===================================================================================================*/
 
-                float angle = Mathf.Atan2(currentDirection.y, currentDirection.x) * Mathf.Rad2Deg;
+                    float angle = Mathf.Atan2(currentDirection.y, currentDirection.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0f, 0f, angle);
             }
             else
