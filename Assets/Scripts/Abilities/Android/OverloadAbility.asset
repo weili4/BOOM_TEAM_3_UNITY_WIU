@@ -15,8 +15,8 @@ MonoBehaviour:
   abilityName: Overload
   abilityDescription: Boosts speed
   icon: {fileID: -855298285791758126, guid: 01b0ed824e7e6a7449c35567b98d2858, type: 3}
-  cooldownTime: 10
-  activeDuration: 5
+  cooldownTime: 12
+  activeDuration: 12
   activationSound: {fileID: 0}
   vfxPrefab: {fileID: 0}
   effectLogic: {fileID: 11400000, guid: 0f0fc4b5eef5cc44490db1ed816339df, type: 2}
