@@ -9,7 +9,7 @@ public class PlaneSpawner : MonoBehaviour
     [SerializeField] private float warningDuration = 1.0f;
     [SerializeField] private float planeSpeed = 16f;
 
-    [Header("camera tracking warning line")]
+    [Header("full screen warning line renderer")]
     [SerializeField] private LineRenderer warningLine;
 
     private Camera mainCam;
@@ -59,6 +59,12 @@ public class PlaneSpawner : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        // keep main camera reference valid across scene changes
+        if (mainCam == null) mainCam = Camera.main;
+    }
+
     private IEnumerator PlaneSpawnLoop()
     {
         while (isPlayerInZone)
@@ -76,10 +82,10 @@ public class PlaneSpawner : MonoBehaviour
 
             if (player == null || mainCam == null) continue;
 
-            // lock Y to player's current height
+            // 1. lock Y height to the player at this moment
             float lockedY = player.transform.position.y;
 
-            // show right screen edge warning line tracking the camera
+            // 2. show full-screen warning line spanning from left screen edge to right screen edge
             if (warningLine != null) warningLine.enabled = true;
             float elapsed = 0f;
 
@@ -90,11 +96,12 @@ public class PlaneSpawner : MonoBehaviour
 
                 if (mainCam != null && warningLine != null)
                 {
-                    Vector3 rightEdge = mainCam.ViewportToWorldPoint(new Vector3(1f, 0.5f, 10f));
-                    Vector3 leftEdge = mainCam.ViewportToWorldPoint(new Vector3(0.85f, 0.5f, 10f));
+                    // viewport X = 0.0 is left edge of screen, X = 1.0 is right edge of screen
+                    Vector3 leftScreenEdge = mainCam.ViewportToWorldPoint(new Vector3(-0.05f, 0.5f, 10f));
+                    Vector3 rightScreenEdge = mainCam.ViewportToWorldPoint(new Vector3(1.05f, 0.5f, 10f));
 
-                    warningLine.SetPosition(0, new Vector3(leftEdge.x, lockedY, 0f));
-                    warningLine.SetPosition(1, new Vector3(rightEdge.x, lockedY, 0f));
+                    warningLine.SetPosition(0, new Vector3(leftScreenEdge.x, lockedY, 0f));
+                    warningLine.SetPosition(1, new Vector3(rightScreenEdge.x, lockedY, 0f));
                 }
 
                 yield return null;
@@ -102,7 +109,7 @@ public class PlaneSpawner : MonoBehaviour
 
             if (warningLine != null) warningLine.enabled = false;
 
-            // spawn plane offscreen right
+            // 3. spawn plane just outside the right edge of the screen
             if (mainCam != null && planePrefab != null)
             {
                 Vector3 spawnPos = mainCam.ViewportToWorldPoint(new Vector3(1.15f, 0.5f, 10f));
