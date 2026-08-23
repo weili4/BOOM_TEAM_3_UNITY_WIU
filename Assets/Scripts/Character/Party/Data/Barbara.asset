@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterName: Barbara
   characterIndex: 0
-  portraitIcon: {fileID: 0}
+  portraitIcon: {fileID: -104431088078171205, guid: df7ee20d382f4c44583fd58fefe510a9, type: 3}
   characterPrefab: {fileID: 8741427890136185514, guid: a2507e45dc3c0cb42a2d0c98cb5640b5, type: 3}
   maxHealth: 120
   moveSpeed: 4

@@ -97,6 +97,17 @@ public class BarbaraPrimaryAttack : CharacterPrimaryAttack
 
         if (fireTimer > 0f) fireTimer -= Time.deltaTime;
 
+        // if in cinematic cutscene, make sure arm is hidden and cancel shooting states
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsCinematicActive)
+        {
+            SetAimingState(false);
+            isCharging = false;
+            lingerTimer = 0f;
+            holdTimer = 0f;
+            UpdateChargeMeterUI(0f, false);
+            return;
+        }
+
         // determine if player is actively locked by shooting, burst, or linger
         bool isLocked = isCharging || isExecutingBurst || (lingerTimer > 0f);
 

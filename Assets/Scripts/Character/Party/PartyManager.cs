@@ -99,6 +99,9 @@ public class PartyManager : MonoBehaviour
 
     private void CheckSwitchInput()
     {
+        // block character switching during cinematic cutscenes
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsCinematicActive) return;
+
         if (Keyboard.current == null) return;
 
         if (Keyboard.current.digit1Key.wasPressedThisFrame) SwitchToCharacter(0);
@@ -118,12 +121,13 @@ public class PartyManager : MonoBehaviour
 
     public void SwitchToCharacter(int targetIndex)
     {
+        // block switching if a cinematic cutscene is playing
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsCinematicActive) return;
+
         if (targetIndex < 0 || targetIndex >= partyMembers.Count) return;
         if (targetIndex == activeLeaderIndex) return;
 
         PartyMember target = partyMembers[targetIndex];
-
-        // block swap if character is locked, dead, or on switch cooldown
         if (!target.isUnlocked || target.isDead || target.switchCooldownTimer > 0f) return;
 
         SetLeader(targetIndex, false);

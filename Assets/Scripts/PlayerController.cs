@@ -122,13 +122,15 @@ public class PlayerController : MonoBehaviour
         }
         wasGrounded = isGrounded;
 
-        // 2. read input (cleared when input is locked during cutscenes, shooting, or charging)
-        if (isInputLocked)
+        // master lock: blocks input if locked by script OR if a cinematic dialogue is playing
+        bool isLocked = isInputLocked || (DialogueManager.Instance != null && DialogueManager.Instance.IsCinematicActive);
+
+        if (isLocked)
         {
             moveInput = Vector2.zero;
             jumpPressed = false;
             jumpReleased = false;
-            jumpBufferTimer = 0f; // block jumps completely
+            jumpBufferTimer = 0f;
         }
         else
         {
@@ -137,14 +139,14 @@ public class PlayerController : MonoBehaviour
             jumpReleased = InputSystem.actions != null && InputSystem.actions["Jump"] != null && InputSystem.actions["Jump"].WasReleasedThisFrame();
         }
 
-        // dismount ladder if player pushes left or right
+        // dismount ladder
         if (isClimbing && Mathf.Abs(moveInput.x) > 0.3f)
         {
             ExitLadder();
         }
 
         // footsteps
-        if (isGrounded && Mathf.Abs(moveInput.x) > 0.1f && !isClimbing)
+        if (isGrounded && Mathf.Abs(moveInput.x) > 0.1f && !isClimbing && !isLocked)
         {
             footstepTimer -= Time.deltaTime;
             if (footstepTimer <= 0f)
@@ -155,7 +157,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // 3. jump reset
+        // jump reset
         bool isMovingTowardsFloor = gravityDirection.y < 0 ? body.linearVelocityY <= 0.1f : body.linearVelocityY >= -0.1f;
 
         if (isGrounded && isMovingTowardsFloor)
@@ -172,13 +174,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (jumpPressed && !isInputLocked) jumpBufferTimer = jumpBufferTime;
+        if (jumpPressed && !isLocked) jumpBufferTimer = jumpBufferTime;
         else jumpBufferTimer -= Time.deltaTime;
 
         bool canJump = (currentJumps < maxJumps);
 
-        // 4. jump execution
-        if (jumpBufferTimer > 0f && canJump && !isClimbing && !isInputLocked)
+        // jump execution
+        if (jumpBufferTimer > 0f && canJump && !isClimbing && !isLocked)
         {
             if (isClimbing)
             {
@@ -257,8 +259,10 @@ public class PlayerController : MonoBehaviour
         float baseGrav = originalGravity > 0f ? originalGravity : 2.5f;
         body.gravityScale = (gravityDirection.y < 0 ? baseGrav : -baseGrav) * gravityScaleMultiplier;
 
-        // while input is locked, freeze horizontal movement completely
-        if (isInputLocked)
+        // check master lock
+        bool isLocked = isInputLocked || (DialogueManager.Instance != null && DialogueManager.Instance.IsCinematicActive);
+
+        if (isLocked)
         {
             body.linearVelocityX = 0f;
             if (animator != null) animator.SetBool("IsMoving", false);
@@ -271,14 +275,12 @@ public class PlayerController : MonoBehaviour
 
             if (animator != null) animator.SetBool("IsMoving", Mathf.Abs(moveInput.x) > 0f);
 
-            // only update facing direction from wasd when not locked by attack/shoot aim
             if (Mathf.Abs(moveInput.x) > 0.05f)
             {
                 currentFacingDirection = Mathf.Sign(moveInput.x);
             }
         }
 
-        // render facing direction
         float visualDirX = gravityDirection.y < 0 ? currentFacingDirection : -currentFacingDirection;
         float scaleY = gravityDirection.y < 0 ? 2f : -2f;
         transform.localScale = new Vector3(visualDirX * 2f, scaleY, 2f);
@@ -296,7 +298,6 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsJumping", false);
         }
 
-        // fall multiplier
         if (gravityDirection.y < 0 && body.linearVelocityY < 0)
         {
             body.linearVelocityY += Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;

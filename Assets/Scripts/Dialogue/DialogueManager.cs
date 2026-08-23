@@ -10,20 +10,28 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
 
-    [Header("cinematic dialogue ui (mode 1)")]
-    [SerializeField] private GameObject cinematicRoot;            // parent dialogue box container
-    [SerializeField] private GameObject cinematicBackground;      // background image for the dialogue box
+    [Header("cinematic dialogue ui (bottom-to-up slide & fade)")]
+    [SerializeField] private GameObject cinematicRoot;
+    [SerializeField] private CanvasGroup cinematicCanvasGroup;
+    [SerializeField] private RectTransform cinematicRootRect;
+    [SerializeField] private GameObject cinematicBackground;
     [SerializeField] private TMP_Text cinematicNameText;
     [SerializeField] private TMP_Text cinematicSentenceText;
     [SerializeField] private Image cinematicPortraitImage;
     [SerializeField] private RectTransform cinematicPortraitRect;
-    [SerializeField] private GameObject cinematicBackdrop;        // dark screen dim overlay
+    [SerializeField] private GameObject cinematicBackdrop;
+    [SerializeField] private float cinematicSlideOffsetY = 80f; // slides up from bottom by pixels
+    [SerializeField] private float cinematicTransitionDuration = 0.22f;
 
-    [Header("subtitle dialogue ui (mode 2)")]
-    [SerializeField] private GameObject subtitleRoot;             // floating movie subtitle banner
+    [Header("subtitle dialogue ui (right-to-left slide & fade)")]
+    [SerializeField] private GameObject subtitleRoot;
+    [SerializeField] private CanvasGroup subtitleCanvasGroup;
+    [SerializeField] private RectTransform subtitleRootRect;
     [SerializeField] private TMP_Text subtitleNameText;
     [SerializeField] private TMP_Text subtitleSentenceText;
     [SerializeField] private Image subtitlePortraitImage;
+    [SerializeField] private float subtitleSlideOffsetX = 120f; // slides in from right
+    [SerializeField] private float subtitleLineTransitionDuration = 0.18f;
 
     [Header("cinematic choice buttons")]
     [SerializeField] private GameObject choiceContainer;
@@ -43,6 +51,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip defaultVoiceBlip;
     [SerializeField] private AudioSource audioSource;
 
+    [SerializeField] private GameObject cinematicContinuePrompt; // the small arrow icon in the corner
+
     private List<DialogueLine> currentLines = new List<DialogueLine>();
     private int currentLineIndex = 0;
     private bool isDialogueRunning = false;
@@ -53,9 +63,13 @@ public class DialogueManager : MonoBehaviour
 
     private Coroutine typingRoutine;
     private Coroutine portraitAnimRoutine;
+    private Coroutine rootTransitionRoutine;
     private Sprite lastDisplayedPortrait = null;
-    private Vector2 portraitRestingPosition;
-    private bool hasSavedPortraitPos = false;
+
+    private Vector2 cinematicRestingPos;
+    private Vector2 subtitleRestingPos;
+    private Vector2 portraitRestingPos;
+    private bool hasSavedPositions = false;
 
     public bool IsDialogueRunning => isDialogueRunning;
     public bool IsCinematicActive => isDialogueRunning && isCinematic;
@@ -71,16 +85,22 @@ public class DialogueManager : MonoBehaviour
         audioSource.playOnAwake = false;
         audioSource.spatialBlend = 0f;
 
-        if (cinematicPortraitRect != null)
-        {
-            portraitRestingPosition = cinematicPortraitRect.anchoredPosition;
-            hasSavedPortraitPos = true;
-        }
+        SaveRestingPositions();
+    }
+
+    private void SaveRestingPositions()
+    {
+        if (hasSavedPositions) return;
+
+        if (cinematicRootRect != null) cinematicRestingPos = cinematicRootRect.anchoredPosition;
+        if (subtitleRootRect != null) subtitleRestingPos = subtitleRootRect.anchoredPosition;
+        if (cinematicPortraitRect != null) portraitRestingPos = cinematicPortraitRect.anchoredPosition;
+
+        hasSavedPositions = true;
     }
 
     private void Start()
     {
-        // ensure all dialogue panels start completely hidden
         HideAllDialogueUI();
     }
 
@@ -92,14 +112,13 @@ public class DialogueManager : MonoBehaviour
         if (subtitleRoot != null) subtitleRoot.SetActive(false);
         if (choiceContainer != null) choiceContainer.SetActive(false);
         if (cinematicBackdrop != null) cinematicBackdrop.SetActive(false);
+        if (cinematicContinuePrompt != null) cinematicContinuePrompt.SetActive(false);
     }
 
     private void Update()
     {
-        // in subtitle mode, player cannot skip or advance dialogue manually
         if (!isDialogueRunning || isWaitingForChoice || !isCinematic) return;
 
-        // only check manual skip/advance keys during cinematic cutscene mode
         bool advancePressed = false;
         if (Keyboard.current != null)
         {
@@ -130,6 +149,8 @@ public class DialogueManager : MonoBehaviour
     {
         if (lines == null || lines.Count == 0) return;
 
+        SaveRestingPositions();
+
         isDialogueRunning = true;
         isCinematic = cinematicMode;
         currentLines = lines;
@@ -137,7 +158,7 @@ public class DialogueManager : MonoBehaviour
         onCompleteCallback = onComplete;
         lastDisplayedPortrait = null;
 
-        // 1. cinematic mode: lock player input, hide hud, show full dialogue box and background
+        // 1. cinematic mode: bottom-to-up slide and fade in
         if (isCinematic)
         {
             LockPlayerControls(true);
@@ -148,8 +169,10 @@ public class DialogueManager : MonoBehaviour
             if (cinematicBackground != null) cinematicBackground.SetActive(true);
             if (subtitleRoot != null) subtitleRoot.SetActive(false);
             if (cinematicBackdrop != null) cinematicBackdrop.SetActive(true);
+
+            StartCoroutine(AnimateCinematicEnter());
         }
-        // 2. subtitle mode: player can move/fight, hud stays visible, no background dim
+        // 2. subtitle mode: right-to-left slide
         else
         {
             LockPlayerControls(false);
@@ -171,33 +194,139 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        DialogueLine line = currentLines[index];
-
-        TMP_Text nameTarget = isCinematic ? cinematicNameText : subtitleNameText;
-        TMP_Text sentenceTarget = isCinematic ? cinematicSentenceText : subtitleSentenceText;
-
-        if (nameTarget != null)
+        // hide prompt while new line is starting
+        if (cinematicContinuePrompt != null)
         {
-            nameTarget.text = line.speakerName;
+            cinematicContinuePrompt.SetActive(false);
         }
+
+        DialogueLine line = currentLines[index];
 
         if (isCinematic)
         {
+            if (cinematicNameText != null) cinematicNameText.text = line.speakerName;
             UpdateCinematicPortrait(line.speakerPortrait);
+
+            if (line.enableCameraShake)
+            {
+                CinemachineImpulseSource impulse = GetComponent<CinemachineImpulseSource>();
+                if (impulse != null) impulse.GenerateImpulse(line.shakeForce);
+            }
+
+            if (typingRoutine != null) StopCoroutine(typingRoutine);
+            typingRoutine = StartCoroutine(TypeSentenceRoutine(line, cinematicSentenceText));
         }
         else
         {
-            UpdateSubtitlePortrait(line.speakerPortrait);
+            if (rootTransitionRoutine != null) StopCoroutine(rootTransitionRoutine);
+            rootTransitionRoutine = StartCoroutine(SubtitleLineTransitionRoutine(line));
         }
+    }
 
-        if (line.enableCameraShake)
+    private IEnumerator AnimateCinematicEnter()
+    {
+        if (cinematicRootRect == null) yield break;
+
+        Vector2 startPos = cinematicRestingPos + new Vector2(0f, -cinematicSlideOffsetY);
+        Vector2 targetPos = cinematicRestingPos;
+
+        cinematicRootRect.anchoredPosition = startPos;
+        if (cinematicCanvasGroup != null) cinematicCanvasGroup.alpha = 0f;
+
+        float elapsed = 0f;
+
+        while (elapsed < cinematicTransitionDuration)
         {
-            CinemachineImpulseSource impulse = GetComponent<CinemachineImpulseSource>();
-            if (impulse != null) impulse.GenerateImpulse(line.shakeForce);
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / cinematicTransitionDuration);
+            float smooth = 1f - Mathf.Pow(1f - t, 3f);
+
+            cinematicRootRect.anchoredPosition = Vector2.Lerp(startPos, targetPos, smooth);
+            if (cinematicCanvasGroup != null) cinematicCanvasGroup.alpha = Mathf.Lerp(0f, 1f, smooth);
+
+            yield return null;
         }
 
+        cinematicRootRect.anchoredPosition = targetPos;
+        if (cinematicCanvasGroup != null) cinematicCanvasGroup.alpha = 1f;
+    }
+
+    private IEnumerator AnimateCinematicExit(System.Action onFinished)
+    {
+        if (cinematicRootRect == null)
+        {
+            onFinished?.Invoke();
+            yield break;
+        }
+
+        Vector2 startPos = cinematicRestingPos;
+        Vector2 targetPos = cinematicRestingPos + new Vector2(0f, -cinematicSlideOffsetY);
+
+        float elapsed = 0f;
+
+        while (elapsed < cinematicTransitionDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / cinematicTransitionDuration);
+            float smooth = t * t;
+
+            cinematicRootRect.anchoredPosition = Vector2.Lerp(startPos, targetPos, smooth);
+            if (cinematicCanvasGroup != null) cinematicCanvasGroup.alpha = Mathf.Lerp(1f, 0f, smooth);
+
+            yield return null;
+        }
+
+        cinematicRootRect.anchoredPosition = cinematicRestingPos;
+        if (cinematicCanvasGroup != null) cinematicCanvasGroup.alpha = 0f;
+
+        onFinished?.Invoke();
+    }
+
+    private IEnumerator SubtitleLineTransitionRoutine(DialogueLine line)
+    {
+        // 1. quick fade out previous line if already showing
+        if (subtitleCanvasGroup != null && subtitleCanvasGroup.alpha > 0.05f)
+        {
+            float fadeOutElapsed = 0f;
+            while (fadeOutElapsed < 0.08f)
+            {
+                fadeOutElapsed += Time.deltaTime;
+                subtitleCanvasGroup.alpha = Mathf.Lerp(1f, 0f, fadeOutElapsed / 0.08f);
+                yield return null;
+            }
+        }
+
+        // 2. update subtitle text and portrait while hidden
+        if (subtitleNameText != null) subtitleNameText.text = line.speakerName;
+        UpdateSubtitlePortrait(line.speakerPortrait);
+
+        // 3. slide in from right to left while fading in
+        Vector2 startPos = subtitleRestingPos + new Vector2(subtitleSlideOffsetX, 0f);
+        Vector2 targetPos = subtitleRestingPos;
+
+        if (subtitleRootRect != null) subtitleRootRect.anchoredPosition = startPos;
+        if (subtitleCanvasGroup != null) subtitleCanvasGroup.alpha = 0f;
+
+        float elapsed = 0f;
+
+        while (elapsed < subtitleLineTransitionDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / subtitleLineTransitionDuration);
+            float smooth = 1f - Mathf.Pow(1f - t, 3f);
+
+            if (subtitleRootRect != null) subtitleRootRect.anchoredPosition = Vector2.Lerp(startPos, targetPos, smooth);
+            if (subtitleCanvasGroup != null) subtitleCanvasGroup.alpha = Mathf.Lerp(0f, 1f, smooth);
+
+            yield return null;
+        }
+
+        if (subtitleRootRect != null) subtitleRootRect.anchoredPosition = targetPos;
+        if (subtitleCanvasGroup != null) subtitleCanvasGroup.alpha = 1f;
+
+        // 4. start typewriter for subtitle
         if (typingRoutine != null) StopCoroutine(typingRoutine);
-        typingRoutine = StartCoroutine(TypeSentenceRoutine(line, sentenceTarget));
+        typingRoutine = StartCoroutine(TypeSentenceRoutine(line, subtitleSentenceText));
     }
 
     private void UpdateCinematicPortrait(Sprite newPortrait)
@@ -227,14 +356,8 @@ public class DialogueManager : MonoBehaviour
     {
         if (cinematicPortraitRect == null || cinematicPortraitImage == null) yield break;
 
-        if (!hasSavedPortraitPos)
-        {
-            portraitRestingPosition = cinematicPortraitRect.anchoredPosition;
-            hasSavedPortraitPos = true;
-        }
-
-        Vector2 startPos = portraitRestingPosition + new Vector2(-portraitSlideDistance, 0f);
-        Vector2 targetPos = portraitRestingPosition;
+        Vector2 startPos = portraitRestingPos + new Vector2(-portraitSlideDistance, 0f);
+        Vector2 targetPos = portraitRestingPos;
 
         cinematicPortraitRect.anchoredPosition = startPos;
         Color c = cinematicPortraitImage.color;
@@ -281,6 +404,7 @@ public class DialogueManager : MonoBehaviour
     {
         isTyping = true;
         targetText.text = "";
+        if (cinematicContinuePrompt != null) cinematicContinuePrompt.SetActive(false);
 
         float speed = line.typingSpeed > 0f ? line.typingSpeed : 0.03f;
         int soundCounter = 0;
@@ -312,7 +436,14 @@ public class DialogueManager : MonoBehaviour
         {
             ShowChoices(line);
         }
-        // subtitle mode waits a reading duration then advances automatically without player input
+        // show continue prompt icon when line is fully typed in cinematic mode
+        else if (isCinematic)
+        {
+            if (cinematicContinuePrompt != null)
+            {
+                cinematicContinuePrompt.SetActive(true);
+            }
+        }
         else if (!isCinematic)
         {
             float readDelay = Mathf.Max(1.8f, line.sentence.Length * 0.05f);
@@ -338,10 +469,22 @@ public class DialogueManager : MonoBehaviour
         {
             ShowChoices(line);
         }
+        else if (isCinematic)
+        {
+            if (cinematicContinuePrompt != null)
+            {
+                cinematicContinuePrompt.SetActive(true);
+            }
+        }
     }
 
     private void AdvanceToNextLine()
     {
+        if (cinematicContinuePrompt != null)
+        {
+            cinematicContinuePrompt.SetActive(false);
+        }
+
         currentLineIndex++;
         DisplayLine(currentLineIndex);
     }
@@ -391,15 +534,26 @@ public class DialogueManager : MonoBehaviour
         isTyping = false;
         isWaitingForChoice = false;
 
-        // hide all dialogue ui completely
-        HideAllDialogueUI();
-
-        // restore player movement and gameplay hud
-        LockPlayerControls(false);
-        PartyHUD.Instance?.ShowHUD();
-        if (abilitiesPanel != null) abilitiesPanel.SetActive(true);
-
-        onCompleteCallback?.Invoke();
+        if (isCinematic)
+        {
+            // slide down and fade out before disabling
+            StartCoroutine(AnimateCinematicExit(() =>
+            {
+                HideAllDialogueUI();
+                LockPlayerControls(false);
+                PartyHUD.Instance?.ShowHUD();
+                if (abilitiesPanel != null) abilitiesPanel.SetActive(true);
+                onCompleteCallback?.Invoke();
+            }));
+        }
+        else
+        {
+            HideAllDialogueUI();
+            LockPlayerControls(false);
+            PartyHUD.Instance?.ShowHUD();
+            if (abilitiesPanel != null) abilitiesPanel.SetActive(true);
+            onCompleteCallback?.Invoke();
+        }
     }
 
     private void LockPlayerControls(bool locked)
@@ -409,11 +563,7 @@ public class DialogueManager : MonoBehaviour
         if (PartyManager.Instance.ActivePlayerObj.TryGetComponent<PlayerController>(out var controller))
         {
             controller.isInputLocked = locked;
-
-            if (locked)
-            {
-                controller.ClearForcedVelocity();
-            }
+            if (locked) controller.ClearForcedVelocity();
         }
     }
 }

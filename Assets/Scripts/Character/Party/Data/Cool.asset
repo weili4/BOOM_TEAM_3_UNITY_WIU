@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterName: Cool
   characterIndex: 0
-  portraitIcon: {fileID: 0}
+  portraitIcon: {fileID: -1088068280339610178, guid: c941a608f0e8bef49b502551f198f0dd, type: 3}
   characterPrefab: {fileID: 8741427890136185514, guid: 7592477dcffca1d49a911ec00ea79b92, type: 3}
   maxHealth: 120
   moveSpeed: 4

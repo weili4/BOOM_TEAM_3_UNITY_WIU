@@ -943,9 +943,9 @@ MonoBehaviour:
   fireRate: 0.25
   bulletDamage: 15
   bulletSpeed: 16
+  postAttackLingerDuration: 0.3
   shootSFX: {fileID: 0}
   muzzleFlashVFX: {fileID: 0}
-  postAttackLingerDuration: 0.3
   chargeMeterRoot: {fileID: 2641863720587337511}
   chargeSlider: {fileID: 8082222004826068788}
   chargeFillImage: {fileID: 4357449320886714421}
@@ -953,7 +953,8 @@ MonoBehaviour:
   maxChargeColor1: {r: 1, g: 0.85, b: 0, a: 1}
   maxChargeColor2: {r: 1, g: 1, b: 1, a: 1}
   maxFlickerSpeed: 30
-  maxChargeTime: 1
+  chargeStartDelay: 0.15
+  maxChargeTime: 0.2
   burstBulletCount: 5
   burstFireDelay: 0.05
   burstBulletDamage: 22

@@ -5,6 +5,24 @@ TextureImporter:
   - first:
       213: -265072838426570835
     second: illustration_party_android_0
+  - first:
+      213: -3861609840833596504
+    second: illustration_party_android_1
+  - first:
+      213: 9097442006194139585
+    second: illustration_party_android_2
+  - first:
+      213: 2263689051177615776
+    second: illustration_party_android_3
+  - first:
+      213: -6257487766891838985
+    second: illustration_party_android_4
+  - first:
+      213: -2471718150233666349
+    second: illustration_party_android_5
+  - first:
+      213: -1082127916712344833
+    second: illustration_party_android_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +55,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -96,19 +114,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -116,10 +121,10 @@ TextureImporter:
       name: illustration_party_android_0
       rect:
         serializedVersion: 2
-        x: 50
-        y: 0
-        width: 1512
-        height: 2000
+        x: 23
+        y: 30
+        width: 1164
+        height: 1470
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,6 +135,138 @@ TextureImporter:
       bones: []
       spriteID: dafcaf968a5425cf0800000000000000
       internalID: -265072838426570835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_android_1
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 59
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a3f5f73f4ec86ac0800000000000000
+      internalID: -3861609840833596504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_android_2
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 63
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c13be7ed4b904e70800000000000000
+      internalID: 9097442006194139585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_android_3
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 65
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a10261d23d3a6f10800000000000000
+      internalID: 2263689051177615776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_android_4
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 58
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f14f049700f829a0800000000000000
+      internalID: -6257487766891838985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_android_5
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 60
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dccf662071b2bdd0800000000000000
+      internalID: -2471718150233666349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_android_6
+      rect:
+        serializedVersion: 2
+        x: 1138
+        y: 64
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff2c3d2a4628bf0f0800000000000000
+      internalID: -1082127916712344833
       vertices: []
       indices: 
       edges: []
@@ -149,6 +286,12 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       illustration_party_android_0: -265072838426570835
+      illustration_party_android_1: -3861609840833596504
+      illustration_party_android_2: 9097442006194139585
+      illustration_party_android_3: 2263689051177615776
+      illustration_party_android_4: -6257487766891838985
+      illustration_party_android_5: -2471718150233666349
+      illustration_party_android_6: -1082127916712344833
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
