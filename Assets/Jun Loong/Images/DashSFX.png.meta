@@ -63,10 +63,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 45
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -128,133 +128,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 9_1_0
+      name: DashSFX_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 19
-        width: 6
-        height: 10
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 561ca394d7c45ab50800000000000000
-      internalID: 6603768529591910757
+      spriteID: f78ad08ad3a46834294bf5aeaa6f5078
+      internalID: -649646018
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9_1_1
+      name: DashSFX_1
       rect:
         serializedVersion: 2
-        x: 47
-        y: 16
-        width: 28
-        height: 16
+        x: 48
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 493aff26a877dd920800000000000000
-      internalID: 3016698761658213268
+      spriteID: 53098fc7b5e33004b848ca5c0bf668f7
+      internalID: 181666533
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9_1_2
+      name: DashSFX_2
       rect:
         serializedVersion: 2
-        x: 97
-        y: 16
-        width: 29
-        height: 18
+        x: 96
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9a702fa5d6274b6c0800000000000000
-      internalID: -4128549144389089367
+      spriteID: 9d427c6a66cbbaa4a908da53c2a66223
+      internalID: -495730347
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9_1_3
+      name: DashSFX_3
       rect:
         serializedVersion: 2
-        x: 149
-        y: 13
-        width: 17
-        height: 15
+        x: 144
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2276bf4c2f5f23640800000000000000
-      internalID: 5058375754526189346
+      spriteID: 683b712a343794347818fcc9fae65c77
+      internalID: 867977209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9_1_4
+      name: DashSFX_4
       rect:
         serializedVersion: 2
-        x: 157
-        y: 22
-        width: 20
-        height: 14
+        x: 192
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3575020633e3f7e70800000000000000
-      internalID: 9115072561198159699
+      spriteID: 567721386e1662f4aa52a3f104ba3338
+      internalID: -548455363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9_1_5
+      name: DashSFX_5
       rect:
         serializedVersion: 2
-        x: 203
-        y: 18
-        width: 73
-        height: 15
+        x: 240
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ae57063c35e35d480800000000000000
-      internalID: -8875118961182607894
+      spriteID: d8abc2bbfb55e0e43a801ebc81e174a0
+      internalID: 423155201
       vertices: []
       indices: 
       edges: []
@@ -263,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e881cf49d16492c4aa2ee7a04b4d32a4
     internalID: 0
     vertices: []
     indices: 
@@ -271,14 +271,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      9_1_0: 6603768529591910757
-      9_1_1: 3016698761658213268
-      9_1_2: -4128549144389089367
-      9_1_3: 5058375754526189346
-      9_1_4: 9115072561198159699
-      9_1_5: -8875118961182607894
+      DashSFX_0: -649646018
+      DashSFX_1: 181666533
+      DashSFX_2: -495730347
+      DashSFX_3: 867977209
+      DashSFX_4: -548455363
+      DashSFX_5: 423155201
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

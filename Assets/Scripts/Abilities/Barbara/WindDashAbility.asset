@@ -20,4 +20,4 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  frontVFXPrefab: {fileID: 6315957280182800141, guid: d1cc6bb3c6a34ca44aa9a9dad4490cbd, type: 3}
+  frontVFXPrefab: {fileID: 188664329417948399, guid: 80552315e0e4a7742aec282d50280b29, type: 3}

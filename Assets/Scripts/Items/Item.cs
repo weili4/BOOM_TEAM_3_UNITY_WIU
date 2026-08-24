@@ -202,7 +202,7 @@ public class Item : MonoBehaviour
     }
 
     /*===================================================================================================================*/
-    // Right now is just check collision on anything and asy is grounded
+    // Right now is just check collision on anything and say is grounded
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!IsGrounded)

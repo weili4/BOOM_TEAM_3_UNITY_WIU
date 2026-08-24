@@ -16,3 +16,5 @@ MonoBehaviour:
   itemImage: {fileID: -8821839013989538729, guid: 6b7982ac53de00343a0898debcc31d45, type: 3}
   cooldownTime: 10
   useSound: {fileID: 8300000, guid: 14b572dce26b4cd4f8dc20fdfdfc6910, type: 3}
+  itemDescription: 
+  UseableItem: 1

@@ -20,12 +20,16 @@ public class Inventory_Ui_Behaviour : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ItemName;
     [SerializeField] private TextMeshProUGUI ItemDescriptionText;
     [SerializeField] private TextMeshProUGUI ItemStatText;
+    [SerializeField] private GameObject UseBtn;
+    [SerializeField] private GameObject MaxItemText;
     private int selectedItemIndex = -1;
     /*===================================================================================================================*/
 
     /*===================================================================================================================*/
-    // UI References
-    //[SerializeField] private GameUIManager gameUIManager; Need to change to PauseMenuManager
+    private bool MovingItem = false;
+    [SerializeField] private GameObject MoveItemIcon;
+    private int FirstItemIndex = -1;
+    private int SecondItemIndex = -1;
     /*===================================================================================================================*/
 
     /*===================================================================================================================*/
@@ -40,33 +44,13 @@ public class Inventory_Ui_Behaviour : MonoBehaviour
 
         RefreshInventoryUI();
 
-        ItemName.text = " ";
-        ItemDescriptionText.text = " ";
-        ItemStatText.text = " ";
-
-        //if (GameUIManager.Instance != null)
-        //{
-        //    gameUIManager = GameUIManager.Instance;
-        //}
-        //else if (gameUIManager == null)
-        //{
-        //    Debug.Log("Need to Manually Find to GameUiManager");
-        //}
+        ClearSelection();
     }
     /*===================================================================================================================*/
 
     /*===================================================================================================================*/
     void Update()
     {
-        //if (gameUIManager.GetInventoryOpen())
-        //{
-        //    RefreshInventoryUI();
-
-        //    MoveSelection();
-
-        //    CheckUseItemPressed();
-        //}
-
         RefreshInventoryUI();
 
         MoveSelection();
@@ -109,6 +93,25 @@ public class Inventory_Ui_Behaviour : MonoBehaviour
     /*===================================================================================================================*/
     public void SelectedItem(int SelectedItemIndex)
     {
+        if (MovingItem)
+        {
+            if (FirstItemIndex == -1)
+            {
+                FirstItemIndex = SelectedItemIndex;
+            }
+            else if (SecondItemIndex == -1)
+            {
+                SecondItemIndex = SelectedItemIndex;
+                SwapSlots(FirstItemIndex, SecondItemIndex);
+
+                FirstItemIndex = -1;
+                SecondItemIndex = -1;
+                MovingItem = false;
+                MoveItemIcon.SetActive(MovingItem);
+            }
+            return;
+        }
+
         selectedItemIndex = SelectedItemIndex;
         UpdateDescriptionPanel();
 
@@ -134,7 +137,10 @@ public class Inventory_Ui_Behaviour : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null && inventory != null && selectedItemIndex != -1)
         {
-            inventory.UseItemStack(selectedItemIndex, player);
+            if (inventory.itemStacks[selectedItemIndex].itemData.UseableItem == true)
+            {
+                inventory.UseItemStack(selectedItemIndex, player);
+            }
             ClearSelection();
         }
     }
@@ -210,6 +216,8 @@ public class Inventory_Ui_Behaviour : MonoBehaviour
         ItemName.text = " ";
         ItemDescriptionText.text = " ";
         ItemStatText.text = " ";
+        UseBtn.SetActive(false);
+        MaxItemText.SetActive(false);
     }
     /*===================================================================================================================*/
 
@@ -220,9 +228,44 @@ public class Inventory_Ui_Behaviour : MonoBehaviour
         ItemName.text = inventory.itemStacks[selectedItemIndex].itemData.itemName;
         ItemDescriptionText.text = inventory.itemStacks[selectedItemIndex].itemData.itemDescription;
         ItemStatText.text = inventory.itemStacks[selectedItemIndex].itemEffect.GetEffectValue();
+
+        if (inventory.itemStacks[selectedItemIndex].itemData.UseableItem == true)
+        {
+            UseBtn.SetActive(true);
+            MaxItemText.SetActive(true);
+        }
+        else
+        {
+            UseBtn.SetActive(false);
+            MaxItemText.SetActive(false);
+        }
+
         //Debug.Log("Item Name: " + inventory.itemStacks[selectedItemIndex].itemData.itemName);
         //Debug.Log("Item Amount: " + inventory.itemStacks[selectedItemIndex].count);
         //Debug.Log("Item Description: " + inventory.itemStacks[selectedItemIndex].itemData.itemDescription);
+    }
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
+    private void SwapSlots(int indexA, int indexB)
+    {
+        if (indexA < 0 || indexA >= inventory.itemStacks.Count) return;
+        if (indexB < 0 || indexB >= inventory.itemStacks.Count) return;
+
+        ItemStack temp = inventory.itemStacks[indexA];
+        inventory.itemStacks[indexA] = inventory.itemStacks[indexB];
+        inventory.itemStacks[indexB] = temp;
+
+        RefreshInventoryUI();
+    }
+    /*===================================================================================================================*/
+
+    /*===================================================================================================================*/
+    public void IsMovingItem()
+    {
+        MovingItem = !MovingItem;
+        MoveItemIcon.SetActive(MovingItem);
+        ClearSelection();
     }
     /*===================================================================================================================*/
 }

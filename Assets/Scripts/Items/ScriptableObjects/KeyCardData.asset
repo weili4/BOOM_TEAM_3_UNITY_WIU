@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0fd7c8d47e66fa4088fda084d5dcb3a, type: 3}
-  m_Name: HealData
+  m_Name: KeyCardData
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: Health Potion
-  itemImage: {fileID: 1309359352660515126, guid: 6b7982ac53de00343a0898debcc31d45, type: 3}
-  cooldownTime: 3
-  useSound: {fileID: 8300000, guid: 348dcb242c3e1bb47bb1521bbd23bccf, type: 3}
-  itemDescription: A vial of crimson elixir infused with restorative herbs. Drinking
-    it mends wounds and restores 30 HP
-  UseableItem: 1
+  itemName: Keycard
+  itemImage: {fileID: -5939243946031567093, guid: 6f769d60fc25eec41a2c4f31762e3587, type: 3}
+  cooldownTime: 0
+  useSound: {fileID: 8300000, guid: 22049c43eeda36343b510d4192727948, type: 3}
+  itemDescription: Testing Keycard.............................................................
+  UseableItem: 0
