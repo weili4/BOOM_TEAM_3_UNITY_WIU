@@ -88,6 +88,19 @@ public class PlayerController : MonoBehaviour
         isVelocityOverridden = false;
         velocityOverrideTimer = 0f;
         body.gravityScale = originalGravity > 0f ? originalGravity : 2.5f;
+
+        // reminder: cut residual upward velocity so dashing diagonally or up does not rocket the player into the sky
+        if (overrideZeroGravity)
+        {
+            if (gravityDirection.y < 0 && body.linearVelocityY > 0f)
+            {
+                body.linearVelocityY *= 0.15f; // cut upward momentum cleanly
+            }
+            else if (gravityDirection.y > 0 && body.linearVelocityY < 0f)
+            {
+                body.linearVelocityY *= 0.15f; // for inverted gravity
+            }
+        }
     }
 
     void Awake()

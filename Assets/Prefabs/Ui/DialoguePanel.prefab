@@ -281,6 +281,7 @@ MonoBehaviour:
   cinematicPortraitImage: {fileID: 3160015570189883506}
   cinematicPortraitRect: {fileID: 699079744114226137}
   cinematicBackdrop: {fileID: 6368585350010682989}
+  cinematicContinuePrompt: {fileID: 5096548934268901401}
   cinematicSlideOffsetY: 80
   cinematicTransitionDuration: 0.22
   subtitleRoot: {fileID: 859575371599253589}
@@ -299,9 +300,11 @@ MonoBehaviour:
   abilitiesPanel: {fileID: 0}
   portraitSlideDistance: 24
   portraitAnimDuration: 0.18
-  defaultVoiceBlip: {fileID: 0}
+  defaultVoiceBlip: {fileID: 8300000, guid: 79ceb1c4d6bb65f4987a3e18a7f9e510, type: 3}
+  cinematicStartSFX: {fileID: 0}
+  subtitleStartSFX: {fileID: 8300000, guid: 206b57e11bf157c428747603ab871dc4, type: 3}
+  nextLineSFX: {fileID: 8300000, guid: 17e2b8d2375c37a448f0e709fd7d33e2, type: 3}
   audioSource: {fileID: 0}
-  cinematicContinuePrompt: {fileID: 5096548934268901401}
 --- !u!1 &859575371599253589
 GameObject:
   m_ObjectHideFlags: 0

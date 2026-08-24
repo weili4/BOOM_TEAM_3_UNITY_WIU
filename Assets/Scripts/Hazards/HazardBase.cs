@@ -13,9 +13,13 @@ public abstract class HazardBase : MonoBehaviour
     {
         if (collision.CompareTag("Player") && collision.TryGetComponent<Damageable>(out var playerHealth))
         {
+            // reminder: only play sound and shake if the player actually takes damage (not in i-frames)
+            if (playerHealth.IsInvulnerable || playerHealth.CurrentHealth <= 0) return;
+
             Vector2 hitDir = ((Vector2)playerHealth.transform.position - (Vector2)transform.position).normalized;
             playerHealth.TakeDamage(contactDamage, hitDir, knockbackForce);
 
+            // play sfx through audio manager so it routes to sfx mixer group properly
             if (hitSound != null && AudioManager.Instance != null)
                 AudioManager.Instance.PlaySFX(hitSound, transform.position);
 

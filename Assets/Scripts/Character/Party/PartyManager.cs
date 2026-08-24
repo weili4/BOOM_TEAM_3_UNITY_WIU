@@ -516,4 +516,25 @@ public class PartyManager : MonoBehaviour
             }
         }
     }
+
+    // teleports all benched followers to the active leader so they dont get trapped behind closed doors
+    public void TeleportFollowersToLeader()
+    {
+        if (ActivePlayerObj == null) return;
+        Vector3 leaderPos = ActivePlayerObj.transform.position;
+
+        foreach (var member in partyMembers)
+        {
+            if (member.isUnlocked && !member.isDead && member.spawnedInstance != null && member != ActiveMember)
+            {
+                member.spawnedInstance.transform.position = leaderPos;
+                if (member.spawnedInstance.TryGetComponent<Rigidbody2D>(out var rb))
+                {
+                    rb.linearVelocity = Vector2.zero;
+                }
+            }
+        }
+
+        UpdateFollowerSpacing();
+    }
 }

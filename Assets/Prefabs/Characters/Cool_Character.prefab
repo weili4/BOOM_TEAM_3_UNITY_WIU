@@ -282,10 +282,10 @@ MonoBehaviour:
     m_Bits: 128
   climbSpeed: 3
   ladderSnapSpeed: 15
-  jumpSound: {fileID: 0}
-  doubleJumpSound: {fileID: 0}
-  landSound: {fileID: 0}
-  footstepSound: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: f10045156110c744591920ad67938199, type: 3}
+  doubleJumpSound: {fileID: 8300000, guid: 01816674fdb78a347a7478fe05fb0ecf, type: 3}
+  landSound: {fileID: 8300000, guid: 3a3176a65f1230241baa3ba33f859a1c, type: 3}
+  footstepSound: {fileID: 8300000, guid: db22346b3cb4f3c4183301873ca8c69a, type: 3}
   footstepInterval: 0.35
   coyoteTime: 0.1
   jumpBufferTime: 0.1
@@ -315,7 +315,7 @@ MonoBehaviour:
   source: {fileID: 0}
   hitShakeForce: 1
   hitVFXPrefab: {fileID: 3809979095271460427, guid: f9a9962ef94987d4fa16e169ac02d268, type: 3}
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: ab727eae0284a4f4c8d211d83b1f8dda, type: 3}
   onHealthChanged:
     m_PersistentCalls:
       m_Calls: []

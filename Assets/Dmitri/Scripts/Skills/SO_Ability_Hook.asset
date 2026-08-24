@@ -18,6 +18,6 @@ MonoBehaviour:
   icon: {fileID: -1946562993798070428, guid: fa94de70e499ee44799f8fd2e8950f1e, type: 3}
   cooldownTime: 2
   activeDuration: 0
-  activationSound: {fileID: 8300000, guid: eae693c04664b124ba24bffb4fc71825, type: 3}
+  activationSound: {fileID: 8300000, guid: 858cc42546fd0a54d8c214012e7c3cec, type: 3}
   vfxPrefab: {fileID: 0}
   effectLogic: {fileID: 11400000, guid: a0b14af0d86e7e94b89bd73a93aee546, type: 2}

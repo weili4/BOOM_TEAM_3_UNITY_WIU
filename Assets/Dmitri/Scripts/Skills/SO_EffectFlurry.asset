@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c852f1e92d58b42969c9317ae7e040, type: 3}
   m_Name: SO_EffectFlurry
   m_EditorClassIdentifier: Assembly-CSharp::SO_EffectContinuousHit
-  skillDuration: 2
+  skillDuration: 1
   tickInterval: 0.15
   moveSpeedMultiplier: 0.2
   incomingDamageMultiplier: 0.8
@@ -25,7 +25,7 @@ MonoBehaviour:
   hitVFXPrefab: {fileID: 2519594527230406922, guid: 2df776c75d0fbc1409aae2e2c2587e0a, type: 3}
   enableCameraShake: 1
   shakeForce: 0.02
-  hitSFX: {fileID: 0}
+  hitSFX: {fileID: 8300000, guid: 1129075c50e008346a668fe7f0a0c6a0, type: 3}
   soundVolume: 1
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 1}

@@ -366,8 +366,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bcebf6f3ee9747489094df5b3e3e1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Damageable
-  maxHealth: 300
-  currentHealth: 300
+  maxHealth: 100
+  currentHealth: 100
   incomingDamageMultiplier: 1
   healthBarPrefab: {fileID: 8075217612621501959, guid: 9dcb417fad891fb4d917e4e339b547e9, type: 3}
   hitFlashDuration: 0.08
@@ -427,14 +427,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseSource
   ImpulseDefinition:
     ImpulseChannel: 1
-    ImpulseShape: 1
+    ImpulseShape: 4
     CustomImpulseShape:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    ImpulseDuration: 0.2
+    ImpulseDuration: 0.1
     ImpulseType: 0
     DissipationRate: 0.25
     RawSignal: {fileID: 0}
@@ -465,7 +465,7 @@ MonoBehaviour:
     DissipationMode: 2
     DissipationDistance: 100
     PropagationSpeed: 343
-  DefaultVelocity: {x: 2, y: 2, z: 0}
+  DefaultVelocity: {x: 1, y: 1, z: 0}
 --- !u!1001 &3337462668992055696
 PrefabInstance:
   m_ObjectHideFlags: 0
