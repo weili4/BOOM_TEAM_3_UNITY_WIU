@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SO_EffectContinuousHit
   skillDuration: 2
   tickInterval: 0.15
-  moveSpeedMultiplier: 0
+  moveSpeedMultiplier: 0.2
   incomingDamageMultiplier: 0.8
   damagePerTick: 5
   hitBoxSize: {x: 2.5, y: 1.5}
