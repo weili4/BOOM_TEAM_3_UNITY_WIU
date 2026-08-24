@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0e528e81061c64fa6de58cd9611e45, type: 3}
   m_Name: OverloadAbility 1
   m_EditorClassIdentifier: Assembly-CSharp::OverLoadAbilityEffect
+  leaderSpeedMultiplier: 2
+  allySpeedMultiplier: 1.3
+  startupDelay: 1
