@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2250054096904419218}
   - component: {fileID: 552212652055616523}
   - component: {fileID: -2035038216893385877}
+  - component: {fileID: -1771424696756388139}
   m_Layer: 6
   m_Name: Shotgun Enemy
   m_TagString: Enemy
@@ -143,7 +144,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -209,6 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Damageable
   maxHealth: 100
   currentHealth: 100
+  incomingDamageMultiplier: 1
   healthBarPrefab: {fileID: 8075217612621501959, guid: 9dcb417fad891fb4d917e4e339b547e9, type: 3}
   hitFlashDuration: 0.08
   spriteRenderer: {fileID: 0}
@@ -236,8 +238,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangedGroundEnemy
   enemyData: {fileID: 11400000, guid: 07965f653eb8b13468256f014dd22625, type: 2}
   healthBarPrefab: {fileID: 0}
+  hitstunDuration: 0.12
+  isStunImmune: 0
   currentGroundState: 0
   patrolDistance: 2
+  maxLeashDistance: 12
+  canJump: 1
   groundCheck: {fileID: 4482104679884853692}
   groundCheckSize: {x: 0.3, y: 0.1}
   groundLayer:
@@ -309,6 +315,21 @@ MonoBehaviour:
     DissipationDistance: 100
     PropagationSpeed: 343
   DefaultVelocity: {x: 2, y: 2, z: 0}
+--- !u!114 &-1771424696756388139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801812595052003661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 357fa5eac1730cf4695041797ef2698c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyLootDrop_Behaviour
+  DropItemsList:
+  - DropItems: {fileID: 1561197391565245501, guid: 6beb0309a10008e48973ae5a988b782a, type: 3}
+    DropChance: 100
 --- !u!1 &4212718248348614891
 GameObject:
   m_ObjectHideFlags: 0

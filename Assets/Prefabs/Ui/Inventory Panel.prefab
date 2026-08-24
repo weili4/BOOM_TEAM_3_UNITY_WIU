@@ -856,7 +856,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 660446928057533206}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7574150780991361079}
+        m_TargetAssemblyTypeName: Inventory_Ui_Behaviour, Assembly-CSharp
+        m_MethodName: OnSelectedItemUse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4214620456356455629
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,9 +996,9 @@ MonoBehaviour:
   ItemName: {fileID: 4031590588142816268}
   ItemDescriptionText: {fileID: 562167954986468392}
   ItemStatText: {fileID: 4259099631995127996}
-  UseBtn: {fileID: 0}
-  MaxItemText: {fileID: 0}
-  MoveItemIcon: {fileID: 0}
+  UseBtn: {fileID: 3551370021496041978}
+  MaxItemText: {fileID: 8003546766637364522}
+  MoveItemIcon: {fileID: 7294443605767405073}
 --- !u!225 &6035773042971749564
 CanvasGroup:
   m_ObjectHideFlags: 0

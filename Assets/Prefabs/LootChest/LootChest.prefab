@@ -153,7 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LootChestChanceDrop
   DropItemsList:
-  - DropItems: {fileID: 1561197391565245501, guid: e100b360244261849b6078dbd2eea296, type: 3}
+  - DropItems: {fileID: 1035805099123314441, guid: 7902bd314074ce0418ca6e13601a8aa3, type: 3}
+    DropChance: 50
+  - DropItems: {fileID: 1561197391565245501, guid: 6beb0309a10008e48973ae5a988b782a, type: 3}
     DropChance: 100
   NeedItemToOpen: 0
   inventory: {fileID: 0}

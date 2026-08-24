@@ -117,7 +117,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -368,6 +368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Damageable
   maxHealth: 300
   currentHealth: 300
+  incomingDamageMultiplier: 1
   healthBarPrefab: {fileID: 8075217612621501959, guid: 9dcb417fad891fb4d917e4e339b547e9, type: 3}
   hitFlashDuration: 0.08
   spriteRenderer: {fileID: 0}
@@ -395,6 +396,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossLaserDrone
   enemyData: {fileID: 11400000, guid: e9d5fcbdfacd11d4e945da6d425520a0, type: 2}
   healthBarPrefab: {fileID: 0}
+  hitstunDuration: 0.12
+  isStunImmune: 0
   currentState: 0
   fleeDistance: 3.5
   laserLine: {fileID: 3370455730249229024}
