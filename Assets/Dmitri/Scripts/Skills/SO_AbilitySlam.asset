@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: SO_AbilitySlam
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
   abilityName: Slam
-  abilityDescription: Ability description details go here...
+  abilityDescription: Deals AOE damage when landing. Leap into the air while grounded,
+    slamming towards the ground afterwards.
   icon: {fileID: -2966200626249415253, guid: f6c05ce37c8110b4781d612190676042, type: 3}
   cooldownTime: 3
   activeDuration: 0

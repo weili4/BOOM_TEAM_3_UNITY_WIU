@@ -240,16 +240,31 @@ public class HookProjectile : MonoBehaviour
 
         if (isEnemy)
         {
-            targetType = HookTargetType.Enemy;
             hookedEnemy = GetRootHitObject(hitObject);
             enemyRb = hookedEnemy.GetComponent<Rigidbody2D>();
 
+            // 1. Deal damage to boss/enemy as normal
             if (hookedEnemy.TryGetComponent<Damageable>(out Damageable damageable))
             {
                 damageable.TakeDamage(damageAmount);
             }
 
-            transform.SetParent(hookedEnemy.transform);
+            // 2. CHECK IF TARGET IS UNPULLABLE (Boss Tag or Boss Component)
+            bool isUnpullable = hookedEnemy.CompareTag("Boss") || hookedEnemy.GetComponent<BossDeathHandler>() != null;
+
+            if (isUnpullable)
+            {
+                // Treat Boss like static ground: Pull the PLAYER towards the Boss position
+                targetType = HookTargetType.Ground;
+                groundHitPoint = transform.position;
+                transform.SetParent(hookedEnemy.transform);
+            }
+            else
+            {
+                // Regular Enemy: Pull the enemy towards the player
+                targetType = HookTargetType.Enemy;
+                transform.SetParent(hookedEnemy.transform);
+            }
 
             if (hookRb != null)
             {
