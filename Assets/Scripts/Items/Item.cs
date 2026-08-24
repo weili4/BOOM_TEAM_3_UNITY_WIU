@@ -122,6 +122,14 @@ public class Item : MonoBehaviour
             //    transform.position = Vector3.MoveTowards(transform.position, initialPosition, magnetSpeed * 0.5f * Time.deltaTime);
             //}
 
+            /*===================================================================================================================*/
+            // Fix the item starts to drift when on the edge of tile
+            if (ItemRigidBody != null)
+            {
+                ItemRigidBody.linearVelocity = new Vector2(0f, ItemRigidBody.linearVelocity.y);
+            }
+            /*===================================================================================================================*/
+
             /*===========================================================================================================*/
             // Hovering Effect when is stationary
             float hoverY = CurrentYPosition + Mathf.Sin((Time.time + HoveringOffsetTiming) * HoveringSpeed) * HoveringHeight;
@@ -182,8 +190,6 @@ public class Item : MonoBehaviour
 
     public void StartLaunchEffect(bool IsLaunchEffect)
     {
-        Debug.Log("lAUNCHING THE FUCKING ITEM");
-
         /*===================================================================================================================*/
         // Launch effect
         if (IsLaunchEffect && ItemRigidBody != null)
