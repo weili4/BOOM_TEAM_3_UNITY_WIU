@@ -22,7 +22,7 @@ public class AndroidPrimaryAttack : CharacterPrimaryAttack
     [SerializeField] private AudioClip finisherSFX;
     [SerializeField] private GameObject hitVFXPrefab;
 
-    private int comboStep = 0; // 0 = ready for hit 1, 1 = hit 2, 2 = hit 3
+    [SerializeField] private int comboStep = 0; // 0 = ready for hit 1, 1 = hit 2, 2 = hit 3
     private float comboTimer = 0f;
     private float attackTimer = 0f;
 
