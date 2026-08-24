@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class PartyManager : MonoBehaviour
 {
@@ -25,6 +26,31 @@ public class PartyManager : MonoBehaviour
 
     public PartyMember ActiveMember => (partyMembers != null && partyMembers.Count > activeLeaderIndex) ? partyMembers[activeLeaderIndex] : null;
     public GameObject ActivePlayerObj => ActiveMember != null ? ActiveMember.spawnedInstance : null;
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // re-find the new scene's cinemachine camera and link active leader immediately
+        cinemachineCam = FindFirstObjectByType<CinemachineCamera>();
+
+        if (ActivePlayerObj != null)
+        {
+            UpdateCameraTarget(ActivePlayerObj.transform);
+        }
+
+        UpdateFollowerSpacing();
+        UpdateSortingOrders();
+    }
+
 
     private void Awake()
     {
@@ -55,11 +81,35 @@ public class PartyManager : MonoBehaviour
             {
                 member.spawnedInstance.SetActive(false);
             }
+            else
+            {
+                // make sure only index activeLeaderIndex is player, others are strictly followers
+                if (i == activeLeaderIndex)
+                {
+                    member.spawnedInstance.SetActive(true);
+                    member.spawnedInstance.tag = "Player";
+                    if (member.playerController != null) member.playerController.enabled = true;
+                    if (member.followerAI != null) member.followerAI.enabled = false;
+                }
+                else
+                {
+                    member.spawnedInstance.SetActive(true);
+                    member.spawnedInstance.tag = "Ally";
+                    if (member.playerController != null) member.playerController.enabled = false;
+                    if (member.followerAI != null)
+                    {
+                        member.followerAI.enabled = true;
+                        member.followerAI.SetLeader(partyMembers[activeLeaderIndex].spawnedInstance.transform);
+                    }
+                }
+            }
         }
 
         IgnorePartyCollisions();
-        SetLeader(0, true);
+        UpdateFollowerSpacing();
+        UpdateSortingOrders();
     }
+
 
     private void IgnorePartyCollisions()
     {
@@ -99,8 +149,10 @@ public class PartyManager : MonoBehaviour
 
     private void CheckSwitchInput()
     {
-        // block character switching during cinematic cutscenes
+        // block switching during pause, cutscenes, or game over / win
+        if (PauseMenuManager.Instance != null && PauseMenuManager.Instance.IsPaused) return;
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsCinematicActive) return;
+        if (EndGameUIManager.Instance != null && EndGameUIManager.Instance.IsEndGameActive) return;
 
         if (Keyboard.current == null) return;
 
@@ -108,6 +160,7 @@ public class PartyManager : MonoBehaviour
         else if (Keyboard.current.digit2Key.wasPressedThisFrame) SwitchToCharacter(1);
         else if (Keyboard.current.digit3Key.wasPressedThisFrame) SwitchToCharacter(2);
     }
+
 
     private void CheckDebugInput()
     {
@@ -332,6 +385,7 @@ public class PartyManager : MonoBehaviour
             ActiveMember.spawnedInstance.SetActive(false);
         }
 
+        // find next alive party member
         int nextAliveIndex = -1;
         for (int i = 0; i < partyMembers.Count; i++)
         {
@@ -342,42 +396,109 @@ public class PartyManager : MonoBehaviour
             }
         }
 
+        // auto-swap to next living character
         if (nextAliveIndex != -1)
         {
             SetLeader(nextAliveIndex, false);
         }
         else
         {
-            GameUIManager.Instance?.TriggerGameOver();
+            // only trigger lose screen when all characters are dead
+            EndGameUIManager.Instance?.TriggerLose();
         }
 
         OnPartyUpdated?.Invoke();
     }
 
-    public void ReviveAllDead(float healthPercent = 0.5f)
-    {
-        Vector3 respawnPos = ActivePlayerObj != null ? ActivePlayerObj.transform.position : transform.position;
 
-        foreach (var member in partyMembers)
+    public void ReviveAllDead(float healthPercent = 1.0f)
+    {
+        // safe respawn location
+        Vector3 respawnPos = transform.position;
+        if (ChunkManager.CurrentSpawnPoint != null)
         {
-            if (member.isUnlocked && member.isDead)
+            respawnPos = ChunkManager.CurrentSpawnPoint.position;
+        }
+        else if (ActivePlayerObj != null)
+        {
+            respawnPos = ActivePlayerObj.transform.position;
+        }
+
+        // keep the last character that died as the revived leader
+        int leaderIndexToRevive = activeLeaderIndex;
+        if (leaderIndexToRevive < 0 || leaderIndexToRevive >= partyMembers.Count || !partyMembers[leaderIndexToRevive].isUnlocked)
+        {
+            leaderIndexToRevive = 0; // fallback to first character if invalid
+        }
+
+        for (int i = 0; i < partyMembers.Count; i++)
+        {
+            var member = partyMembers[i];
+            if (member.isUnlocked)
             {
                 member.isDead = false;
-                member.currentHealth = Mathf.RoundToInt(member.data.maxHealth * healthPercent);
+                member.currentHealth = member.data.maxHealth;
 
                 if (member.spawnedInstance != null)
                 {
                     member.spawnedInstance.transform.position = respawnPos;
                     member.spawnedInstance.SetActive(true);
-                    member.followerAI.enabled = true;
-                    member.playerController.enabled = false;
+
+                    // heal damageable component so it does not re-trigger death
+                    if (member.damageable != null)
+                    {
+                        member.damageable.Heal(member.damageable.MaxHealth);
+                    }
+
+                    if (member.spawnedInstance.TryGetComponent<Rigidbody2D>(out var rb))
+                    {
+                        rb.linearVelocity = Vector2.zero;
+                    }
+
+                    // assign the last person that died as the active player leader
+                    if (i == leaderIndexToRevive)
+                    {
+                        member.spawnedInstance.tag = "Player";
+                        if (member.playerController != null)
+                        {
+                            member.playerController.enabled = true;
+                            member.playerController.isInputLocked = false;
+                        }
+                        if (member.followerAI != null)
+                        {
+                            member.followerAI.enabled = false;
+                        }
+                    }
+                    // assign other living members as followers
+                    else
+                    {
+                        member.spawnedInstance.tag = "Ally";
+                        if (member.playerController != null)
+                        {
+                            member.playerController.enabled = false;
+                        }
+                        if (member.followerAI != null)
+                        {
+                            member.followerAI.enabled = true;
+                            member.followerAI.SetLeader(partyMembers[leaderIndexToRevive].spawnedInstance.transform);
+                        }
+                    }
                 }
             }
+        }
+
+        activeLeaderIndex = leaderIndexToRevive;
+
+        // update camera tracking target to the revived leader immediately
+        if (partyMembers[leaderIndexToRevive].spawnedInstance != null)
+        {
+            UpdateCameraTarget(partyMembers[leaderIndexToRevive].spawnedInstance.transform);
         }
 
         IgnorePartyCollisions();
         UpdateFollowerSpacing();
         UpdateSortingOrders();
+        PartyHUD.Instance?.RefreshHUD();
         OnPartyUpdated?.Invoke();
     }
 

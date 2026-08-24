@@ -84,11 +84,6 @@ public class BarbaraPrimaryAttack : CharacterPrimaryAttack
         lingerTimer = 0f;
         isExecutingBurst = false;
         UpdateChargeMeterUI(0f, false);
-
-        if (playerController != null)
-        {
-            playerController.moveSpeedMultiplier = 1f;
-        }
     }
 
     protected override void Update()
@@ -97,26 +92,15 @@ public class BarbaraPrimaryAttack : CharacterPrimaryAttack
 
         if (fireTimer > 0f) fireTimer -= Time.deltaTime;
 
-        // if in cinematic cutscene, make sure arm is hidden and cancel shooting states
-        if (DialogueManager.Instance != null && DialogueManager.Instance.IsCinematicActive)
-        {
-            SetAimingState(false);
-            isCharging = false;
-            lingerTimer = 0f;
-            holdTimer = 0f;
-            UpdateChargeMeterUI(0f, false);
-            return;
-        }
-
-        // determine if player is actively locked by shooting, burst, or linger
-        bool isLocked = isCharging || isExecutingBurst || (lingerTimer > 0f);
+        // determine if player is actively rooted by shooting, charging, or linger
+        bool isRooted = isCharging || isExecutingBurst || (lingerTimer > 0f);
 
         if (playerController != null)
         {
-            playerController.isInputLocked = isLocked;
+            playerController.isInputLocked = isRooted;
         }
 
-        if (isLocked)
+        if (isRooted)
         {
             SetAimingState(true);
 
@@ -125,9 +109,7 @@ public class BarbaraPrimaryAttack : CharacterPrimaryAttack
                 lingerTimer -= Time.deltaTime;
                 if (lingerTimer <= 0f)
                 {
-                    // linger ended: unlock movement and return to normal idle
                     SetAimingState(false);
-                    if (playerController != null) playerController.isInputLocked = false;
                 }
             }
         }
@@ -179,7 +161,6 @@ public class BarbaraPrimaryAttack : CharacterPrimaryAttack
                 isCharging = true;
                 UpdateAimAndGunPlacement();
 
-                // calculate charge progress from 0 to 1
                 float currentCharge = holdTimer - chargeStartDelay;
                 float progress = Mathf.Clamp01(currentCharge / maxChargeTime);
                 UpdateChargeMeterUI(progress, true);
@@ -198,7 +179,6 @@ public class BarbaraPrimaryAttack : CharacterPrimaryAttack
                     StartCoroutine(FireChargedBurstRoutine());
                 }
 
-                // hide charge meter immediately on release
                 UpdateChargeMeterUI(0f, false);
                 isCharging = false;
             }
@@ -328,7 +308,6 @@ public class BarbaraPrimaryAttack : CharacterPrimaryAttack
             proj.LaunchCurved(snappedAimDirection, mousePos);
         }
 
-        // root player for exact 0.1s linger
         lingerTimer = postAttackLingerDuration;
     }
 

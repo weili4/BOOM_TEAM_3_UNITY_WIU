@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
         }
         wasGrounded = isGrounded;
 
-        // master lock: blocks input if locked by script OR if a cinematic dialogue is playing
+        // master lock: blocks input during cutscenes or while shooting/charging
         bool isLocked = isInputLocked || (DialogueManager.Instance != null && DialogueManager.Instance.IsCinematicActive);
 
         if (isLocked)
@@ -259,9 +259,10 @@ public class PlayerController : MonoBehaviour
         float baseGrav = originalGravity > 0f ? originalGravity : 2.5f;
         body.gravityScale = (gravityDirection.y < 0 ? baseGrav : -baseGrav) * gravityScaleMultiplier;
 
-        // check master lock
-        bool isLocked = isInputLocked || (DialogueManager.Instance != null && DialogueManager.Instance.IsCinematicActive);
+        bool isPlayingSummonAnim = animator != null && animator.GetCurrentAnimatorStateInfo(0).IsName("Summon Gun Attack");
+        bool isLocked = isInputLocked || isPlayingSummonAnim || (DialogueManager.Instance != null && DialogueManager.Instance.IsCinematicActive);
 
+        // freeze horizontal velocity completely while locked
         if (isLocked)
         {
             body.linearVelocityX = 0f;
@@ -280,6 +281,7 @@ public class PlayerController : MonoBehaviour
                 currentFacingDirection = Mathf.Sign(moveInput.x);
             }
         }
+
 
         float visualDirX = gravityDirection.y < 0 ? currentFacingDirection : -currentFacingDirection;
         float scaleY = gravityDirection.y < 0 ? 2f : -2f;
@@ -312,6 +314,7 @@ public class PlayerController : MonoBehaviour
             body.linearVelocityY = Mathf.Sign(body.linearVelocityY) * maxFallSpeed;
         }
     }
+
 
     private void StartClimbing()
     {

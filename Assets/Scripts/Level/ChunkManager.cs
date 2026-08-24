@@ -30,9 +30,6 @@ public class ChunkManager : MonoBehaviour
     [SerializeField] private List<Wave> waves;
     [SerializeField] private float delayBetweenWaves = 2.0f;
 
-    [Header("KEYCARD CONFIG")]
-    [SerializeField] private GameObject keycardObject;
-
     [Header("TIMER CONFIG")]
     [SerializeField] private float timeLimit = 30.0f;
     [SerializeField] private GameObject timerStartTriggerObject;
@@ -69,7 +66,28 @@ public class ChunkManager : MonoBehaviour
         get
         {
             if (objectiveType == ObjectiveType.ReachGate) return true;
-            if (objectiveType == ObjectiveType.Keycard) return keycardObject == null;
+            if (objectiveType == ObjectiveType.Keycard)
+            {
+                Inventory inventory = FindFirstObjectByType<Inventory>();
+                bool HasItemToUnlock = false;
+                int ItemIndex = -1;
+
+                for (int index = 0; index < inventory.itemStacks.Count; index++)
+                {
+                    if (inventory.itemStacks[index].itemData.itemName == "Keycard")
+                    {
+                        HasItemToUnlock = true;
+                        ItemIndex = index;
+                    }
+                }
+                if (HasItemToUnlock)
+                {
+                    inventory.RemoveItem(ItemIndex); 
+                    return true;
+                }
+                return false;
+
+            }
             if (objectiveType == ObjectiveType.Timer) return isChunkCleared || (isTimerRunning && !isTimerFailed);
             return isChunkCleared;
         }

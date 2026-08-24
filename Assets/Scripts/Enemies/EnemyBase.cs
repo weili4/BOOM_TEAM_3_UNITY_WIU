@@ -176,6 +176,11 @@ public abstract class EnemyBase : MonoBehaviour
         if (animator != null)
             animator.SetTrigger("Die");
 
+        /*===================================================================================================================*/
+        if (TryGetComponent<EnemyLootDrop_Behaviour>(out EnemyLootDrop_Behaviour EnemyLootDrop))
+            EnemyLootDrop.DoDropLoot();
+        /*===================================================================================================================*/
+
         StartCoroutine(FadeOutAndDestroy());
     }
 

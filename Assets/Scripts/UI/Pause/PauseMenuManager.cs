@@ -49,6 +49,7 @@ public class PauseMenuManager : MonoBehaviour
     {
         // block opening pause menu if a cutscene or dialogue is currently running
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueRunning) return;
+        if (EndGameUIManager.Instance != null && EndGameUIManager.Instance.IsEndGameActive) return;
 
         bool escapeOrP = false;
 

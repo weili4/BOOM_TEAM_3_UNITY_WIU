@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 5361551867897331962}
   - component: {fileID: 8713040552277571419}
   - component: {fileID: 6844278214688322634}
+  - component: {fileID: -1851563089229460383}
   m_Layer: 6
   m_Name: Melee Enemy
   m_TagString: Enemy
@@ -245,6 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Damageable
   maxHealth: 100
   currentHealth: 100
+  incomingDamageMultiplier: 1
   healthBarPrefab: {fileID: 8075217612621501959, guid: 9dcb417fad891fb4d917e4e339b547e9, type: 3}
   hitFlashDuration: 0.08
   spriteRenderer: {fileID: 0}
@@ -272,8 +274,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeleeGroundEnemy
   enemyData: {fileID: 11400000, guid: dcd0ac7417cb64e49b6bd84b43103415, type: 2}
   healthBarPrefab: {fileID: 0}
+  hitstunDuration: 0.12
+  isStunImmune: 0
   currentGroundState: 0
   patrolDistance: 2
+  maxLeashDistance: 12
+  canJump: 1
   groundCheck: {fileID: 4103749677311285958}
   groundCheckSize: {x: 0.3, y: 0.1}
   groundLayer:
@@ -330,7 +336,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -413,6 +419,21 @@ MonoBehaviour:
     DissipationDistance: 100
     PropagationSpeed: 343
   DefaultVelocity: {x: 2, y: 2, z: 0}
+--- !u!114 &-1851563089229460383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342813369966276796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 357fa5eac1730cf4695041797ef2698c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyLootDrop_Behaviour
+  DropItemsList:
+  - DropItems: {fileID: 1561197391565245501, guid: 6beb0309a10008e48973ae5a988b782a, type: 3}
+    DropChance: 100
 --- !u!1001 &3933444648926233306
 PrefabInstance:
   m_ObjectHideFlags: 0

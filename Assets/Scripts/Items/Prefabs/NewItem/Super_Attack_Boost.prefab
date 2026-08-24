@@ -116,8 +116,8 @@ MonoBehaviour:
   UpForce: 3
   SideMinForce: -0.5
   SideMaxForce: 0.5
-  HoveringHeight: 0.15
-  HoveringSpeed: 2
+  HoveringHeight: 0.05
+  HoveringSpeed: 4
 --- !u!70 &5717810154749780498
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
