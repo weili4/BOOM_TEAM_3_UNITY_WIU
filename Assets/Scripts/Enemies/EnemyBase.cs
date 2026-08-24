@@ -10,22 +10,31 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected GameObject healthBarPrefab;
     protected WorldHealthBar healthBar;
 
+    [Header("hitstun settings")]
+    [SerializeField] protected float hitstunDuration = 0.12f;
+    [SerializeField] protected bool isStunImmune = false; // set to true during unstoppable attacks
+
     protected Damageable damageable;
     protected Animator animator;
     protected Transform playerTarget;
     protected AIDestinationSetter aiDestSetter;
+    protected Rigidbody2D rb;
     protected bool isDead = false;
+    protected bool isStunned = false;
+    protected Coroutine hitstunRoutine;
+
+    public bool IsStunned => isStunned;
 
     protected virtual void Awake()
     {
         damageable = GetComponent<Damageable>();
         animator = GetComponent<Animator>();
         aiDestSetter = GetComponent<AIDestinationSetter>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     protected virtual void OnEnable()
     {
-        // listen to leader swap events to switch targets instantly
         PartyManager.OnLeaderSwapped += HandleLeaderSwapped;
     }
 
@@ -51,38 +60,10 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
-    // makes sure enemies never physically block or push players or followers
-    protected void IgnorePartyCollisions()
-    {
-        Collider2D myCol = GetComponent<Collider2D>();
-        if (myCol == null) return;
-
-        // ignore active player
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        foreach (var p in players)
-        {
-            foreach (var c in p.GetComponentsInChildren<Collider2D>())
-            {
-                Physics2D.IgnoreCollision(myCol, c, true);
-            }
-        }
-
-        // ignore benched followers
-        GameObject[] allies = GameObject.FindGameObjectsWithTag("Ally");
-        foreach (var a in allies)
-        {
-            foreach (var c in a.GetComponentsInChildren<Collider2D>())
-            {
-                Physics2D.IgnoreCollision(myCol, c, true);
-            }
-        }
-    }
-
     protected virtual void Update()
     {
         if (isDead) return;
 
-        // failsafe target check
         if (playerTarget == null || playerTarget.CompareTag("Ally"))
         {
             UpdatePlayerTarget();
@@ -99,7 +80,6 @@ public abstract class EnemyBase : MonoBehaviour
         UpdatePlayerTarget();
     }
 
-    // finds the current active leader with tag Player
     protected virtual void UpdatePlayerTarget()
     {
         if (PartyManager.Instance != null && PartyManager.Instance.ActivePlayerObj != null)
@@ -115,10 +95,61 @@ public abstract class EnemyBase : MonoBehaviour
             }
         }
 
-        // update pathfinding destination if using astar
         if (aiDestSetter != null && playerTarget != null)
         {
             aiDestSetter.target = playerTarget;
+        }
+    }
+
+    // called when enemy takes damage to interrupt attacks and apply hitstun
+    public virtual void ApplyHitstun(Vector2 knockbackDir, float knockbackForce = 4.0f)
+    {
+        if (isDead || isStunImmune) return;
+
+        if (rb != null)
+        {
+            rb.linearVelocity = new Vector2(knockbackDir.x * knockbackForce, knockbackForce * 0.4f);
+        }
+
+        if (hitstunRoutine != null) StopCoroutine(hitstunRoutine);
+        hitstunRoutine = StartCoroutine(HitstunRoutine());
+    }
+
+    protected virtual IEnumerator HitstunRoutine()
+    {
+        isStunned = true;
+        InterruptActiveAttack();
+
+        yield return new WaitForSeconds(hitstunDuration);
+
+        isStunned = false;
+        hitstunRoutine = null;
+    }
+
+    // subclasses override this to cancel active attack animations/coroutines
+    protected virtual void InterruptActiveAttack() { }
+
+    protected void IgnorePartyCollisions()
+    {
+        Collider2D myCol = GetComponent<Collider2D>();
+        if (myCol == null) return;
+
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (var p in players)
+        {
+            foreach (var c in p.GetComponentsInChildren<Collider2D>())
+            {
+                Physics2D.IgnoreCollision(myCol, c, true);
+            }
+        }
+
+        GameObject[] allies = GameObject.FindGameObjectsWithTag("Ally");
+        foreach (var a in allies)
+        {
+            foreach (var c in a.GetComponentsInChildren<Collider2D>())
+            {
+                Physics2D.IgnoreCollision(myCol, c, true);
+            }
         }
     }
 

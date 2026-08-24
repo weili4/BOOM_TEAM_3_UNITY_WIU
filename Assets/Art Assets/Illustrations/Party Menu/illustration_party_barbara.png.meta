@@ -5,6 +5,102 @@ TextureImporter:
   - first:
       213: 6084170475380832113
     second: illustration_party_barbara_0
+  - first:
+      213: 6294127860148218941
+    second: illustration_party_barbara_1
+  - first:
+      213: 4474850353628584990
+    second: illustration_party_barbara_2
+  - first:
+      213: -8074921563849191862
+    second: illustration_party_barbara_3
+  - first:
+      213: -8692424014762002517
+    second: illustration_party_barbara_4
+  - first:
+      213: 4182572613881935835
+    second: illustration_party_barbara_5
+  - first:
+      213: 499303697598640600
+    second: illustration_party_barbara_6
+  - first:
+      213: 1718217133492047377
+    second: illustration_party_barbara_7
+  - first:
+      213: 407137010841979778
+    second: illustration_party_barbara_8
+  - first:
+      213: 8701971226292657195
+    second: illustration_party_barbara_9
+  - first:
+      213: 6816034848799817373
+    second: illustration_party_barbara_10
+  - first:
+      213: 8390214925460054013
+    second: illustration_party_barbara_11
+  - first:
+      213: 8962904716090341165
+    second: illustration_party_barbara_12
+  - first:
+      213: 1867750436754014839
+    second: illustration_party_barbara_13
+  - first:
+      213: -2246895942852261762
+    second: illustration_party_barbara_14
+  - first:
+      213: 4695503441978815977
+    second: illustration_party_barbara_15
+  - first:
+      213: 2943149516440027461
+    second: illustration_party_barbara_16
+  - first:
+      213: -4012908003514970036
+    second: illustration_party_barbara_17
+  - first:
+      213: 2645242892044774661
+    second: illustration_party_barbara_18
+  - first:
+      213: 7016100520121313467
+    second: illustration_party_barbara_19
+  - first:
+      213: -3797852543085015453
+    second: illustration_party_barbara_20
+  - first:
+      213: -7659383900080966838
+    second: illustration_party_barbara_21
+  - first:
+      213: -3036165223447507171
+    second: illustration_party_barbara_22
+  - first:
+      213: 2834092723266505453
+    second: illustration_party_barbara_23
+  - first:
+      213: -5120280340266572394
+    second: illustration_party_barbara_24
+  - first:
+      213: 1724465157403461320
+    second: illustration_party_barbara_25
+  - first:
+      213: 4963099226015429634
+    second: illustration_party_barbara_26
+  - first:
+      213: -5770534163722487664
+    second: illustration_party_barbara_27
+  - first:
+      213: -6631404989566330922
+    second: illustration_party_barbara_28
+  - first:
+      213: 4512585191125381975
+    second: illustration_party_barbara_29
+  - first:
+      213: 1510629964407809135
+    second: illustration_party_barbara_30
+  - first:
+      213: -7065704063974968714
+    second: illustration_party_barbara_31
+  - first:
+      213: 5249238756255986109
+    second: illustration_party_barbara_32
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +133,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +171,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -96,19 +192,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -116,10 +199,10 @@ TextureImporter:
       name: illustration_party_barbara_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1600
-        height: 1994
+        x: 9
+        y: 37
+        width: 1184
+        height: 1444
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,6 +213,710 @@ TextureImporter:
       bones: []
       spriteID: 1777ef1efc05f6450800000000000000
       internalID: 6084170475380832113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_1
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 69
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3c260be0fb395750800000000000000
+      internalID: 6294127860148218941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_2
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 76
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1c101710bcd91e30800000000000000
+      internalID: 4474850353628584990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_3
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 78
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4e80a5de9d10ff80800000000000000
+      internalID: -8074921563849191862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_4
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 72
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba7390bb96e4e5780800000000000000
+      internalID: -8692424014762002517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_5
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 75
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd7b5b1d1ab7b0a30800000000000000
+      internalID: 4182572613881935835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_6
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 72
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d1f76a4112ede600800000000000000
+      internalID: 499303697598640600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_7
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 79
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11e88c0216558d710800000000000000
+      internalID: 1718217133492047377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_8
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 79
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28b862a44f076a500800000000000000
+      internalID: 407137010841979778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_9
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 79
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2c18dca9bc93c870800000000000000
+      internalID: 8701971226292657195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_10
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 79
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9e7563059b679e50800000000000000
+      internalID: 6816034848799817373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_11
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 74
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dff1a3d7508007470800000000000000
+      internalID: 8390214925460054013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_12
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 74
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d27fc3e0a52a26c70800000000000000
+      internalID: 8962904716090341165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_13
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 77
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 772cdcf50259be910800000000000000
+      internalID: 1867750436754014839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_14
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 79
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7846076b0c61d0e0800000000000000
+      internalID: -2246895942852261762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_15
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 78
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e575cca087c92140800000000000000
+      internalID: 4695503441978815977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_16
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 69
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 541454844ea28d820800000000000000
+      internalID: 2943149516440027461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_17
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 74
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c401b2e9e694f48c0800000000000000
+      internalID: -4012908003514970036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_18
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 79
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50da4fc256ac5b420800000000000000
+      internalID: 2645242892044774661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_19
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 66
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb8a34a00423e5160800000000000000
+      internalID: 7016100520121313467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_20
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 78
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36e8a14eb315b4bc0800000000000000
+      internalID: -3797852543085015453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_21
+      rect:
+        serializedVersion: 2
+        x: 761
+        y: 71
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a43f35d8ce664b590800000000000000
+      internalID: -7659383900080966838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_22
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 71
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1f4409c0df5dd5d0800000000000000
+      internalID: -3036165223447507171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_23
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 77
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deac1dee058b45720800000000000000
+      internalID: 2834092723266505453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_24
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 77
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 695aeffa82c11f8b0800000000000000
+      internalID: -5120280340266572394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_25
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 65
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c6429e8ce78ee710800000000000000
+      internalID: 1724465157403461320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_26
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 74
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2047aaf437870e440800000000000000
+      internalID: 4963099226015429634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_27
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 80
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 098b01f60c1faefa0800000000000000
+      internalID: -5770534163722487664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_28
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 76
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d75523fb4488f3a0800000000000000
+      internalID: -6631404989566330922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_29
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 68
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75377b7925cef9e30800000000000000
+      internalID: 4512585191125381975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_30
+      rect:
+        serializedVersion: 2
+        x: 892
+        y: 80
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f64a69fe2f5d6f410800000000000000
+      internalID: 1510629964407809135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_31
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 70
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 672fcbae69391fd90800000000000000
+      internalID: -7065704063974968714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_barbara_32
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 79
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db1f9df46da09d840800000000000000
+      internalID: 5249238756255986109
       vertices: []
       indices: 
       edges: []
@@ -149,6 +936,38 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       illustration_party_barbara_0: 6084170475380832113
+      illustration_party_barbara_1: 6294127860148218941
+      illustration_party_barbara_10: 6816034848799817373
+      illustration_party_barbara_11: 8390214925460054013
+      illustration_party_barbara_12: 8962904716090341165
+      illustration_party_barbara_13: 1867750436754014839
+      illustration_party_barbara_14: -2246895942852261762
+      illustration_party_barbara_15: 4695503441978815977
+      illustration_party_barbara_16: 2943149516440027461
+      illustration_party_barbara_17: -4012908003514970036
+      illustration_party_barbara_18: 2645242892044774661
+      illustration_party_barbara_19: 7016100520121313467
+      illustration_party_barbara_2: 4474850353628584990
+      illustration_party_barbara_20: -3797852543085015453
+      illustration_party_barbara_21: -7659383900080966838
+      illustration_party_barbara_22: -3036165223447507171
+      illustration_party_barbara_23: 2834092723266505453
+      illustration_party_barbara_24: -5120280340266572394
+      illustration_party_barbara_25: 1724465157403461320
+      illustration_party_barbara_26: 4963099226015429634
+      illustration_party_barbara_27: -5770534163722487664
+      illustration_party_barbara_28: -6631404989566330922
+      illustration_party_barbara_29: 4512585191125381975
+      illustration_party_barbara_3: -8074921563849191862
+      illustration_party_barbara_30: 1510629964407809135
+      illustration_party_barbara_31: -7065704063974968714
+      illustration_party_barbara_32: 5249238756255986109
+      illustration_party_barbara_4: -8692424014762002517
+      illustration_party_barbara_5: 4182572613881935835
+      illustration_party_barbara_6: 499303697598640600
+      illustration_party_barbara_7: 1718217133492047377
+      illustration_party_barbara_8: 407137010841979778
+      illustration_party_barbara_9: 8701971226292657195
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -96,7 +96,7 @@ MonoBehaviour:
   triggerOnlyOnce: 0
   dialogueLines:
   - speakerName: Cool
-    speakerPortrait: {fileID: -855298285791758126, guid: a6147a3ba6c28204a977d788110dc104, type: 3}
+    speakerPortrait: {fileID: 4234707992101219148, guid: f8880812527228a49878838aaa75946a, type: 3}
     sentence: HELLO THIS IS A TEST!!!!!!
     typingSpeed: 0
     voiceBlipSFX: {fileID: 0}
@@ -113,7 +113,7 @@ MonoBehaviour:
       choiceText: 
       jumpToLineIndex: 0
   - speakerName: Android
-    speakerPortrait: {fileID: -6470460504253458178, guid: 3c9609695ba952b469f537b1db1b3888, type: 3}
+    speakerPortrait: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
     sentence: YOOOOOOO
     typingSpeed: 0
     voiceBlipSFX: {fileID: 0}
@@ -130,7 +130,7 @@ MonoBehaviour:
       choiceText: NO
       jumpToLineIndex: 4
   - speakerName: Barbara
-    speakerPortrait: {fileID: -855298285791758126, guid: 12c364b6894da44459c3af98fdc34424, type: 3}
+    speakerPortrait: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
     sentence: TIME TO GO
     typingSpeed: 0
     voiceBlipSFX: {fileID: 0}
@@ -147,7 +147,7 @@ MonoBehaviour:
       choiceText: NO
       jumpToLineIndex: 4
   - speakerName: Barbara
-    speakerPortrait: {fileID: -855298285791758126, guid: 12c364b6894da44459c3af98fdc34424, type: 3}
+    speakerPortrait: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
     sentence: TIME TO GO 2
     typingSpeed: 0
     voiceBlipSFX: {fileID: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
       choiceText: NO
       jumpToLineIndex: 4
   - speakerName: Android
-    speakerPortrait: {fileID: 6937817954938267909, guid: 35379ad2117c1f541b8729ff61ce5328, type: 3}
+    speakerPortrait: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
     sentence: Dialogue 1 test
     typingSpeed: 0
     voiceBlipSFX: {fileID: 0}

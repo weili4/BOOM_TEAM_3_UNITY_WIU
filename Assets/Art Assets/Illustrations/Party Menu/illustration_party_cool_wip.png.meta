@@ -5,6 +5,18 @@ TextureImporter:
   - first:
       213: -4387431342859874078
     second: illustration_party_cool_wip_0
+  - first:
+      213: 1026755884820762320
+    second: illustration_party_cool_wip_1
+  - first:
+      213: 6874101413981669388
+    second: illustration_party_cool_wip_2
+  - first:
+      213: 481425896058944483
+    second: illustration_party_cool_wip_3
+  - first:
+      213: 810652257398296009
+    second: illustration_party_cool_wip_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -96,19 +108,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -116,10 +115,10 @@ TextureImporter:
       name: illustration_party_cool_wip_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1600
-        height: 2000
+        x: 38
+        y: 19
+        width: 1125
+        height: 1473
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,6 +129,94 @@ TextureImporter:
       bones: []
       spriteID: 2e01c647076bc13c0800000000000000
       internalID: -4387431342859874078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_cool_wip_1
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 44
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0de88c98905cf3e00800000000000000
+      internalID: 1026755884820762320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_cool_wip_2
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 46
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c084362c0d6b56f50800000000000000
+      internalID: 6874101413981669388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_cool_wip_3
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 44
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3eb74404d4e5ea600800000000000000
+      internalID: 481425896058944483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: illustration_party_cool_wip_4
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 41
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cd089edee3004b00800000000000000
+      internalID: 810652257398296009
       vertices: []
       indices: 
       edges: []
@@ -149,6 +236,10 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       illustration_party_cool_wip_0: -4387431342859874078
+      illustration_party_cool_wip_1: 1026755884820762320
+      illustration_party_cool_wip_2: 6874101413981669388
+      illustration_party_cool_wip_3: 481425896058944483
+      illustration_party_cool_wip_4: 810652257398296009
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

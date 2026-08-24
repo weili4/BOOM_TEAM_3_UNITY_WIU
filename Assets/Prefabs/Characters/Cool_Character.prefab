@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2327239789077465944}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6843793686913976603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8902385583014827377}
+  m_Layer: 0
+  m_Name: Punch Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8902385583014827377
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6843793686913976603}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.18, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2327239789077465944}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8741427890136185514
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,10 +77,10 @@ GameObject:
   - component: {fileID: 3027071561583343075}
   - component: {fileID: 1439003026428827937}
   - component: {fileID: 7293083976924786644}
-  - component: {fileID: 4644817738024740257}
   - component: {fileID: 5579665734457326938}
   - component: {fileID: 4508076284809663970}
   - component: {fileID: -8567114488246528988}
+  - component: {fileID: -7453711572482404818}
   m_Layer: 0
   m_Name: Cool_Character
   m_TagString: Player
@@ -71,6 +102,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6561264844158458714}
+  - {fileID: 8902385583014827377}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &37168971486437739
@@ -231,22 +263,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   animator: {fileID: 0}
+  moveSpeed: 4
+  moveSpeedMultiplier: 1
+  jumpHeight: 8
+  maxJumps: 2
+  gravityDirection: {x: 0, y: -1}
+  gravityScaleMultiplier: 1
+  fallMultiplier: 2.5
+  maxFallSpeed: 15
   isGrounded: 0
   groundChecker: {fileID: 6561264844158458714}
   groundCheckSize: {x: 0.2, y: 0.04}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  moveSpeed: 4
-  jumpHeight: 8
-  maxJumps: 2
-  enableDoubleJumpAttack: 1
-  doubleJumpAttackRadius: 2.5
-  doubleJumpDamage: 25
-  enemyLayer:
+  ladderLayer:
     serializedVersion: 2
-    m_Bits: 0
-  doubleJumpVFXPrefab: {fileID: 0}
+    m_Bits: 128
+  climbSpeed: 3
+  ladderSnapSpeed: 15
   jumpSound: {fileID: 0}
   doubleJumpSound: {fileID: 0}
   landSound: {fileID: 0}
@@ -254,15 +289,8 @@ MonoBehaviour:
   footstepInterval: 0.35
   coyoteTime: 0.1
   jumpBufferTime: 0.1
-  fallMultiplier: 2.5
-  maxFallSpeed: 15
-  ladderLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  climbSpeed: 3
-  ladderSnapSpeed: 15
   isRaging: 0
-  attackedPressed: 0
+  isInputLocked: 0
 --- !u!114 &7293083976924786644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Damageable
   maxHealth: 100
   currentHealth: 100
+  incomingDamageMultiplier: 1
   healthBarPrefab: {fileID: 0}
   hitFlashDuration: 0.08
   spriteRenderer: {fileID: 37168971486437739}
@@ -290,38 +319,6 @@ MonoBehaviour:
   onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4644817738024740257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8741427890136185514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 599b0318702e27c4a9f044dc3839f49a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AttackEventHandler
-  attackPoint: {fileID: 0}
-  layerToCheck:
-    serializedVersion: 2
-    m_Bits: 0
-  attackRadius: 0.8
-  comboCounter: {fileID: 0}
-  swingWhooshSound: {fileID: 0}
-  normalHitSound: {fileID: 0}
-  superPrimedChimeSound: {fileID: 0}
-  superHitSound: {fileID: 0}
-  normalPunchVFX: {fileID: 0}
-  superPunchVFX: {fileID: 0}
-  playerSprite: {fileID: 0}
-  superPrimedColor: {r: 1, g: 0, b: 0, a: 1}
-  pulseSpeed: 10
-  superImpulseSource: {fileID: 0}
-  superImpulseForce: 3.5
-  hitstopDuration: 0.08
-  zoomAmount: 0.6
-  cinemachineCam: {fileID: 0}
 --- !u!114 &5579665734457326938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,3 +412,25 @@ MonoBehaviour:
     DissipationDistance: 102.4
     PropagationSpeed: 343
   DefaultVelocity: {x: 2, y: 2, z: 0}
+--- !u!114 &-7453711572482404818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8741427890136185514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602fe1a6f4f44bc4ab3be65225df2d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoolPrimaryAttack
+  punchInterval: 0.18
+  punchDamage: 12
+  punchRange: 0.85
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  punchPoint: {fileID: 8902385583014827377}
+  punchWhooshSFX: {fileID: 0}
+  punchHitSFX: {fileID: 0}
+  punchVFXPrefab: {fileID: 0}

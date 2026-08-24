@@ -25,8 +25,11 @@ public class AbilityHolder : MonoBehaviour
         // only active leader can cast abilities
         if (!CompareTag("Player") || Keyboard.current == null) return;
 
-        // block ability usage while climbing ladders
+        // block ability usage on ladders
         if (playerController != null && playerController.IsClimbing) return;
+
+        // block ability usage during cinematic cutscenes
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsCinematicActive) return;
 
         var member = PartyManager.Instance?.ActiveMember;
         if (member == null) return;
