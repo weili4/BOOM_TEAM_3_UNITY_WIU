@@ -31,6 +31,9 @@ public class AbilityHolder : MonoBehaviour
         // block ability usage during cinematic cutscenes
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsCinematicActive) return;
 
+        if (PauseMenuManager.Instance != null && PauseMenuManager.Instance.IsPaused) return;
+        if (EndGameUIManager.Instance != null && EndGameUIManager.Instance.IsEndGameActive) return;
+
         var member = PartyManager.Instance?.ActiveMember;
         if (member == null) return;
 
