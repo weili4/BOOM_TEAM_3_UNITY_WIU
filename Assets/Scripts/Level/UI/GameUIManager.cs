@@ -54,10 +54,10 @@ public class GameUIManager : MonoBehaviour
             if (player != null) playerDamageable = player.GetComponent<Damageable>();
         }
 
-        if (playerDamageable != null)
-        {
-            playerDamageable.onHealthChanged.AddListener(OnPlayerHealthChanged);
-        }
+        //if (playerDamageable != null)
+        //{
+        //    playerDamageable.onHealthChanged.AddListener(OnPlayerHealthChanged);
+        //}
     }
 
     private void Update()
@@ -78,17 +78,17 @@ public class GameUIManager : MonoBehaviour
         }
 
         /*===================================================================================================================*/
-        bool InventoryPressed = false;
-        var InventoryAction = InputSystem.actions != null ? InputSystem.actions.FindAction("Inventory") : null;
+        //bool InventoryPressed = false;
+        //var InventoryAction = InputSystem.actions != null ? InputSystem.actions.FindAction("Inventory") : null;
 
-        if (InventoryAction != null)
-        {
-            InventoryPressed = InventoryAction.WasPressedThisFrame();
-        }
-        else if (Keyboard.current != null)
-        {
-            InventoryPressed = Keyboard.current.escapeKey.wasPressedThisFrame;
-        }
+        //if (InventoryAction != null)
+        //{
+        //    InventoryPressed = InventoryAction.WasPressedThisFrame();
+        //}
+        //else if (Keyboard.current != null)
+        //{
+        //    InventoryPressed = Keyboard.current.escapeKey.wasPressedThisFrame;
+        //}
         /*===================================================================================================================*/
 
         //if (pausePressed)
@@ -104,17 +104,17 @@ public class GameUIManager : MonoBehaviour
         //}
 
         /*===============================================================================================================*/
-        if (InventoryPressed)
-        {
-            if(isInventoryOpen)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                InventoryMenu();
-            }
-        }
+        //if (InventoryPressed)
+        //{
+        //    if(isInventoryOpen)
+        //    {
+        //        ResumeGame();
+        //    }
+        //    else
+        //    {
+        //        InventoryMenu();
+        //    }
+        //}
         /*===============================================================================================================*/
     }
 
@@ -196,13 +196,13 @@ public class GameUIManager : MonoBehaviour
 
     // GAME OVER LOGIC
 
-    private void OnPlayerHealthChanged(int currentHealth, int maxHealth)
-    {
-        if (currentHealth <= 0 && !isGameOver)
-        {
-            TriggerGameOver();
-        }
-    }
+    //private void OnPlayerHealthChanged(int currentHealth, int maxHealth)
+    //{
+    //    if (currentHealth <= 0 && !isGameOver)
+    //    {
+    //        TriggerGameOver();
+    //    }
+    //}
 
     public void TriggerGameOver()
     {
