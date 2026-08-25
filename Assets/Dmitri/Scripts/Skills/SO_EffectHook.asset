@@ -15,7 +15,7 @@ MonoBehaviour:
   hookPrefab: {fileID: 6402950422891800616, guid: 5ffc2f791e1f50d49af70f1e86beeb87, type: 3}
   groundImpactVFXPrefab: {fileID: 3809979095271460427, guid: 08135855d5ea67f44b31133be963943d, type: 3}
   enemyImpactVFXPrefab: {fileID: 3809979095271460427, guid: f9a9962ef94987d4fa16e169ac02d268, type: 3}
-  damage: 10
+  damage: 15
   throwSpeed: 20
   pullDelay: 0.1
   pullSpeed: 12
