@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a62654e4feb6cb4282e9b002de2813d, type: 3}
   m_Name: BarrierFieldAbilityEffect
   m_EditorClassIdentifier: Assembly-CSharp::BarrierFieldAbilityEffect
+  shieldPrefab: {fileID: 8886741172303930095, guid: a8b6fb48d7c831e4caeec633e47e9e1b, type: 3}
+  domeDuration: 10
