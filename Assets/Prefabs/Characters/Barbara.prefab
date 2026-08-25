@@ -944,7 +944,7 @@ MonoBehaviour:
   bulletDamage: 15
   bulletSpeed: 16
   postAttackLingerDuration: 0.3
-  shootSFX: {fileID: 0}
+  shootSFX: {fileID: 8300000, guid: 14b20412d9aeb7e479960597063db9d2, type: 3}
   muzzleFlashVFX: {fileID: 0}
   chargeMeterRoot: {fileID: 2641863720587337511}
   chargeSlider: {fileID: 8082222004826068788}

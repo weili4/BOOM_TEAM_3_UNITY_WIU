@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Gate : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class Gate : MonoBehaviour
 
     [Header("GATE STATE")]
     [SerializeField] private bool isOpen = false;
+
+    [Header("GATE INSPECTOR EVENTS")]
+    public UnityEvent onGateOpened;
+    public UnityEvent onGateClosed;
 
     private Vector3 closedPos;
     private Vector3 openPos;
@@ -40,14 +45,10 @@ public class Gate : MonoBehaviour
         if (isOpen) return;
         isOpen = true;
 
-        // PLAY GATE OPEN SFX
-        if (openSound != null)
-        {
-            if (AudioManager.Instance != null)
-                AudioManager.Instance.PlaySFX(openSound, transform.position, 1.2f);
-            else
-                AudioSource.PlayClipAtPoint(openSound, transform.position);
-        }
+        if (openSound != null && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(openSound, transform.position, 1.2f);
+
+        onGateOpened?.Invoke(); // trigger inspector event
 
         if (moveRoutine != null) StopCoroutine(moveRoutine);
         moveRoutine = StartCoroutine(AnimateGate(openPos, openSpeed, false));
@@ -57,6 +58,8 @@ public class Gate : MonoBehaviour
     {
         if (!isOpen) return;
         isOpen = false;
+
+        onGateClosed?.Invoke(); // trigger inspector event
 
         if (moveRoutine != null) StopCoroutine(moveRoutine);
         moveRoutine = StartCoroutine(AnimateGate(closedPos, slamSpeed, true));
@@ -82,14 +85,8 @@ public class Gate : MonoBehaviour
             if (impulseSource != null)
                 impulseSource.GenerateImpulse(slamShakeForce);
 
-            // PLAY SLAM SFX
-            if (slamSound != null)
-            {
-                if (AudioManager.Instance != null)
-                    AudioManager.Instance.PlaySFX(slamSound, transform.position, 1.5f);
-                else
-                    AudioSource.PlayClipAtPoint(slamSound, transform.position);
-            }
+            if (slamSound != null && AudioManager.Instance != null)
+                AudioManager.Instance.PlaySFX(slamSound, transform.position, 1.5f);
         }
     }
 }

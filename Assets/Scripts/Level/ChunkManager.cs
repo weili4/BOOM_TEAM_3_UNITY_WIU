@@ -125,9 +125,14 @@ public class ChunkManager : MonoBehaviour
             currentActiveSpawnPoint = spawnPoint;
         }
 
+        // if chunk has music, crossfade to it; if null, fade out to silence
         if (chunkBGM != null && AudioManager.Instance != null)
         {
             AudioManager.Instance.PlayMusic(chunkBGM, 0.4f);
+        }
+        else if (chunkBGM == null && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.StopMusic(0.5f);
         }
 
         UpdateChunkObjectiveUI();
@@ -250,20 +255,18 @@ public class ChunkManager : MonoBehaviour
     {
         if (currentWaveIndex >= waves.Count)
         {
-            // ALL WAVES CLEARED
             isChunkCleared = true;
             LevelObjectiveUI.Instance?.SetObjectiveText("Boss Zone Cleared! Proceed through the Unlocked Gate.");
 
             if (bossZoneClearedSound != null && AudioManager.Instance != null)
             {
-                if (AudioManager.Instance != null)
-                    AudioManager.Instance.PlaySFX(bossZoneClearedSound, transform.position, 1.4f);
+                AudioManager.Instance.PlaySFX(bossZoneClearedSound, transform.position, 1.4f);
             }
 
-            if (AudioManager.Instance != null)
-            {
-                AudioManager.Instance.StopMusic(0.4f);
-            }
+            //if (AudioManager.Instance != null)
+            //{
+            //    AudioManager.Instance.StopMusic(0.4f);
+            //}
 
             if (exitGate != null) exitGate.OpenGate();
             yield break;
@@ -275,17 +278,19 @@ public class ChunkManager : MonoBehaviour
 
         if (waveStartSound != null && AudioManager.Instance != null)
         {
-            if (AudioManager.Instance != null)
-                AudioManager.Instance.PlaySFX(waveStartSound, transform.position, 1.2f);
+            AudioManager.Instance.PlaySFX(waveStartSound, transform.position, 1.2f);
         }
 
         yield return new WaitForSeconds(delayBetweenWaves);
 
         activeWaveEnemies.Clear();
 
+        // reminder: stagger enemy spawning by 0.06s so we do not cause a single-frame cpu spike
         for (int i = 0; i < currentWave.enemyPrefabs.Count; i++)
         {
             GameObject prefab = currentWave.enemyPrefabs[i];
+            if (prefab == null) continue;
+
             Transform sp = arenaSpawnPoints.Count > 0 ? arenaSpawnPoints[i % arenaSpawnPoints.Count] : transform;
 
             GameObject spawnedEnemy = Instantiate(prefab, sp.position, Quaternion.identity);
@@ -293,14 +298,16 @@ public class ChunkManager : MonoBehaviour
 
             if (enemySpawnSound != null && AudioManager.Instance != null)
             {
-                if (AudioManager.Instance != null)
-                    AudioManager.Instance.PlaySFX(enemySpawnSound, sp.position, 1.0f);
+                AudioManager.Instance.PlaySFX(enemySpawnSound, sp.position, 1.0f);
             }
 
             if (spawnedEnemy.TryGetComponent<Damageable>(out Damageable health))
             {
                 health.onHealthChanged.AddListener((hp, maxHp) => OnWaveEnemyHealthChanged(spawnedEnemy, hp));
             }
+
+            // small stagger between each enemy spawn in the wave
+            yield return new WaitForSeconds(0.06f);
         }
 
         UpdateWaveUI();

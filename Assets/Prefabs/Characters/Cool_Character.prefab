@@ -431,6 +431,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   punchPoint: {fileID: 8902385583014827377}
-  punchWhooshSFX: {fileID: 0}
+  punchWhooshSFX: {fileID: 8300000, guid: 55c99531e04aa2f44928b2008003fff8, type: 3}
   punchHitSFX: {fileID: 0}
-  punchVFXPrefab: {fileID: 0}
+  punchVFXPrefab: {fileID: 4854645521179539867, guid: d8d7a16e72f9b434494d13669d91f79c, type: 3}

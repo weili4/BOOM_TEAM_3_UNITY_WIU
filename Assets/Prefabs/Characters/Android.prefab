@@ -349,9 +349,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  swingSFX: {fileID: 0}
-  finisherSFX: {fileID: 0}
-  hitVFXPrefab: {fileID: 0}
+  swingSFX: {fileID: 8300000, guid: 35f06d59523f2c54bac52ec2a968890d, type: 3}
+  finisherSFX: {fileID: 8300000, guid: 35f06d59523f2c54bac52ec2a968890d, type: 3}
+  hitVFXPrefab: {fileID: 1792412140663129171, guid: b50a41fa4961cbe4eb1569d6f0b6dfeb, type: 3}
   comboStep: 0
 --- !u!114 &4225047591434584236
 MonoBehaviour:

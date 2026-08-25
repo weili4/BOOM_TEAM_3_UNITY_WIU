@@ -148,6 +148,13 @@ public class AudioManager : MonoBehaviour
         Destroy(sfxObj, clip.length);
     }
 
+    public void SetMasterVolume(float sliderValue)
+    {
+        if (mainAudioMixer == null) return;
+        float db = Mathf.Log10(Mathf.Clamp(sliderValue, 0.0001f, 1f)) * 20f;
+        mainAudioMixer.SetFloat("MasterVolume", db);
+    }
+
     public void SetBGMVolume(float sliderValue)
     {
         if (mainAudioMixer == null) return;

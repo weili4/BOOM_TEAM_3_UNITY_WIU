@@ -16,9 +16,9 @@ MonoBehaviour:
   characterIndex: 0
   portraitIcon: {fileID: -3315402459343309039, guid: cb66e8d0f5f5c7540aa4aade94da9fcf, type: 3}
   characterPrefab: {fileID: 8741427890136185514, guid: e516b4995ae31264aa34c4215c0a4c21, type: 3}
-  maxHealth: 120
-  moveSpeed: 4
-  jumpHeight: 8
+  maxHealth: 100
+  moveSpeed: 4.5
+  jumpHeight: 7
   maxJumps: 2
   baseAttackDamage: 10
   animatorController: {fileID: 9100000, guid: 5cb6e550e576fbe479d1bd0cdf1a2ecd, type: 2}
@@ -26,7 +26,7 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: f10045156110c744591920ad67938199, type: 3}
   attackSound: {fileID: 8300000, guid: 55c99531e04aa2f44928b2008003fff8, type: 3}
   hitSound: {fileID: 8300000, guid: ab727eae0284a4f4c8d211d83b1f8dda, type: 3}
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 6eed90cd9d4d3674dadfff42630d34fc, type: 3}
   switchVFXPrefab: {fileID: 5299204820297015541, guid: f23aa577ad7d3584994308934b17150b, type: 3}
   attackVFXPrefab: {fileID: 1792412140663129171, guid: 3bcb4c6972706e146a4148ab7ec17180, type: 3}
   abilityQ: {fileID: 11400000, guid: 7b70affc0286b3d4aa67462e60136a1c, type: 2}

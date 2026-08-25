@@ -642,4 +642,25 @@ public class DialogueManager : MonoBehaviour
             audioSource.PlayOneShot(clip);
         }
     }
+
+    // helper methods for unityevents to unlock characters safely without losing singleton references
+    public void UnlockCharacterCool()
+    {
+        if (PartyManager.Instance != null) PartyManager.Instance.UnlockCharacter(0);
+    }
+
+    public void UnlockCharacterBarbara()
+    {
+        if (PartyManager.Instance != null) PartyManager.Instance.UnlockCharacter(1);
+    }
+
+    public void UnlockCharacterAndroid()
+    {
+        if (PartyManager.Instance != null) PartyManager.Instance.UnlockCharacter(2);
+    }
+
+    public void UnlockCharacterByIndex(int characterIndex)
+    {
+        if (PartyManager.Instance != null) PartyManager.Instance.UnlockCharacter(characterIndex);
+    }
 }

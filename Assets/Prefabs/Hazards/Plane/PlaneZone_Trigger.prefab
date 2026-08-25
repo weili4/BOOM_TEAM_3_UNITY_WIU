@@ -207,3 +207,5 @@ MonoBehaviour:
   warningDuration: 1.2
   planeSpeed: 16
   warningLine: {fileID: 8365412429959846356}
+  warningBeamSFX: {fileID: 8300000, guid: c73f686d19a1a0241af42e2472bf95af, type: 3}
+  planeSpawnSFX: {fileID: 8300000, guid: e0ad0b0f9c6f81c448be85f0f60d13e5, type: 3}

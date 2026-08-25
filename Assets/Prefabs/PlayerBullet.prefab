@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -174,11 +174,13 @@ MonoBehaviour:
   speed: 16
   lifetime: 3
   knockbackForce: 4.5
+  initialStraightDelay: 0.06
+  curveRotateSpeed: 450
   hitLayers:
     serializedVersion: 2
     m_Bits: 72
-  impactVFXPrefab: {fileID: 0}
-  impactSFX: {fileID: 0}
+  impactVFXPrefab: {fileID: 4854645521179539867, guid: d8d7a16e72f9b434494d13669d91f79c, type: 3}
+  impactSFX: {fileID: 8300000, guid: cc0f4bebbb874674dabd8859e4f58942, type: 3}
 --- !u!96 &644800864266020577
 TrailRenderer:
   serializedVersion: 4

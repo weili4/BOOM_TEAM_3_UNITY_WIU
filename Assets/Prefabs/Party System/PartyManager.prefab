@@ -64,7 +64,7 @@ MonoBehaviour:
   - data: {fileID: 11400000, guid: 1d178d94ab20d194b9f4bdf157c718bd, type: 2}
     isUnlocked: 1
     isDead: 0
-    currentHealth: 100
+    currentHealth: 90
     switchCooldownTimer: 0
     cooldownQ: 0
     cooldownE: 0

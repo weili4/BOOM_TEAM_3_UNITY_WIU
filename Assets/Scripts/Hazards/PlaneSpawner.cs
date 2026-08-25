@@ -16,6 +16,10 @@ public class PlaneSpawner : MonoBehaviour
     private bool isPlayerInZone = false;
     private Coroutine spawnLoopRoutine;
 
+    [Header("audio clips")]
+    [SerializeField] private AudioClip warningBeamSFX;
+    [SerializeField] private AudioClip planeSpawnSFX;
+
     private void Start()
     {
         if (warningLine != null) warningLine.enabled = false;
@@ -85,10 +89,13 @@ public class PlaneSpawner : MonoBehaviour
             // 1. lock Y height to the player at this moment
             float lockedY = player.transform.position.y;
 
-            // 2. show full-screen warning line spanning from left screen edge to right screen edge
+            // 2. show full-screen warning line and play warning sfx
             if (warningLine != null) warningLine.enabled = true;
-            float elapsed = 0f;
 
+            if (warningBeamSFX != null && AudioManager.Instance != null)
+                AudioManager.Instance.PlaySFX(warningBeamSFX, transform.position, 1.0f);
+
+            float elapsed = 0f;
             while (elapsed < warningDuration)
             {
                 elapsed += Time.deltaTime;
@@ -96,7 +103,6 @@ public class PlaneSpawner : MonoBehaviour
 
                 if (mainCam != null && warningLine != null)
                 {
-                    // viewport X = 0.0 is left edge of screen, X = 1.0 is right edge of screen
                     Vector3 leftScreenEdge = mainCam.ViewportToWorldPoint(new Vector3(-0.05f, 0.5f, 10f));
                     Vector3 rightScreenEdge = mainCam.ViewportToWorldPoint(new Vector3(1.05f, 0.5f, 10f));
 
@@ -109,12 +115,15 @@ public class PlaneSpawner : MonoBehaviour
 
             if (warningLine != null) warningLine.enabled = false;
 
-            // 3. spawn plane just outside the right edge of the screen
+            // 3. spawn plane and play plane flyby sfx
             if (mainCam != null && planePrefab != null)
             {
                 Vector3 spawnPos = mainCam.ViewportToWorldPoint(new Vector3(1.15f, 0.5f, 10f));
                 spawnPos.y = lockedY;
                 spawnPos.z = 0f;
+
+                if (planeSpawnSFX != null && AudioManager.Instance != null)
+                    AudioManager.Instance.PlaySFX(planeSpawnSFX, spawnPos, 1.8f);
 
                 GameObject plane = Instantiate(planePrefab, spawnPos, Quaternion.identity);
                 if (plane.TryGetComponent<PlaneProjectile>(out var p))

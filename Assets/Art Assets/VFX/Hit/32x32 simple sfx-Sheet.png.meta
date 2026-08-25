@@ -1,0 +1,2020 @@
+fileFormatVersion: 2
+guid: 717a06d0b52d1334491b2002173b27f2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1522345730095420615
+    second: 32x32 simple sfx-Sheet_0
+  - first:
+      213: -8298632457007858640
+    second: 32x32 simple sfx-Sheet_1
+  - first:
+      213: 5452793362195812846
+    second: 32x32 simple sfx-Sheet_2
+  - first:
+      213: 691841402380806347
+    second: 32x32 simple sfx-Sheet_3
+  - first:
+      213: 8724644346225988535
+    second: 32x32 simple sfx-Sheet_4
+  - first:
+      213: -4637232600481082062
+    second: 32x32 simple sfx-Sheet_5
+  - first:
+      213: 1747040379113726412
+    second: 32x32 simple sfx-Sheet_6
+  - first:
+      213: -6234455955338331418
+    second: 32x32 simple sfx-Sheet_7
+  - first:
+      213: -6566307164370810651
+    second: 32x32 simple sfx-Sheet_8
+  - first:
+      213: 7601294631868707329
+    second: 32x32 simple sfx-Sheet_9
+  - first:
+      213: 5966328143058979975
+    second: 32x32 simple sfx-Sheet_10
+  - first:
+      213: 1937905335642838565
+    second: 32x32 simple sfx-Sheet_11
+  - first:
+      213: 5565867944087593022
+    second: 32x32 simple sfx-Sheet_12
+  - first:
+      213: 4206076404306319998
+    second: 32x32 simple sfx-Sheet_13
+  - first:
+      213: 4858247797865311955
+    second: 32x32 simple sfx-Sheet_14
+  - first:
+      213: 1871964523701520735
+    second: 32x32 simple sfx-Sheet_15
+  - first:
+      213: 1019522058384434281
+    second: 32x32 simple sfx-Sheet_16
+  - first:
+      213: -3127563581499632381
+    second: 32x32 simple sfx-Sheet_17
+  - first:
+      213: -5723101306731090759
+    second: 32x32 simple sfx-Sheet_18
+  - first:
+      213: -4590342155030776061
+    second: 32x32 simple sfx-Sheet_19
+  - first:
+      213: 3114508311572510940
+    second: 32x32 simple sfx-Sheet_20
+  - first:
+      213: 1871201170854720093
+    second: 32x32 simple sfx-Sheet_21
+  - first:
+      213: -5030719206866510820
+    second: 32x32 simple sfx-Sheet_22
+  - first:
+      213: 8242229553947013960
+    second: 32x32 simple sfx-Sheet_23
+  - first:
+      213: 684823586116529919
+    second: 32x32 simple sfx-Sheet_24
+  - first:
+      213: 3267108851686995935
+    second: 32x32 simple sfx-Sheet_25
+  - first:
+      213: -9040783268271333797
+    second: 32x32 simple sfx-Sheet_26
+  - first:
+      213: -2922410904332159572
+    second: 32x32 simple sfx-Sheet_27
+  - first:
+      213: -6855848454950997595
+    second: 32x32 simple sfx-Sheet_28
+  - first:
+      213: 1622407015465133855
+    second: 32x32 simple sfx-Sheet_29
+  - first:
+      213: -786954784049835463
+    second: 32x32 simple sfx-Sheet_30
+  - first:
+      213: 8136768502264236980
+    second: 32x32 simple sfx-Sheet_31
+  - first:
+      213: 7363328553516854236
+    second: 32x32 simple sfx-Sheet_32
+  - first:
+      213: -6035599269205872191
+    second: 32x32 simple sfx-Sheet_33
+  - first:
+      213: -4159521694019772701
+    second: 32x32 simple sfx-Sheet_34
+  - first:
+      213: -6708199266831988825
+    second: 32x32 simple sfx-Sheet_35
+  - first:
+      213: -7468946735275231899
+    second: 32x32 simple sfx-Sheet_36
+  - first:
+      213: -6909992812837938595
+    second: 32x32 simple sfx-Sheet_37
+  - first:
+      213: 5027085474918531000
+    second: 32x32 simple sfx-Sheet_38
+  - first:
+      213: 5903878459041096375
+    second: 32x32 simple sfx-Sheet_39
+  - first:
+      213: 508900364774016663
+    second: 32x32 simple sfx-Sheet_40
+  - first:
+      213: 5040699784272295895
+    second: 32x32 simple sfx-Sheet_41
+  - first:
+      213: -2793085744172284753
+    second: 32x32 simple sfx-Sheet_42
+  - first:
+      213: -7892687615958154988
+    second: 32x32 simple sfx-Sheet_43
+  - first:
+      213: -7901630448702335087
+    second: 32x32 simple sfx-Sheet_44
+  - first:
+      213: -4960079217806512069
+    second: 32x32 simple sfx-Sheet_45
+  - first:
+      213: -1744168989574464486
+    second: 32x32 simple sfx-Sheet_46
+  - first:
+      213: 4399436550619068936
+    second: 32x32 simple sfx-Sheet_47
+  - first:
+      213: 7254209288563785326
+    second: 32x32 simple sfx-Sheet_48
+  - first:
+      213: 4148201508722141195
+    second: 32x32 simple sfx-Sheet_49
+  - first:
+      213: 1755175430337496430
+    second: 32x32 simple sfx-Sheet_50
+  - first:
+      213: -8788549186720934349
+    second: 32x32 simple sfx-Sheet_51
+  - first:
+      213: 2303843916499766965
+    second: 32x32 simple sfx-Sheet_52
+  - first:
+      213: -2645205264462139219
+    second: 32x32 simple sfx-Sheet_53
+  - first:
+      213: 8043896600244421251
+    second: 32x32 simple sfx-Sheet_54
+  - first:
+      213: 8568776885845907751
+    second: 32x32 simple sfx-Sheet_55
+  - first:
+      213: -8340807618857867525
+    second: 32x32 simple sfx-Sheet_56
+  - first:
+      213: 4592163943421665889
+    second: 32x32 simple sfx-Sheet_57
+  - first:
+      213: 2955602753353719913
+    second: 32x32 simple sfx-Sheet_58
+  - first:
+      213: -1393913773212068928
+    second: 32x32 simple sfx-Sheet_59
+  - first:
+      213: -2737874444435296930
+    second: 32x32 simple sfx-Sheet_60
+  - first:
+      213: 3445548364666883452
+    second: 32x32 simple sfx-Sheet_61
+  - first:
+      213: -7329693846238890356
+    second: 32x32 simple sfx-Sheet_62
+  - first:
+      213: -1496924684267086806
+    second: 32x32 simple sfx-Sheet_63
+  - first:
+      213: -5739366322983587972
+    second: 32x32 simple sfx-Sheet_64
+  - first:
+      213: -976984974789626355
+    second: 32x32 simple sfx-Sheet_65
+  - first:
+      213: 5811731781264884394
+    second: 32x32 simple sfx-Sheet_66
+  - first:
+      213: -8348132495349412248
+    second: 32x32 simple sfx-Sheet_67
+  - first:
+      213: -5973637374120915789
+    second: 32x32 simple sfx-Sheet_68
+  - first:
+      213: 5137023606577148150
+    second: 32x32 simple sfx-Sheet_69
+  - first:
+      213: -5741126157416106140
+    second: 32x32 simple sfx-Sheet_70
+  - first:
+      213: 47701895193896097
+    second: 32x32 simple sfx-Sheet_71
+  - first:
+      213: 7946388463057088216
+    second: 32x32 simple sfx-Sheet_72
+  - first:
+      213: -3218756064027907496
+    second: 32x32 simple sfx-Sheet_73
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c49ba33065702510800000000000000
+      internalID: 1522345730095420615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03cf4869fb555dc80800000000000000
+      internalID: -8298632457007858640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee11a4b3ca63cab40800000000000000
+      internalID: 5452793362195812846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc8e0d5071ae99900800000000000000
+      internalID: 691841402380806347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b39b68cec9241970800000000000000
+      internalID: 8724644346225988535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 235d67bd48d35afb0800000000000000
+      internalID: -4637232600481082062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc16655f7fbbe3810800000000000000
+      internalID: 1747040379113726412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ea7d361753ca79a0800000000000000
+      internalID: -6234455955338331418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e8439d7c6acfd4a0800000000000000
+      internalID: -6566307164370810651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1023e9db1393d7960800000000000000
+      internalID: 7601294631868707329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78c427cc5d7acc250800000000000000
+      internalID: 5966328143058979975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5265353a2a2d4ea10800000000000000
+      internalID: 1937905335642838565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e30231ae76fed3d40800000000000000
+      internalID: 5565867944087593022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7a94d8743cfe5a30800000000000000
+      internalID: 4206076404306319998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dee59ec1a6fb6340800000000000000
+      internalID: 4858247797865311955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f59cc53f0dd8af910800000000000000
+      internalID: 1871964523701520735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 964eda219e1162e00800000000000000
+      internalID: 1019522058384434281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30514404e79a894d0800000000000000
+      internalID: -3127563581499632381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bc28be0fa57390b0800000000000000
+      internalID: -5723101306731090759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 307b3e37124db40c0800000000000000
+      internalID: -4590342155030776061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd8f749dec4f83b20800000000000000
+      internalID: 3114508311572510940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5237140d87d7f910800000000000000
+      internalID: 1871201170854720093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1c9cf5098b4f2ab0800000000000000
+      internalID: -5030719206866510820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 843fc303c18426270800000000000000
+      internalID: 8242229553947013960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffee8485c6bf08900800000000000000
+      internalID: 684823586116529919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd77653d03a175d20800000000000000
+      internalID: 3267108851686995935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5e5463848fa88280800000000000000
+      internalID: -9040783268271333797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca5bd8f14c28177d0800000000000000
+      internalID: -2922410904332159572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a13cb077222bd0a0800000000000000
+      internalID: -6855848454950997595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f17a6eda592f38610800000000000000
+      internalID: 1622407015465133855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9325a6a1bcc2415f0800000000000000
+      internalID: -786954784049835463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bb0c05a7db9be070800000000000000
+      internalID: 8136768502264236980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdbecdc8e4ccf2660800000000000000
+      internalID: 7363328553516854236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c17060517e3d3ca0800000000000000
+      internalID: -6035599269205872191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ee9b60be096646c0800000000000000
+      internalID: -4159521694019772701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a781f1fe40b7e2a0800000000000000
+      internalID: -6708199266831988825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5653b953488f85890800000000000000
+      internalID: -7468946735275231899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5ada4eb526ca10a0800000000000000
+      internalID: -6909992812837938595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bf7b04da9bc3c540800000000000000
+      internalID: 5027085474918531000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b2a93cad2acee150800000000000000
+      internalID: 5903878459041096375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7960c6c7f2aff0700800000000000000
+      internalID: 508900364774016663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_41
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d730fc3fb924f540800000000000000
+      internalID: 5040699784272295895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_42
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa447676057fc39d0800000000000000
+      internalID: -2793085744172284753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_43
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41180b73e6a877290800000000000000
+      internalID: -7892687615958154988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_44
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 197dfa6b8f4c75290800000000000000
+      internalID: -7901630448702335087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3078d42b324a2bb0800000000000000
+      internalID: -4960079217806512069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_46
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1c79248b877bc7e0800000000000000
+      internalID: -1744168989574464486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_47
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80af48bcb30fd0d30800000000000000
+      internalID: 4399436550619068936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_48
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6efe2bd9e02ca460800000000000000
+      internalID: 7254209288563785326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_49
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b086f184b4f519930800000000000000
+      internalID: 4148201508722141195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6582cb21c2ab5810800000000000000
+      internalID: 1755175430337496430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_51
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3365372141dc80680800000000000000
+      internalID: -8788549186720934349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_52
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bec9e4f5d5e8ff10800000000000000
+      internalID: 2303843916499766965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_53
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da0bdbda3d75a4bd0800000000000000
+      internalID: -2645205264462139219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_54
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3828a8be659a1af60800000000000000
+      internalID: 8043896600244421251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_55
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7295c68ad296ae670800000000000000
+      internalID: 8568776885845907751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_56
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf6ea1289af7f3c80800000000000000
+      internalID: -8340807618857867525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_57
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1626106b6c4aabf30800000000000000
+      internalID: 4592163943421665889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_58
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 960a0d27b09640920800000000000000
+      internalID: 2955602753353719913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_59
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c39b2cfec2d7ace0800000000000000
+      internalID: -1393913773212068928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5d60dbd2bd110ad0800000000000000
+      internalID: -2737874444435296930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_61
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7dc56c7bfb01df20800000000000000
+      internalID: 3445548364666883452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_62
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c86709ef742b74a90800000000000000
+      internalID: -7329693846238890356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_63
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2c1fb24eead93be0800000000000000
+      internalID: -1496924684267086806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_64
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7f29badcbca950b0800000000000000
+      internalID: -5739366322983587972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_65
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0635ca775d0172f0800000000000000
+      internalID: -976984974789626355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_66
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa24420634b67a050800000000000000
+      internalID: 5811731781264884394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_67
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86e8dccc9b9752c80800000000000000
+      internalID: -8348132495349412248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_68
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bc868a3570691da0800000000000000
+      internalID: -5973637374120915789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_69
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f0b3d8c0cf5a4740800000000000000
+      internalID: 5137023606577148150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_70
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46772887d2c6350b0800000000000000
+      internalID: -5741126157416106140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_71
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a42526fe9879a000800000000000000
+      internalID: 47701895193896097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32 simple sfx-Sheet_72
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dea7c3943e374e60800000000000000
+      internalID: 7946388463057088216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1aa3d088f9fb7794dba7b89a360d0982
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":15.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      32x32 simple sfx-Sheet_0: 1522345730095420615
+      32x32 simple sfx-Sheet_1: -8298632457007858640
+      32x32 simple sfx-Sheet_10: 5966328143058979975
+      32x32 simple sfx-Sheet_11: 1937905335642838565
+      32x32 simple sfx-Sheet_12: 5565867944087593022
+      32x32 simple sfx-Sheet_13: 4206076404306319998
+      32x32 simple sfx-Sheet_14: 4858247797865311955
+      32x32 simple sfx-Sheet_15: 1871964523701520735
+      32x32 simple sfx-Sheet_16: 1019522058384434281
+      32x32 simple sfx-Sheet_17: -3127563581499632381
+      32x32 simple sfx-Sheet_18: -5723101306731090759
+      32x32 simple sfx-Sheet_19: -4590342155030776061
+      32x32 simple sfx-Sheet_2: 5452793362195812846
+      32x32 simple sfx-Sheet_20: 3114508311572510940
+      32x32 simple sfx-Sheet_21: 1871201170854720093
+      32x32 simple sfx-Sheet_22: -5030719206866510820
+      32x32 simple sfx-Sheet_23: 8242229553947013960
+      32x32 simple sfx-Sheet_24: 684823586116529919
+      32x32 simple sfx-Sheet_25: 3267108851686995935
+      32x32 simple sfx-Sheet_26: -9040783268271333797
+      32x32 simple sfx-Sheet_27: -2922410904332159572
+      32x32 simple sfx-Sheet_28: -6855848454950997595
+      32x32 simple sfx-Sheet_29: 1622407015465133855
+      32x32 simple sfx-Sheet_3: 691841402380806347
+      32x32 simple sfx-Sheet_30: -786954784049835463
+      32x32 simple sfx-Sheet_31: 8136768502264236980
+      32x32 simple sfx-Sheet_32: 7363328553516854236
+      32x32 simple sfx-Sheet_33: -6035599269205872191
+      32x32 simple sfx-Sheet_34: -4159521694019772701
+      32x32 simple sfx-Sheet_35: -6708199266831988825
+      32x32 simple sfx-Sheet_36: -7468946735275231899
+      32x32 simple sfx-Sheet_37: -6909992812837938595
+      32x32 simple sfx-Sheet_38: 5027085474918531000
+      32x32 simple sfx-Sheet_39: 5903878459041096375
+      32x32 simple sfx-Sheet_4: 8724644346225988535
+      32x32 simple sfx-Sheet_40: 508900364774016663
+      32x32 simple sfx-Sheet_41: 5040699784272295895
+      32x32 simple sfx-Sheet_42: -2793085744172284753
+      32x32 simple sfx-Sheet_43: -7892687615958154988
+      32x32 simple sfx-Sheet_44: -7901630448702335087
+      32x32 simple sfx-Sheet_45: -4960079217806512069
+      32x32 simple sfx-Sheet_46: -1744168989574464486
+      32x32 simple sfx-Sheet_47: 4399436550619068936
+      32x32 simple sfx-Sheet_48: 7254209288563785326
+      32x32 simple sfx-Sheet_49: 4148201508722141195
+      32x32 simple sfx-Sheet_5: -4637232600481082062
+      32x32 simple sfx-Sheet_50: 1755175430337496430
+      32x32 simple sfx-Sheet_51: -8788549186720934349
+      32x32 simple sfx-Sheet_52: 2303843916499766965
+      32x32 simple sfx-Sheet_53: -2645205264462139219
+      32x32 simple sfx-Sheet_54: 8043896600244421251
+      32x32 simple sfx-Sheet_55: 8568776885845907751
+      32x32 simple sfx-Sheet_56: -8340807618857867525
+      32x32 simple sfx-Sheet_57: 4592163943421665889
+      32x32 simple sfx-Sheet_58: 2955602753353719913
+      32x32 simple sfx-Sheet_59: -1393913773212068928
+      32x32 simple sfx-Sheet_6: 1747040379113726412
+      32x32 simple sfx-Sheet_60: -2737874444435296930
+      32x32 simple sfx-Sheet_61: 3445548364666883452
+      32x32 simple sfx-Sheet_62: -7329693846238890356
+      32x32 simple sfx-Sheet_63: -1496924684267086806
+      32x32 simple sfx-Sheet_64: -5739366322983587972
+      32x32 simple sfx-Sheet_65: -976984974789626355
+      32x32 simple sfx-Sheet_66: 5811731781264884394
+      32x32 simple sfx-Sheet_67: -8348132495349412248
+      32x32 simple sfx-Sheet_68: -5973637374120915789
+      32x32 simple sfx-Sheet_69: 5137023606577148150
+      32x32 simple sfx-Sheet_7: -6234455955338331418
+      32x32 simple sfx-Sheet_70: -5741126157416106140
+      32x32 simple sfx-Sheet_71: 47701895193896097
+      32x32 simple sfx-Sheet_72: 7946388463057088216
+      32x32 simple sfx-Sheet_8: -6566307164370810651
+      32x32 simple sfx-Sheet_9: 7601294631868707329
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

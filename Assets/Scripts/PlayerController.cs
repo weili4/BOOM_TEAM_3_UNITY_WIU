@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private bool isClimbing = false;
     private float originalGravity;
     private Collider2D currentLadderCollider;
+    private float ladderDismountCooldown = 0f;
 
     [Header("audio clips")]
     [SerializeField] private AudioClip jumpSound;
@@ -152,10 +153,17 @@ public class PlayerController : MonoBehaviour
             jumpReleased = InputSystem.actions != null && InputSystem.actions["Jump"] != null && InputSystem.actions["Jump"].WasReleasedThisFrame();
         }
 
-        // dismount ladder
-        if (isClimbing && Mathf.Abs(moveInput.x) > 0.3f)
+        // count down ladder dismount cooldown
+        if (ladderDismountCooldown > 0f)
+        {
+            ladderDismountCooldown -= Time.deltaTime;
+        }
+
+        // 1. prioritize dismounting when pressing left or right (A / D)
+        if (isClimbing && Mathf.Abs(moveInput.x) > 0.2f)
         {
             ExitLadder();
+            ladderDismountCooldown = 0.25f; // prevent W/S from immediately re-grabbing ladder
         }
 
         // footsteps
@@ -192,12 +200,13 @@ public class PlayerController : MonoBehaviour
 
         bool canJump = (currentJumps < maxJumps);
 
-        // jump execution
-        if (jumpBufferTimer > 0f && canJump && !isClimbing && !isLocked)
+        // 2. jump execution (allows leaping directly off the ladder)
+        if (jumpBufferTimer > 0f && canJump && !isLocked)
         {
             if (isClimbing)
             {
                 ExitLadder();
+                ladderDismountCooldown = 0.25f;
             }
 
             body.linearVelocityY = -gravityDirection.y * jumpHeight;
@@ -206,26 +215,13 @@ public class PlayerController : MonoBehaviour
 
             if (currentJumps == 1)
             {
-                if (animator != null)
-                {
-                    animator.SetBool("IsJumping", true);
-                    animator.SetBool("IsFalling", false);
-                }
-
-                if (AudioManager.Instance != null)
-                    AudioManager.Instance.PlaySFX(jumpSound, transform.position);
+                if (animator != null) { animator.SetBool("IsJumping", true); animator.SetBool("IsFalling", false); }
+                if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(jumpSound, transform.position);
             }
             else if (currentJumps >= 2)
             {
-                if (animator != null)
-                {
-                    animator.SetBool("IsJumping", false);
-                    animator.SetBool("IsFalling", false);
-                    animator.SetTrigger("DoubleJump");
-                }
-
-                if (AudioManager.Instance != null)
-                    AudioManager.Instance.PlaySFX(doubleJumpSound, transform.position);
+                if (animator != null) { animator.SetBool("IsJumping", false); animator.SetBool("IsFalling", false); animator.SetTrigger("DoubleJump"); }
+                if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(doubleJumpSound, transform.position);
             }
         }
 
@@ -251,9 +247,14 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        // 2. ladder climbing logic
         if (isOnLadderTrigger && currentLadderCollider != null)
         {
-            if (Mathf.Abs(moveInput.y) > 0.1f && !isClimbing) StartClimbing();
+            // only start climbing if player is moving vertically AND NOT pushing horizontal dismount
+            if (ladderDismountCooldown <= 0f && Mathf.Abs(moveInput.y) > 0.1f && Mathf.Abs(moveInput.x) < 0.2f && !isClimbing)
+            {
+                StartClimbing();
+            }
 
             if (isClimbing)
             {
@@ -264,7 +265,11 @@ public class PlayerController : MonoBehaviour
                 float newX = Mathf.MoveTowards(transform.position.x, centerX, ladderSnapSpeed * Time.fixedDeltaTime);
                 transform.position = new Vector2(newX, transform.position.y);
 
-                if (animator != null) animator.SetBool("IsMoving", Mathf.Abs(moveInput.y) > 0.1f);
+                if (animator != null)
+                {
+                    animator.SetBool("IsOnLadder", true);
+                    animator.SetBool("IsMoving", Mathf.Abs(moveInput.y) > 0.1f);
+                }
                 return;
             }
         }

@@ -129,26 +129,24 @@ public abstract class EnemyBase : MonoBehaviour
     // subclasses override this to cancel active attack animations/coroutines
     protected virtual void InterruptActiveAttack() { }
 
+    // optimized: ignores collisions directly from partymanager without expensive scene hierarchy searches
     protected void IgnorePartyCollisions()
     {
         Collider2D myCol = GetComponent<Collider2D>();
-        if (myCol == null) return;
+        if (myCol == null || PartyManager.Instance == null) return;
 
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        foreach (var p in players)
+        foreach (var member in PartyManager.Instance.partyMembers)
         {
-            foreach (var c in p.GetComponentsInChildren<Collider2D>())
+            if (member.spawnedInstance != null)
             {
-                Physics2D.IgnoreCollision(myCol, c, true);
-            }
-        }
-
-        GameObject[] allies = GameObject.FindGameObjectsWithTag("Ally");
-        foreach (var a in allies)
-        {
-            foreach (var c in a.GetComponentsInChildren<Collider2D>())
-            {
-                Physics2D.IgnoreCollision(myCol, c, true);
+                var colliders = member.spawnedInstance.GetComponentsInChildren<Collider2D>();
+                foreach (var c in colliders)
+                {
+                    if (c != null)
+                    {
+                        Physics2D.IgnoreCollision(myCol, c, true);
+                    }
+                }
             }
         }
     }
