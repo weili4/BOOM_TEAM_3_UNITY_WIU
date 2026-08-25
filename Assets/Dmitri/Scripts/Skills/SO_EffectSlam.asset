@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_EffectSlam
   m_EditorClassIdentifier: Assembly-CSharp::SO_EffectSlam
   groundImpactVFXPrefab: {fileID: 2754264475341354822, guid: 5f0730fb4cdad244ea99a6221e4731c6, type: 3}
-  damage: 20
+  damage: 30
   slamRadius: 1.5
   hitboxSpawnDelay: 0
   hitboxLifetime: 0

@@ -102,26 +102,21 @@ public class Damageable : MonoBehaviour
                 ScreenFlashUI.Instance.TriggerRedFlash();
             }
 
-            // Apply knockback through the generic velocity override on playercontroller
+            // apply knockback through the generic velocity override on playercontroller
             if (TryGetComponent<PlayerController>(out var controller))
             {
-                // Check if the "Flurry" bool parameter is active on the Animator
-                bool isFlurryActive = false;
-                if (controller.animator != null)
+                // Get animator reference from controller or children
+                Animator anim = controller.animator != null ? controller.animator : GetComponentInChildren<Animator>();
+
+                // Check if either "Flurry" or "Slam" boolean parameters are active
+                bool isKnockbackImmune = false;
+                if (anim != null)
                 {
-                    isFlurryActive = controller.animator.GetBool("Flurry");
-                }
-                else
-                {
-                    Animator anim = GetComponentInChildren<Animator>();
-                    if (anim != null)
-                    {
-                        isFlurryActive = anim.GetBool("Flurry");
-                    }
+                    isKnockbackImmune = anim.GetBool("Flurry") || anim.GetBool("Slam");
                 }
 
-                // Only apply knockback if NOT in Flurry state
-                if (!isFlurryActive && controller.gravityDirection.y < 0)
+                // ignore knockback on ceiling so player doesnt fall off, and ignore during immune animation states
+                if (!isKnockbackImmune && controller.gravityDirection.y < 0)
                 {
                     float dirX = Mathf.Sign(hitDirection.x);
                     if (Mathf.Abs(hitDirection.x) < 0.01f) dirX = -transform.localScale.x;
