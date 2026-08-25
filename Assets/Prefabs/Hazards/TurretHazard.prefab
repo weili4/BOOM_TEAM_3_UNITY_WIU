@@ -549,4 +549,4 @@ MonoBehaviour:
   firePoint: {fileID: 4159372150176892147}
   projectileSpeed: 11
   projectileDamage: 15
-  shootSFX: {fileID: 0}
+  shootSFX: {fileID: 8300000, guid: 1dff14a880845004f9fc0f338226d1c7, type: 3}

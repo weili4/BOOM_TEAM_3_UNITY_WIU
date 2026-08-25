@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
-using Unity.Cinemachine;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -20,7 +19,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Image cinematicPortraitImage;
     [SerializeField] private RectTransform cinematicPortraitRect;
     [SerializeField] private GameObject cinematicBackdrop;
-    [SerializeField] private float cinematicSlideOffsetY = 80f; // slides up from bottom by pixels
+    [SerializeField] private GameObject cinematicContinuePrompt; // continue arrow
+    [SerializeField] private float cinematicSlideOffsetY = 80f;
     [SerializeField] private float cinematicTransitionDuration = 0.22f;
 
     [Header("subtitle dialogue ui (right-to-left slide & fade)")]
@@ -30,7 +30,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TMP_Text subtitleNameText;
     [SerializeField] private TMP_Text subtitleSentenceText;
     [SerializeField] private Image subtitlePortraitImage;
-    [SerializeField] private float subtitleSlideOffsetX = 120f; // slides in from right
+    [SerializeField] private float subtitleSlideOffsetX = 140f; // slides in and exits to right
     [SerializeField] private float subtitleLineTransitionDuration = 0.18f;
 
     [Header("cinematic choice buttons")]
@@ -47,11 +47,12 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private float portraitSlideDistance = 24f;
     [SerializeField] private float portraitAnimDuration = 0.18f;
 
-    [Header("voice blip audio")]
-    [SerializeField] private AudioClip defaultVoiceBlip;
+    [Header("audio clips")]
+    [SerializeField] private AudioClip defaultVoiceBlip;   // typewriter audio blip
+    [SerializeField] private AudioClip cinematicStartSFX;  // sfx when cinematic mode starts
+    [SerializeField] private AudioClip subtitleStartSFX;   // sfx when subtitle mode starts
+    [SerializeField] private AudioClip nextLineSFX;        // sfx when advancing to next line
     [SerializeField] private AudioSource audioSource;
-
-    [SerializeField] private GameObject cinematicContinuePrompt; // the small arrow icon in the corner
 
     private List<DialogueLine> currentLines = new List<DialogueLine>();
     private int currentLineIndex = 0;
@@ -80,10 +81,24 @@ public class DialogueManager : MonoBehaviour
         else Destroy(gameObject);
 
         if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
 
         audioSource.playOnAwake = false;
         audioSource.spatialBlend = 0f;
+
+        // route local audio source to the sfx mixer group so volume sliders work
+        if (AudioManager.Instance != null)
+        {
+            // uses reflection or finds the sfx mixer group from audiomanager
+            var field = typeof(AudioManager).GetField("sfxMixerGroup", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            if (field != null && field.GetValue(AudioManager.Instance) is UnityEngine.Audio.AudioMixerGroup sfxGroup)
+            {
+                audioSource.outputAudioMixerGroup = sfxGroup;
+            }
+        }
 
         SaveRestingPositions();
     }
@@ -158,9 +173,11 @@ public class DialogueManager : MonoBehaviour
         onCompleteCallback = onComplete;
         lastDisplayedPortrait = null;
 
-        // 1. cinematic mode: bottom-to-up slide and fade in
+        // 1. cinematic mode: play start sfx, lock controls, hide hud, slide up from bottom
         if (isCinematic)
         {
+            PlaySFX(cinematicStartSFX);
+
             LockPlayerControls(true);
             PartyHUD.Instance?.HideHUD();
             if (abilitiesPanel != null) abilitiesPanel.SetActive(false);
@@ -172,9 +189,11 @@ public class DialogueManager : MonoBehaviour
 
             StartCoroutine(AnimateCinematicEnter());
         }
-        // 2. subtitle mode: right-to-left slide
+        // 2. subtitle mode: play subtitle start sfx, keep controls and hud visible
         else
         {
+            PlaySFX(subtitleStartSFX);
+
             LockPlayerControls(false);
 
             if (cinematicRoot != null) cinematicRoot.SetActive(false);
@@ -194,7 +213,6 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        // hide prompt while new line is starting
         if (cinematicContinuePrompt != null)
         {
             cinematicContinuePrompt.SetActive(false);
@@ -206,12 +224,6 @@ public class DialogueManager : MonoBehaviour
         {
             if (cinematicNameText != null) cinematicNameText.text = line.speakerName;
             UpdateCinematicPortrait(line.speakerPortrait);
-
-            if (line.enableCameraShake)
-            {
-                CinemachineImpulseSource impulse = GetComponent<CinemachineImpulseSource>();
-                if (impulse != null) impulse.GenerateImpulse(line.shakeForce);
-            }
 
             if (typingRoutine != null) StopCoroutine(typingRoutine);
             typingRoutine = StartCoroutine(TypeSentenceRoutine(line, cinematicSentenceText));
@@ -296,7 +308,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        // 2. update subtitle text and portrait while hidden
+        // 2. update subtitle text and portrait
         if (subtitleNameText != null) subtitleNameText.text = line.speakerName;
         UpdateSubtitlePortrait(line.speakerPortrait);
 
@@ -324,9 +336,35 @@ public class DialogueManager : MonoBehaviour
         if (subtitleRootRect != null) subtitleRootRect.anchoredPosition = targetPos;
         if (subtitleCanvasGroup != null) subtitleCanvasGroup.alpha = 1f;
 
-        // 4. start typewriter for subtitle
+        // 4. start typewriter
         if (typingRoutine != null) StopCoroutine(typingRoutine);
         typingRoutine = StartCoroutine(TypeSentenceRoutine(line, subtitleSentenceText));
+    }
+
+    private IEnumerator AnimateSubtitleExit()
+    {
+        if (subtitleRootRect == null) yield break;
+
+        // slide off the screen to the right while fading out
+        Vector2 startPos = subtitleRestingPos;
+        Vector2 targetPos = subtitleRestingPos + new Vector2(subtitleSlideOffsetX, 0f);
+
+        float elapsed = 0f;
+
+        while (elapsed < subtitleLineTransitionDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / subtitleLineTransitionDuration);
+            float smooth = t * t;
+
+            subtitleRootRect.anchoredPosition = Vector2.Lerp(startPos, targetPos, smooth);
+            if (subtitleCanvasGroup != null) subtitleCanvasGroup.alpha = Mathf.Lerp(1f, 0f, smooth);
+
+            yield return null;
+        }
+
+        subtitleRootRect.anchoredPosition = subtitleRestingPos;
+        if (subtitleCanvasGroup != null) subtitleCanvasGroup.alpha = 0f;
     }
 
     private void UpdateCinematicPortrait(Sprite newPortrait)
@@ -355,6 +393,11 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator AnimatePortraitEntry()
     {
         if (cinematicPortraitRect == null || cinematicPortraitImage == null) yield break;
+
+        if (!hasSavedPositions)
+        {
+            portraitRestingPos = cinematicPortraitRect.anchoredPosition;
+        }
 
         Vector2 startPos = portraitRestingPos + new Vector2(-portraitSlideDistance, 0f);
         Vector2 targetPos = portraitRestingPos;
@@ -404,7 +447,6 @@ public class DialogueManager : MonoBehaviour
     {
         isTyping = true;
         targetText.text = "";
-        if (cinematicContinuePrompt != null) cinematicContinuePrompt.SetActive(false);
 
         float speed = line.typingSpeed > 0f ? line.typingSpeed : 0.03f;
         int soundCounter = 0;
@@ -413,13 +455,20 @@ public class DialogueManager : MonoBehaviour
         {
             targetText.text += line.sentence[i];
 
+            // voice blip routed through sfx mixer
             if (line.sentence[i] != ' ' && soundCounter % 2 == 0)
             {
-                AudioClip blip = line.voiceBlipSFX != null ? line.voiceBlipSFX : defaultVoiceBlip;
-                if (blip != null && audioSource != null)
+                if (defaultVoiceBlip != null)
                 {
-                    audioSource.pitch = Random.Range(0.95f, 1.05f);
-                    audioSource.PlayOneShot(blip, 0.6f);
+                    if (AudioManager.Instance != null)
+                    {
+                        AudioManager.Instance.PlaySFX(defaultVoiceBlip, transform.position, 0.6f);
+                    }
+                    else if (audioSource != null)
+                    {
+                        audioSource.pitch = Random.Range(0.95f, 1.05f);
+                        audioSource.PlayOneShot(defaultVoiceBlip, 0.6f);
+                    }
                 }
             }
 
@@ -436,7 +485,6 @@ public class DialogueManager : MonoBehaviour
         {
             ShowChoices(line);
         }
-        // show continue prompt icon when line is fully typed in cinematic mode
         else if (isCinematic)
         {
             if (cinematicContinuePrompt != null)
@@ -448,7 +496,17 @@ public class DialogueManager : MonoBehaviour
         {
             float readDelay = Mathf.Max(1.8f, line.sentence.Length * 0.05f);
             yield return new WaitForSeconds(readDelay);
-            AdvanceToNextLine();
+
+            // if this was the last line, slide off to the right before ending
+            if (currentLineIndex + 1 >= currentLines.Count)
+            {
+                yield return StartCoroutine(AnimateSubtitleExit());
+                EndDialogue();
+            }
+            else
+            {
+                AdvanceToNextLine();
+            }
         }
     }
 
@@ -480,6 +538,8 @@ public class DialogueManager : MonoBehaviour
 
     private void AdvanceToNextLine()
     {
+        PlaySFX(nextLineSFX);
+
         if (cinematicContinuePrompt != null)
         {
             cinematicContinuePrompt.SetActive(false);
@@ -513,6 +573,8 @@ public class DialogueManager : MonoBehaviour
 
     private void OnChoiceSelected(int jumpToIndex)
     {
+        PlaySFX(nextLineSFX);
+
         isWaitingForChoice = false;
         if (choiceContainer != null) choiceContainer.SetActive(false);
 
@@ -536,7 +598,6 @@ public class DialogueManager : MonoBehaviour
 
         if (isCinematic)
         {
-            // slide down and fade out before disabling
             StartCoroutine(AnimateCinematicExit(() =>
             {
                 HideAllDialogueUI();
@@ -564,6 +625,21 @@ public class DialogueManager : MonoBehaviour
         {
             controller.isInputLocked = locked;
             if (locked) controller.ClearForcedVelocity();
+        }
+    }
+
+    private void PlaySFX(AudioClip clip)
+    {
+        if (clip == null) return;
+
+        // route through audio manager to obey mixer groups
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(clip, transform.position, 1.0f);
+        }
+        else if (audioSource != null)
+        {
+            audioSource.PlayOneShot(clip);
         }
     }
 }

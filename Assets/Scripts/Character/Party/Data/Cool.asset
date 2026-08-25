@@ -22,10 +22,10 @@ MonoBehaviour:
   maxJumps: 1
   baseAttackDamage: 10
   animatorController: {fileID: 9100000, guid: 464d0f0a9d73ca945811f4e9be23959f, type: 2}
-  switchInSound: {fileID: 0}
-  jumpSound: {fileID: 0}
-  attackSound: {fileID: 0}
-  hitSound: {fileID: 0}
+  switchInSound: {fileID: 8300000, guid: a70ca0c8be6693e4e9ec42a5087a9039, type: 3}
+  jumpSound: {fileID: 8300000, guid: f10045156110c744591920ad67938199, type: 3}
+  attackSound: {fileID: 8300000, guid: 55c99531e04aa2f44928b2008003fff8, type: 3}
+  hitSound: {fileID: 8300000, guid: ab727eae0284a4f4c8d211d83b1f8dda, type: 3}
   deathSound: {fileID: 0}
   switchVFXPrefab: {fileID: 5299204820297015541, guid: f23aa577ad7d3584994308934b17150b, type: 3}
   attackVFXPrefab: {fileID: 1792412140663129171, guid: 3bcb4c6972706e146a4148ab7ec17180, type: 3}
