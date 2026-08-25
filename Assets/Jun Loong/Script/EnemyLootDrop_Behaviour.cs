@@ -35,13 +35,17 @@ public class EnemyLootDrop_Behaviour : MonoBehaviour
                 }
             }
 
-            Vector2 SpawnItemLocation = new Vector2(transform.position.x, transform.position.y + 0.50f);
-
-            GameObject ItemDrop = Instantiate(ItemToSpawn, SpawnItemLocation, Quaternion.identity);
-            if (ItemDrop.TryGetComponent<Item>(out Item itemScript))
+            if(!ItemFound)
             {
-                itemScript.StartLaunchEffect(true);
+                Vector2 SpawnItemLocation = new Vector2(transform.position.x, transform.position.y + 0.50f);
+
+                GameObject ItemDrop = Instantiate(ItemToSpawn, SpawnItemLocation, Quaternion.identity);
+                if (ItemDrop.TryGetComponent<Item>(out Item itemScript))
+                {
+                    itemScript.StartLaunchEffect(true);
+                }
             }
+
         }
     }
 }
