@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: SO_Ability3_Gliding
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
   abilityName: Gliding
-  abilityDescription: Glides :|
+  abilityDescription: Actvates a drone to glide down at reduced falling speed. Can
+    be activated continuosly while ability is in effect
   icon: {fileID: 3465286685962602723, guid: bfdbd5bb9037b2348a5eea9d2a79a7f8, type: 3}
   cooldownTime: 15
   activeDuration: 10

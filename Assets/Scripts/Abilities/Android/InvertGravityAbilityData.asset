@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: InvertGravityAbilityData
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
   abilityName: Invert Gravity
-  abilityDescription: Invert Gravity description
-  icon: {fileID: 0}
+  abilityDescription: Invert Android's gravity, allowing you to walk on and fall
+    towards the celing
+  icon: {fileID: 5543483578010081440, guid: 9b92b9ec454aa0149af04b957f9cc94c, type: 3}
   cooldownTime: 1
   activeDuration: 0
   activationSound: {fileID: 8300000, guid: 7a5127a818e2f70439446c72b69ea7f3, type: 3}

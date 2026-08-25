@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_Ability2_WindDash
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
   abilityName: WindDash
-  abilityDescription: Quick air dash in all directions
+  abilityDescription: Quick air dash in any direction
   icon: {fileID: -7662056497505000647, guid: ed2f8980132668341bdbdb3db4df62c2, type: 3}
   cooldownTime: 3
   activeDuration: 2

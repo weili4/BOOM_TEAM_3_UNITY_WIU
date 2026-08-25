@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: OverloadAbility
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
   abilityName: Overload
-  abilityDescription: Boosts speed
-  icon: {fileID: -855298285791758126, guid: 01b0ed824e7e6a7449c35567b98d2858, type: 3}
+  abilityDescription: After a short delay, boosts Android's movement and punching
+    speed
+  icon: {fileID: -5091407332089084351, guid: 6c5df921e76e38b44a56ca53f2e2bf5b, type: 3}
   cooldownTime: 12
   activeDuration: 12
-  activationSound: {fileID: 0}
+  activationSound: {fileID: 8300000, guid: c6f0554b57a54dd4a9bedf91e75aa703, type: 3}
   vfxPrefab: {fileID: 0}
   effectLogic: {fileID: 11400000, guid: 0f0fc4b5eef5cc44490db1ed816339df, type: 2}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_Ability1_SummonGun
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
   abilityName: SummonGun
-  abilityDescription: Summon Gun to help Shoot at Enemy Targets
+  abilityDescription: Summon floating guns to help shoot at enemy targets
   icon: {fileID: -2494067699363254937, guid: 5e421ce921c1bdc46ba08912f4beeda3, type: 3}
   cooldownTime: 11
   activeDuration: 10

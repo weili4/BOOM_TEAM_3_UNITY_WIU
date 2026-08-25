@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemData: {fileID: 11400000, guid: c98f79870f0b5474cb4db7132709eaf5, type: 2}
-  itemEffect: {fileID: 11400000, guid: 020bf749a41410b4493c69cf3035c5f9, type: 2}
+  itemEffect: {fileID: 11400000, guid: ea291a7a428cdf94884d5dbba13543ad, type: 2}
   magnetRadius: 0.85
   loseMagnetDistance: 0.25
   magnetSpeed: 2.5

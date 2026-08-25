@@ -15,7 +15,7 @@ MonoBehaviour:
   abilityName: Slam
   abilityDescription: Deals AOE damage when landing. Leap into the air while grounded,
     slamming towards the ground afterwards.
-  icon: {fileID: -2966200626249415253, guid: f6c05ce37c8110b4781d612190676042, type: 3}
+  icon: {fileID: -5618221534464610094, guid: 1181444d3c5c3524a970dd83dd3eac42, type: 3}
   cooldownTime: 3
   activeDuration: 0
   activationSound: {fileID: 8300000, guid: 9ebd7ae1a51270b4c8f19d0bb600d441, type: 3}

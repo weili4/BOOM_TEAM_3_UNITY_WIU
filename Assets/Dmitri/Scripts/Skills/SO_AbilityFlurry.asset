@@ -15,7 +15,7 @@ MonoBehaviour:
   abilityName: Flurry
   abilityDescription: Enter a Flurry Stance, dealing a rapid amount damage while
     reducing incoming damage.
-  icon: {fileID: -855298285791758126, guid: 01b0ed824e7e6a7449c35567b98d2858, type: 3}
+  icon: {fileID: 5931275240766778604, guid: dfd0578dd9c882944a7e1b2bf794ede3, type: 3}
   cooldownTime: 4
   activeDuration: 0
   activationSound: {fileID: 8300000, guid: 1129075c50e008346a668fe7f0a0c6a0, type: 3}

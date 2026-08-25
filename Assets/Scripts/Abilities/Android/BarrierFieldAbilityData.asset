@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: BarrierFieldAbilityData
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
   abilityName: Barrier Field
-  abilityDescription: 'Generates a barrier around you that blocks enemy projectiles '
-  icon: {fileID: -9072135966424520097, guid: e271fda5da90b2f4d8243272715f372a, type: 3}
+  abilityDescription: 'Places a barrier around you that blocks enemy projectiles '
+  icon: {fileID: 3735724242589740657, guid: 50ebab9daec1f4343b2721daaf1bd9e9, type: 3}
   cooldownTime: 15
   activeDuration: 10
-  activationSound: {fileID: 0}
+  activationSound: {fileID: 8300000, guid: fff8402d42009134993270077b1fa8b3, type: 3}
   vfxPrefab: {fileID: 0}
   effectLogic: {fileID: 11400000, guid: ad941afb38f09a3488cb00cd1d79f43c, type: 2}
