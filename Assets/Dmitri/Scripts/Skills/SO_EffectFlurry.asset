@@ -15,7 +15,7 @@ MonoBehaviour:
   skillDuration: 2
   tickInterval: 0.15
   moveSpeedMultiplier: 0.2
-  incomingDamageMultiplier: 0.8
+  incomingDamageMultiplier: 0.5
   damagePerTick: 10
   hitBoxSize: {x: 2.5, y: 1.5}
   hitBoxOffset: {x: 0.5, y: 0}
