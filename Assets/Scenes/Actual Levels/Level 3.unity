@@ -702,11 +702,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[0].sentence
-      value: Saws! Holy moly!
+      value: Giant saws?! It's like a lumberyard in here.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[1].sentence
-      value: Uh.. or my dash?
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[2].sentence
@@ -763,7 +763,7 @@ PrefabInstance:
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[0].speakerPortrait
       value: 
-      objectReference: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
+      objectReference: {fileID: 4234707992101219148, guid: f8880812527228a49878838aaa75946a, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[1].speakerPortrait
       value: 
@@ -37459,84 +37459,84 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.size
-      value: 19
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[0].sentence
-      value: We are in.
+      value: We're in.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[1].sentence
-      value: ...Bro, where even are we?
+      value: So dark! Where are we?
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[2].sentence
-      value: Unknown. Power output readings are -
+      value: That would be because of your sunglasses.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[3].sentence
-      value: '- hold on.'
+      value: So.... Where are we anyways?
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[4].sentence
-      value: What?
+      value: Unknown. No records exist of this space within my database.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[5].sentence
-      value: That's never a good "hold on."
+      value: However, I am detecting substantial power surges in the area.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[6].sentence
-      value: This entire chamber is active. Drawing current from an external source.
+      value: It appears a large amount of power stations are active here.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[7].sentence
-      value: From what? There's nothing plugged in.
+      value: 10 bucks says none of that power's going to the citizens.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[8].sentence
-      value: The power station. Outside.
+      value: Looks like thats where we need to go.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[9].sentence
-      value: So this whole ancient death chamber's been jacking Singapore's electricity
-        bill.
+      value: Scans also indicate a presence of bioloigical forms.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[10].sentence
-      value: Bro's been stealing wifi for like a hundreds of years.
+      value: Likely human security.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[11].sentence
-      value: I do not have wifi.
+      value: Heh. TIme for some action.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[12].sentence
-      value: It's not that deep, broski.
+      value: Negative. This is a highly advanced visor with built in infrared, profiling-
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[13].sentence
-      value: I do not understand "broski." Is that a designation?
+      value: 'Well mine are definitely cooler than yours '
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[14].sentence
-      value: Kind of? It's like... a term of endearment. For a bro.
+      value: Huh? From where?
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[15].sentence
-      value: I am now processing "broski" as an affectionate term.
+      value: In addition, I am also detecting smaller energy signatures on the path
+        ahead
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[16].sentence
-      value: Broski.
+      value: The power surges are more intense in the space ahead.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[17].sentence
-      value: ...Okay that's actually kinda fire.
+      value: Lets get a move on
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[18].sentence
-      value: We turned him into a whole meme in under a minute.
+      value: Lets get a move on
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[0].shakeForce
@@ -37588,7 +37588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[0].speakerName
-      value: Android
+      value: Barbara
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[10].shakeForce
@@ -37612,15 +37612,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[3].speakerName
-      value: Android
-      objectReference: {fileID: 0}
-    - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
-      propertyPath: dialogueLines.Array.data[4].speakerName
       value: Barbara
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
+      propertyPath: dialogueLines.Array.data[4].speakerName
+      value: Android
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[5].speakerName
-      value: Cool
+      value: Android
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[6].speakerName
@@ -37628,31 +37628,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[7].speakerName
-      value: Barbara
+      value: Cool
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[8].speakerName
-      value: Android
-      objectReference: {fileID: 0}
-    - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
-      propertyPath: dialogueLines.Array.data[9].speakerName
       value: Barbara
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
+      propertyPath: dialogueLines.Array.data[9].speakerName
+      value: Android
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[10].speakerName
-      value: Cool
+      value: Android
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[11].speakerName
-      value: Android
-      objectReference: {fileID: 0}
-    - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
-      propertyPath: dialogueLines.Array.data[12].speakerName
       value: Cool
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
-      propertyPath: dialogueLines.Array.data[13].speakerName
+      propertyPath: dialogueLines.Array.data[12].speakerName
       value: Android
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
+      propertyPath: dialogueLines.Array.data[13].speakerName
+      value: Cool
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[14].speakerName
@@ -37668,7 +37668,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[17].speakerName
-      value: Cool
+      value: Barbara
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[18].speakerName
@@ -37677,7 +37677,7 @@ PrefabInstance:
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[0].speakerPortrait
       value: 
-      objectReference: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
+      objectReference: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[1].speakerPortrait
       value: 
@@ -37689,15 +37689,15 @@ PrefabInstance:
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[3].speakerPortrait
       value: 
-      objectReference: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
+      objectReference: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[4].speakerPortrait
       value: 
-      objectReference: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
+      objectReference: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[5].speakerPortrait
       value: 
-      objectReference: {fileID: 4234707992101219148, guid: f8880812527228a49878838aaa75946a, type: 3}
+      objectReference: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[6].speakerPortrait
       value: 
@@ -37705,31 +37705,31 @@ PrefabInstance:
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[7].speakerPortrait
       value: 
-      objectReference: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
+      objectReference: {fileID: 4234707992101219148, guid: f8880812527228a49878838aaa75946a, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[8].speakerPortrait
       value: 
-      objectReference: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
+      objectReference: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[9].speakerPortrait
       value: 
-      objectReference: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
+      objectReference: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[10].speakerPortrait
       value: 
-      objectReference: {fileID: 4234707992101219148, guid: f8880812527228a49878838aaa75946a, type: 3}
+      objectReference: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[11].speakerPortrait
       value: 
-      objectReference: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
+      objectReference: {fileID: 4234707992101219148, guid: f8880812527228a49878838aaa75946a, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[12].speakerPortrait
       value: 
-      objectReference: {fileID: 4234707992101219148, guid: f8880812527228a49878838aaa75946a, type: 3}
+      objectReference: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[13].speakerPortrait
       value: 
-      objectReference: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
+      objectReference: {fileID: 4234707992101219148, guid: f8880812527228a49878838aaa75946a, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[14].speakerPortrait
       value: 
@@ -37745,7 +37745,7 @@ PrefabInstance:
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[17].speakerPortrait
       value: 
-      objectReference: {fileID: 4234707992101219148, guid: f8880812527228a49878838aaa75946a, type: 3}
+      objectReference: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[18].speakerPortrait
       value: 
@@ -40324,23 +40324,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[2].sentence
-      value: Power signature's getting stronger the deeper we go.
+      value: I'm reading a substantial power surging ahead
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[3].sentence
-      value: Cool. Cool cool cool. Love that.
+      value: A power station?
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[4].sentence
-      value: You good?
+      value: No way they can fit one in here.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[5].sentence
-      value: Totally. Fine. Let's just, keep moving.
+      value: That much power comin' together can't be good.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[6].sentence
-      value: Affirmative.
+      value: Affirmative. It's likely the power may be fueling a device.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[7].sentence
@@ -41289,7 +41289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[0].sentence
-      value: Use my invert gravity?
+      value: Use my gravity inversion!
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[1].sentence
@@ -43023,7 +43023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.size
-      value: 12
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[0].sentence
@@ -43031,39 +43031,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[1].sentence
-      value: Maybe I can dash?
+      value: Maybe I can dash up there?
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[2].sentence
-      value: Negative. It is too high for you.
+      value: You could, but I have a more intuitive solution.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[3].sentence
-      value: And my readings shows you are too afraid.
+      value: What do you suggest we do then Android?
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[4].sentence
-      value: W-what? H-how do you even know that?
+      value: I have recently installed a new module allowing me to invert my gravity
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[5].sentence
-      value: Damn.
+      value: It will bring us up there.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[6].sentence
-      value: Um ok? What do you suggest we do then? uhh... Android?
+      value: Damn.
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[7].sentence
-      value: I will invert gravity.
+      value: It'll be far more efficient than yours
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[8].sentence
-      value: What?
+      value: W-what? H-how do you even know that?
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[9].sentence
-      value: It will bring us up there.
+      value: What?
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[10].sentence
@@ -43071,7 +43071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[11].sentence
-      value: Let's go.
+      value: ...
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[1].hasChoices
@@ -43099,19 +43099,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[3].speakerName
-      value: Android
+      value: Barbara
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[4].speakerName
-      value: Barbara
+      value: Android
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[5].speakerName
-      value: Cool
+      value: Android
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[6].speakerName
-      value: Barbara
+      value: Cool
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[7].speakerName
@@ -43123,7 +43123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[9].speakerName
-      value: Android
+      value: Barbara
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[10].speakerName
@@ -43131,7 +43131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[11].speakerName
-      value: Cool
+      value: Barbara
       objectReference: {fileID: 0}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[1].speakerPortrait
@@ -43144,19 +43144,19 @@ PrefabInstance:
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[3].speakerPortrait
       value: 
-      objectReference: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
+      objectReference: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[4].speakerPortrait
       value: 
-      objectReference: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
+      objectReference: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[5].speakerPortrait
       value: 
-      objectReference: {fileID: 4234707992101219148, guid: f8880812527228a49878838aaa75946a, type: 3}
+      objectReference: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[6].speakerPortrait
       value: 
-      objectReference: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
+      objectReference: {fileID: 4234707992101219148, guid: f8880812527228a49878838aaa75946a, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[7].speakerPortrait
       value: 
@@ -43168,7 +43168,7 @@ PrefabInstance:
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[9].speakerPortrait
       value: 
-      objectReference: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
+      objectReference: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[10].speakerPortrait
       value: 
@@ -43176,7 +43176,7 @@ PrefabInstance:
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[11].speakerPortrait
       value: 
-      objectReference: {fileID: 4234707992101219148, guid: f8880812527228a49878838aaa75946a, type: 3}
+      objectReference: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
     - target: {fileID: 3169902739311595065, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: dialogueLines.Array.data[1].enableCameraShake
       value: 1

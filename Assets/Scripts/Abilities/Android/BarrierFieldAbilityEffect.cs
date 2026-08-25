@@ -12,10 +12,8 @@ public class BarrierFieldAbilityEffect : AbilityEffect
     {
         if (shieldPrefab == null || user == null) return;
 
-        // Spawn dome at player position
         activeShield = Instantiate(shieldPrefab, user.transform.position, Quaternion.identity);
 
-        // Pass duration to shield script
         if (activeShield.TryGetComponent<ShieldDome>(out var dome))
         {
             dome.Invoke("DestroySelf", domeDuration);
