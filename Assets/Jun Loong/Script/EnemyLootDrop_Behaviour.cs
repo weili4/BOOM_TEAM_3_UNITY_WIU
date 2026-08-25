@@ -35,7 +35,7 @@ public class EnemyLootDrop_Behaviour : MonoBehaviour
                 }
             }
 
-            if(!ItemFound)
+            if(ItemFound)
             {
                 Vector2 SpawnItemLocation = new Vector2(transform.position.x, transform.position.y + 0.50f);
 
