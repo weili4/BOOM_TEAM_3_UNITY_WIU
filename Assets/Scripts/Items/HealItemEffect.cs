@@ -16,8 +16,8 @@ public class HealItemEffect : ItemEffect
 
     public override string GetEffectValue()
     {
-        string EffectValue = "Heal " + 30 + " HP ";
-        return EffectValue;
+        string EffectText = "Heal " + healAmount + " HP ";
+        return EffectText;
         //return string.Empty; // Please Change to the item Effect Value with Text
     }
 }

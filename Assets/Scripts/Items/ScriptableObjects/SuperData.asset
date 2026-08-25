@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fd7c8d47e66fa4088fda084d5dcb3a, type: 3}
   m_Name: SuperData
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: Super Attack
+  itemName: Combat Stimulant
   itemImage: {fileID: -2587732079380169435, guid: 6b7982ac53de00343a0898debcc31d45, type: 3}
-  cooldownTime: 15
+  cooldownTime: 0
   useSound: {fileID: 8300000, guid: 3d40b3279f3567a49998b3e2d678bd20, type: 3}
-  itemDescription: 
+  itemDescription: Overloads the brain with battle hormones, temporarily increasing
+    damage
   UseableItem: 1

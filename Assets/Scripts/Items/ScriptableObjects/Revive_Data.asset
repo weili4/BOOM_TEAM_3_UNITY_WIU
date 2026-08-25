@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0fd7c8d47e66fa4088fda084d5dcb3a, type: 3}
-  m_Name: SpeedData
+  m_Name: Revive_Data
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: Adrenaline Injector
-  itemImage: {fileID: 4074175187089551160, guid: 6b7982ac53de00343a0898debcc31d45, type: 3}
+  itemName: Revive Item
+  itemImage: {fileID: -6107844776892923464, guid: 6b7982ac53de00343a0898debcc31d45, type: 3}
   cooldownTime: 0
-  useSound: {fileID: 8300000, guid: d246d66ac40b43f44a7d4b333eec0d37, type: 3}
-  itemDescription: Biotic Booster improves muscle reaction and stamina, allowing
-    the user to move significantly faster.
+  useSound: {fileID: 0}
+  itemDescription: What do you expect it revives
   UseableItem: 1

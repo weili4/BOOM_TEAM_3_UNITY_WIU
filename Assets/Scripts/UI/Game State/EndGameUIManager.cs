@@ -212,7 +212,7 @@ public class EndGameUIManager : MonoBehaviour
         // 2. revive all party members and reset hp
         if (PartyManager.Instance != null)
         {
-            PartyManager.Instance.ReviveAllDead(1.0f);
+            PartyManager.Instance.ReviveAllDead(1.0f, false);
         }
 
         // 3. restore gameplay hud

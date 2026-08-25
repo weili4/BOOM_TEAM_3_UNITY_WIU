@@ -5,15 +5,14 @@ public class ResetCooldownsItemEffect : ItemEffect
 {
     public override void Use(GameObject user)
     {
-        // call reset on ability controller
-        if (user.TryGetComponent<AbilityController>(out AbilityController abilities))
-        {
-            abilities.ResetAllAbilityCooldowns();
-        }
+        PartyManager.Instance.ActiveMember.cooldownQ = 0;
+        PartyManager.Instance.ActiveMember.cooldownE = 0;
+        PartyManager.Instance.ActiveMember.cooldownR = 0;
     }
 
     public override string GetEffectValue()
     {
-        return string.Empty; // Ignoring the Value
+        string EffectText = "Resets all ability cooldowns";
+        return EffectText;
     }
 }
