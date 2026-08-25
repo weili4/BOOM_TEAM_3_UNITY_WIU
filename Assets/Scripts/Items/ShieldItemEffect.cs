@@ -16,6 +16,7 @@ public class ShieldItemEffect : ItemEffect
 
     public override string GetEffectValue()
     {
-        return string.Empty; // Please Change to the item Effect Value with Text
+        string EffectText = "Immune to damage for " + invulnerableTime + "s";
+        return EffectText;
     }
 }

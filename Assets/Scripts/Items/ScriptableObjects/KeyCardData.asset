@@ -16,5 +16,6 @@ MonoBehaviour:
   itemImage: {fileID: -5939243946031567093, guid: 6f769d60fc25eec41a2c4f31762e3587, type: 3}
   cooldownTime: 0
   useSound: {fileID: 8300000, guid: 22049c43eeda36343b510d4192727948, type: 3}
-  itemDescription: Testing Keycard.............................................................
+  itemDescription: Unlocks restricted facility doors and objective zones across the
+    map.
   UseableItem: 0

@@ -431,11 +431,11 @@ public class PartyManager : MonoBehaviour
     }
 
 
-    public void ReviveAllDead(float healthPercent = 1.0f)
+    public void ReviveAllDead(float healthPercent = 1.0f , bool IsIgnoreSpawnPoint = false)
     {
         // safe respawn location
         Vector3 respawnPos = transform.position;
-        if (ChunkManager.CurrentSpawnPoint != null)
+        if (!IsIgnoreSpawnPoint && ChunkManager.CurrentSpawnPoint != null)
         {
             respawnPos = ChunkManager.CurrentSpawnPoint.position;
         }

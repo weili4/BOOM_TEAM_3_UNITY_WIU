@@ -134,14 +134,16 @@ public class Inventory_Ui_Behaviour : MonoBehaviour
     /*===================================================================================================================*/
     public void OnSelectedItemUse()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null && inventory != null && selectedItemIndex != -1)
+        if (PartyManager.Instance != null && PartyManager.Instance.ActivePlayerObj != null)
         {
-            if (inventory.itemStacks[selectedItemIndex].itemData.UseableItem == true)
+            if (inventory != null && selectedItemIndex != -1)
             {
-                inventory.UseItemStack(selectedItemIndex, player);
+                if (inventory.itemStacks[selectedItemIndex].itemData.UseableItem == true)
+                {
+                    inventory.UseItemStack(selectedItemIndex, PartyManager.Instance.ActivePlayerObj);
+                }
+                ClearSelection();
             }
-            ClearSelection();
         }
     }
     /*===================================================================================================================*/

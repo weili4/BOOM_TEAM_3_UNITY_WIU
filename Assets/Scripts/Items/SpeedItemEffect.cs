@@ -29,7 +29,7 @@ public class SpeedItemEffect : ItemEffect
     public override string GetEffectValue()
     {
         float percent = (speedMultiplier - 1f) * 100f;
-        string text = "Speed increased by " + percent + "% for " + duration + "s";
-        return text;
+        string EffectText = "Speed increased by " + percent + "% for " + duration + "s";
+        return EffectText;
     }
 }
