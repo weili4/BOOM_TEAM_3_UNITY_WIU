@@ -15,7 +15,7 @@ MonoBehaviour:
   abilityName: Gliding
   abilityDescription: Actvates a drone to glide down at reduced falling speed. Can
     be activated continuosly while ability is in effect
-  icon: {fileID: 3465286685962602723, guid: bfdbd5bb9037b2348a5eea9d2a79a7f8, type: 3}
+  icon: {fileID: 5336064454344782175, guid: 6b05d1d8b71d9274db0462f2aa3b90c3, type: 3}
   cooldownTime: 15
   activeDuration: 10
   activationSound: {fileID: 8300000, guid: 0ca7f73ea9cb94649afcd94e15a996b8, type: 3}

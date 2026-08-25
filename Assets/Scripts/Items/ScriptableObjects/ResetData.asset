@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Neural Rebooter
   itemImage: {fileID: -8821839013989538729, guid: 6b7982ac53de00343a0898debcc31d45, type: 3}
-  cooldownTime: 10
+  cooldownTime: 0
   useSound: {fileID: 8300000, guid: 14b572dce26b4cd4f8dc20fdfdfc6910, type: 3}
   itemDescription: Instantly clears all active ability cooldowns by sending a short
     electrical pulse through the body.
