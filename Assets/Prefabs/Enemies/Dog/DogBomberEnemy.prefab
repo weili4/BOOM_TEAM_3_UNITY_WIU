@@ -317,7 +317,7 @@ MonoBehaviour:
   wallCheckDistance: 2
   closeFuseDistance: 1.2
   explosionRadius: 2
-  explosionDamage: 45
+  explosionDamage: 12
   fuseDuration: 1
   fadeOutDuration: 0.3
   warningCircleRoot: {fileID: 5925535380913855473}

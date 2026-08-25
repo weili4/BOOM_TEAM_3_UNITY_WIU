@@ -199,7 +199,6 @@ GameObject:
   - component: {fileID: 4374732520267605221}
   - component: {fileID: 8514256587910110196}
   - component: {fileID: 9094995035554072988}
-  - component: {fileID: 1430555941693390007}
   m_Layer: 0
   m_Name: Gate
   m_TagString: Untagged
@@ -402,18 +401,3 @@ MonoBehaviour:
     DissipationDistance: 100
     PropagationSpeed: 343
   DefaultVelocity: {x: 0, y: -2, z: 0}
---- !u!114 &1430555941693390007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7981973806171692222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e91f2d2c2caab624a8464ca3ea7d3744, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpriteShadowBackdrop
-  shadowOffset: {x: 4, y: -4}
-  shadowColor: {r: 0.04, g: 0.06, b: 0.09, a: 0.6}
-  spriteSortingOrderOffset: -1

@@ -105,8 +105,18 @@ public class Damageable : MonoBehaviour
             // apply knockback through the generic velocity override on playercontroller
             if (TryGetComponent<PlayerController>(out var controller))
             {
-                // ignore knockback on ceiling so player doesnt fall off
-                if (controller.gravityDirection.y < 0)
+                // Get animator reference from controller or children
+                Animator anim = controller.animator != null ? controller.animator : GetComponentInChildren<Animator>();
+
+                // Check if either "Flurry" or "Slam" boolean parameters are active
+                bool isKnockbackImmune = false;
+                if (anim != null)
+                {
+                    isKnockbackImmune = anim.GetBool("Flurry") || anim.GetBool("Slam");
+                }
+
+                // ignore knockback on ceiling so player doesnt fall off, and ignore during immune animation states
+                if (!isKnockbackImmune && controller.gravityDirection.y < 0)
                 {
                     float dirX = Mathf.Sign(hitDirection.x);
                     if (Mathf.Abs(hitDirection.x) < 0.01f) dirX = -transform.localScale.x;

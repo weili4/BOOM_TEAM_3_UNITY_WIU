@@ -998,7 +998,7 @@ MonoBehaviour:
   ItemStatText: {fileID: 4259099631995127996}
   UseBtn: {fileID: 3551370021496041978}
   MaxItemText: {fileID: 8003546766637364522}
-  MoveItemIcon: {fileID: 7294443605767405073}
+  MoveItemIcon: {fileID: 1391336130680770639}
 --- !u!225 &6035773042971749564
 CanvasGroup:
   m_ObjectHideFlags: 0

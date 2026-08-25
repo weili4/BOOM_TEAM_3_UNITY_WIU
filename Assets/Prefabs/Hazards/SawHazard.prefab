@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee6e6a9c6416104da76e8e431386de8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovingSaw
-  contactDamage: 20
+  contactDamage: 7
   knockbackForce: 7
   screenShakeForce: 0.8
   hitSound: {fileID: 8300000, guid: c6dd7bc8b4b87ce469771a7149c274d3, type: 3}

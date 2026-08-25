@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b9d2aee7c15804680209f8cfee4f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GravityBomb
-  damage: 35
+  damage: 8
   explosionRadius: 2.4
   hitLayers:
     serializedVersion: 2
@@ -177,5 +177,5 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  explodeSFX: {fileID: 0}
-  explosionVFX: {fileID: 0}
+  explodeSFX: {fileID: 8300000, guid: 03f91a75a3aeb6d4f983da80429842f0, type: 3}
+  explosionVFX: {fileID: 5245531489533798208, guid: e7d6fd652e250b8479bcd52bb20da973, type: 3}

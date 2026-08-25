@@ -265,6 +265,10 @@ public class Inventory_Ui_Behaviour : MonoBehaviour
     {
         MovingItem = !MovingItem;
         MoveItemIcon.SetActive(MovingItem);
+
+        FirstItemIndex = -1;
+        SecondItemIndex = -1;
+
         ClearSelection();
     }
     /*===================================================================================================================*/
