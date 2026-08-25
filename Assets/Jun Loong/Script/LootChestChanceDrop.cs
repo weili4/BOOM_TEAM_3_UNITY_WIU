@@ -6,7 +6,7 @@ public class LootChestChanceDrop : MonoBehaviour
 {
     /*===================================================================================================================*/
     private bool PlayerNearChest = false;
-    private bool IsChestOpen = false;
+    public bool IsChestOpen = false;
     /*===================================================================================================================*/
 
     [System.Serializable]
@@ -33,6 +33,8 @@ public class LootChestChanceDrop : MonoBehaviour
 
     [Header("Debugging")]
     [SerializeField] private bool ShowDebugLogs = false;
+
+    [SerializeField] private AudioClip openSFX;
 
     void Start()
     {
@@ -73,6 +75,11 @@ public class LootChestChanceDrop : MonoBehaviour
                         Debug.Log("You do not have the item to unlock it");
                         return;
                     }
+                }
+
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlaySFX(openSFX, transform.position, 0.8f);
                 }
 
                 IsChestOpen = true;

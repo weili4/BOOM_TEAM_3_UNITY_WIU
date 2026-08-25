@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba35e135b5eae8d4f93887b429c0dfff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectile
-  damage: 10
+  damage: 4
   speed: 12
   lifetime: 4
   hitLayers:
