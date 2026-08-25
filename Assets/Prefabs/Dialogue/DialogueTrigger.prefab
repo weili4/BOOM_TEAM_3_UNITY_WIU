@@ -93,15 +93,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
   triggerMode: 0
   isCinematicCutscene: 1
-  triggerOnlyOnce: 0
+  triggerOnlyOnce: 1
   dialogueLines:
   - speakerName: Cool
     speakerPortrait: {fileID: 4234707992101219148, guid: f8880812527228a49878838aaa75946a, type: 3}
     sentence: HELLO THIS IS A TEST!!!!!!
     typingSpeed: 0
-    voiceBlipSFX: {fileID: 0}
-    enableCameraShake: 0
-    shakeForce: 0
     onLineEndEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -116,9 +113,6 @@ MonoBehaviour:
     speakerPortrait: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
     sentence: YOOOOOOO
     typingSpeed: 0
-    voiceBlipSFX: {fileID: 0}
-    enableCameraShake: 0
-    shakeForce: 0
     onLineEndEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -133,9 +127,6 @@ MonoBehaviour:
     speakerPortrait: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
     sentence: TIME TO GO
     typingSpeed: 0
-    voiceBlipSFX: {fileID: 0}
-    enableCameraShake: 0
-    shakeForce: 0
     onLineEndEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -150,9 +141,6 @@ MonoBehaviour:
     speakerPortrait: {fileID: 693305321664233604, guid: bd3bfea4b2313984a9d4f4318c1d7e47, type: 3}
     sentence: TIME TO GO 2
     typingSpeed: 0
-    voiceBlipSFX: {fileID: 0}
-    enableCameraShake: 0
-    shakeForce: 0
     onLineEndEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -167,9 +155,6 @@ MonoBehaviour:
     speakerPortrait: {fileID: 8424589324319332494, guid: 192b64f6e2fad3543a69d23ff17704bd, type: 3}
     sentence: Dialogue 1 test
     typingSpeed: 0
-    voiceBlipSFX: {fileID: 0}
-    enableCameraShake: 0
-    shakeForce: 0
     onLineEndEvent:
       m_PersistentCalls:
         m_Calls: []

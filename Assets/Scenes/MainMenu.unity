@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b878a98e486b84eb20453a37c3b510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuUI
-  firstLevelSceneName: Level1
+  firstLevelSceneName: Level 1
   quietBGM: {fileID: 8300000, guid: 3826a5634d7fb174dbaa3587e2d24b2a, type: 3}
 --- !u!114 &515792931
 MonoBehaviour:

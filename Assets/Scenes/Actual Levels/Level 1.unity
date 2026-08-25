@@ -29379,6 +29379,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueTrigger (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1099455476309931225, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1448555095356720604, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: m_LocalPosition.x
       value: 72.02
@@ -30321,6 +30325,10 @@ PrefabInstance:
     - target: {fileID: 1099455476309931225, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: m_Name
       value: DialogueTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 1099455476309931225, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1448555095356720604, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32722,6 +32730,10 @@ PrefabInstance:
     - target: {fileID: 1099455476309931225, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: m_Name
       value: DialogueTrigger (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1099455476309931225, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1448555095356720604, guid: 64e51705bf6ce5d4d8987fd077698019, type: 3}
       propertyPath: m_LocalPosition.x
