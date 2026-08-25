@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7863477819373659322}
   - component: {fileID: 2235628250878987075}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyLootDrop_Behaviour
   DropItemsList:
   - DropItems: {fileID: 1561197391565245501, guid: 6beb0309a10008e48973ae5a988b782a, type: 3}
-    DropChance: 100
+    DropChance: 40
 --- !u!1001 &3933444648926233306
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -329,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyLootDrop_Behaviour
   DropItemsList:
   - DropItems: {fileID: 1561197391565245501, guid: 6beb0309a10008e48973ae5a988b782a, type: 3}
-    DropChance: 100
+    DropChance: 40
 --- !u!1 &4212718248348614891
 GameObject:
   m_ObjectHideFlags: 0
