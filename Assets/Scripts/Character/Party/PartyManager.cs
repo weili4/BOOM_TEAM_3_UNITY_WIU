@@ -39,7 +39,26 @@ public class PartyManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // re-find the new scene's cinemachine camera and link active leader immediately
+        // 1. find the new scene's spawn point
+        Vector3 spawnTargetPos = transform.position;
+
+        if (LevelSpawnPoint.Instance != null)
+        {
+            spawnTargetPos = LevelSpawnPoint.Instance.transform.position;
+        }
+        else
+        {
+            GameObject spObj = GameObject.FindWithTag("SpawnPoint") ?? GameObject.Find("SpawnPoint");
+            if (spObj != null)
+            {
+                spawnTargetPos = spObj.transform.position;
+            }
+        }
+
+        // 2. teleport entire party to the new level spawn point
+        TeleportEntireParty(spawnTargetPos);
+
+        // 3. re-link the new scene's cinemachine camera
         cinemachineCam = FindFirstObjectByType<CinemachineCamera>();
 
         if (ActivePlayerObj != null)
@@ -49,6 +68,7 @@ public class PartyManager : MonoBehaviour
 
         UpdateFollowerSpacing();
         UpdateSortingOrders();
+        PartyHUD.Instance?.RefreshHUD();
     }
 
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2211542893254957802}
   - component: {fileID: 5247005596843376337}
   m_Layer: 0
-  m_Name: PartyManager (Player Spawn)
+  m_Name: PartyManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
