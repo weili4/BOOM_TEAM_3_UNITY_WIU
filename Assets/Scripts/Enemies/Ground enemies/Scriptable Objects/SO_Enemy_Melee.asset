@@ -19,7 +19,7 @@ MonoBehaviour:
   chaseRange: 5
   attackRange: 1.2
   attackCooldown: 2
-  attackDamage: 15
+  attackDamage: 8
   attackSound: {fileID: 8300000, guid: 47c14a976f2cab743886d3bc461442e8, type: 3}
   deathSound: {fileID: 8300000, guid: f7aa3d48ed009654cbd85f97a8fa5b7b, type: 3}
   deathVFX: {fileID: 9154276816784134912, guid: 06fe76b8c60ad194b853bd3305275ce0, type: 3}
