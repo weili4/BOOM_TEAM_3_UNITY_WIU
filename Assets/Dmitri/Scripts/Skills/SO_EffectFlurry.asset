@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c852f1e92d58b42969c9317ae7e040, type: 3}
   m_Name: SO_EffectFlurry
   m_EditorClassIdentifier: Assembly-CSharp::SO_EffectContinuousHit
-  skillDuration: 1
+  skillDuration: 2
   tickInterval: 0.15
   moveSpeedMultiplier: 0.2
   incomingDamageMultiplier: 0.8
-  damagePerTick: 5
+  damagePerTick: 10
   hitBoxSize: {x: 2.5, y: 1.5}
   hitBoxOffset: {x: 0.5, y: 0}
   enemyLayer:
