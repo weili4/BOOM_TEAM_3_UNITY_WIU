@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(Damageable))]
 public class BossDeathHandler : MonoBehaviour
@@ -9,11 +8,17 @@ public class BossDeathHandler : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Collider2D mainCollider;
+    [SerializeField] private SpriteRenderer[] spriteRenderers;
     [SerializeField] private Behaviour[] scriptsToDisable; // e.g., BossAI, Movement, EnemyAttack scripts
 
     [Header("Death Animation & Delays")]
-    [SerializeField] private string deathAnimTrigger = "Die";
+    [SerializeField] private string deathAnimTrigger = "IsDead";
     [SerializeField] private float deathSequenceDuration = 2.5f;
+
+    [Header("Fade Out Settings")]
+    [SerializeField] private bool enableFadeOut = true;
+    [SerializeField] private float fadeDuration = 1.5f;
+    [SerializeField] private float delayBeforeFade = 0.5f;
 
     [Header("Audio & Visual Effects")]
     [SerializeField] private GameObject deathVFXPrefab;
@@ -30,6 +35,12 @@ public class BossDeathHandler : MonoBehaviour
         if (animator == null) animator = GetComponentInChildren<Animator>();
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (mainCollider == null) mainCollider = GetComponent<Collider2D>();
+
+        // Auto-fetch sprite renderers if not assigned manually
+        if (spriteRenderers == null || spriteRenderers.Length == 0)
+        {
+            spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        }
     }
 
     private void OnEnable()
@@ -89,15 +100,70 @@ public class BossDeathHandler : MonoBehaviour
         }
 
         // 4. Trigger Animator Death State
-        if (animator != null && !string.IsNullOrEmpty("IsDead"))
+        if (animator != null && !string.IsNullOrEmpty(deathAnimTrigger))
         {
-            animator.SetTrigger("IsDead");
+            animator.SetTrigger(deathAnimTrigger);
         }
 
-        // 5. Wait for the death sequence/animation to play out
+        // 5. Fade out sprite renderers if enabled
+        if (enableFadeOut && spriteRenderers != null && spriteRenderers.Length > 0)
+        {
+            StartCoroutine(FadeOutRoutine());
+        }
+
+        // 6. Wait for the death sequence/animation to finish
         yield return new WaitForSeconds(deathSequenceDuration);
 
-        // 6. Clean up Boss GameObject
+        // 7. Clean up Boss GameObject
         Destroy(gameObject);
+    }
+
+    private IEnumerator FadeOutRoutine()
+    {
+        if (delayBeforeFade > 0f)
+        {
+            yield return new WaitForSeconds(delayBeforeFade);
+        }
+
+        // Store initial colors so we can smoothly interpolate alpha values
+        Color[] initialColors = new Color[spriteRenderers.Length];
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            if (spriteRenderers[i] != null)
+            {
+                initialColors[i] = spriteRenderers[i].color;
+            }
+        }
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(1.0f, 0.0f, elapsedTime / fadeDuration);
+
+            for (int i = 0; i < spriteRenderers.Length; i++)
+            {
+                if (spriteRenderers[i] != null)
+                {
+                    Color c = initialColors[i];
+                    c.a = initialColors[i].a * alpha;
+                    spriteRenderers[i].color = c;
+                }
+            }
+
+            yield return null;
+        }
+
+        // Final cleanup pass to make fully transparent
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            if (spriteRenderers[i] != null)
+            {
+                Color c = initialColors[i];
+                c.a = 0f;
+                spriteRenderers[i].color = c;
+            }
+        }
     }
 }

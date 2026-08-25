@@ -183,7 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossGrenade
   fuseTime: 2
   explosionRadius: 1.5
-  explosionDamage: 20
+  explosionDamage: 30
   damageableLayers:
     serializedVersion: 2
     m_Bits: 1
@@ -194,11 +194,11 @@ MonoBehaviour:
   showRadiusIndicator: 1
   radiusColor: {r: 1, g: 0, b: 0, a: 0.35}
   borderWidth: 0.08
-  circleSegments: 36
-  explosionFXPrefab: {fileID: 3809979095271460427, guid: 08135855d5ea67f44b31133be963943d, type: 3}
+  circleSegments: 30
+  explosionFXPrefab: {fileID: 6876464647748189856, guid: fd3e86a6868f4654ca1a17c5e6faa7f8, type: 3}
   explosionSound: {fileID: 8300000, guid: 03f91a75a3aeb6d4f983da80429842f0, type: 3}
   impulseSource: {fileID: 0}
-  cameraShakeIntensity: 0.3
+  cameraShakeIntensity: 0.5
 --- !u!114 &-7765728495768653269
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,7 +11,14 @@ public class BossEnemyController : MonoBehaviour
         Attack1, // Laser Attack
         Attack2, // Shotgun Attack
         Attack3, // Jump Attack
-        Attack4  // Mortar / Upward Explosive Attack
+        Attack4  // Grenade Barrage Attack
+    }
+
+    public enum ShakeType
+    {
+        Light,
+        Medium,
+        Heavy
     }
 
     [Header("State Properties")]
@@ -39,6 +46,7 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] private float maxLaserDistance = 20f;
     [SerializeField] private int attackDamage = 25;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private ShakeType laserShakeType = ShakeType.Heavy;
 
     [Header("Shotgun Attack Settings (Attack 2)")]
     [SerializeField] private Transform firePoint;
@@ -49,6 +57,7 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] private int shotgunPelletCount = 5;
     [SerializeField] private float shotgunSpreadAngle = 30f;
     [SerializeField] private float shotgunFireDelay = 0.3f;
+    [SerializeField] private ShakeType shotgunShakeType = ShakeType.Medium;
 
     [Header("Jump Slam Attack Settings (Attack 3)")]
     [SerializeField] private float jumpHeightForce = 12f;
@@ -61,6 +70,7 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] private int jumpDamage = 30;
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private float groundCheckRadius = 0.2f;
+    [SerializeField] private ShakeType jumpSlamShakeType = ShakeType.Heavy;
 
     [Header("Grenade Barrage Attack Settings (Attack 4)")]
     [SerializeField] private float attack4WindupDelay = 0.4f;
@@ -195,13 +205,11 @@ public class BossEnemyController : MonoBehaviour
         isAttackingSequence = true;
         StopMovement();
 
-        // 1. Trigger attacking animation
         if (animator != null)
         {
             animator.SetBool("IsAttacking", true);
         }
 
-        // 2. Play attack windup audio/delay
         if (aimWarningSound != null)
         {
             AudioSource.PlayClipAtPoint(aimWarningSound, transform.position);
@@ -209,14 +217,12 @@ public class BossEnemyController : MonoBehaviour
 
         yield return new WaitForSeconds(attack4WindupDelay);
 
-        // 3. Fire grenades with delay between shots
         Transform spawnPoint = mortarFirePoint != null ? mortarFirePoint : (firePoint != null ? firePoint : transform);
 
         yield return StartCoroutine(FireUpwardMortarsRoutine(spawnPoint));
 
         yield return new WaitForSeconds(0.2f);
 
-        // Reset animation state
         if (animator != null)
         {
             animator.SetBool("IsAttacking", false);
@@ -231,7 +237,6 @@ public class BossEnemyController : MonoBehaviour
     {
         if (mortarProjectilePrefab == null) yield break;
 
-        // Base vector pointing straight up
         float baseAngle = 90f;
         float startAngle = baseAngle + (mortarSpreadAngle / 2f);
         float angleStep = mortarCount > 1 ? mortarSpreadAngle / (mortarCount - 1) : 0f;
@@ -248,13 +253,11 @@ public class BossEnemyController : MonoBehaviour
                 AudioSource.PlayClipAtPoint(attackSound, spawnPoint.position);
             }
 
-            // Configure physics vector
             if (projObj.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
             {
                 rb.linearVelocity = launchDirection * mortarLaunchForce;
             }
 
-            // Wait before spawning the next grenade in the burst sequence
             if (i < mortarCount - 1)
             {
                 yield return new WaitForSeconds(mortarFireDelay);
@@ -327,10 +330,7 @@ public class BossEnemyController : MonoBehaviour
             AudioSource.PlayClipAtPoint(landSound, transform.position);
         }
 
-        if (impulseSource != null)
-        {
-            impulseSource.GenerateImpulse(cameraShakeIntensity);
-        }
+        TriggerShake(jumpSlamShakeType);
 
         if (landingParticlePrefab != null)
         {
@@ -350,14 +350,6 @@ public class BossEnemyController : MonoBehaviour
         attackCooldownTimer = globalAttackCooldown;
         isAttackingSequence = false;
         ChangeState(State.Idle);
-    }
-
-    private void TriggerCameraShake()
-    {
-        if (impulseSource != null)
-        {
-            impulseSource.GenerateImpulse(cameraShakeIntensity);
-        }
     }
 
     private bool IsGrounded()
@@ -423,10 +415,7 @@ public class BossEnemyController : MonoBehaviour
             }
 
             FireShotgunSpread(aimDir);
-            if (impulseSource != null)
-            {
-                impulseSource.GenerateImpulse(cameraShakeIntensity);
-            }
+            TriggerShake(shotgunShakeType);
         }
 
         yield return new WaitForSeconds(0.1f);
@@ -550,10 +539,7 @@ public class BossEnemyController : MonoBehaviour
             laserLine.endColor = Color.cyan;
         }
 
-        if (impulseSource != null)
-        {
-            impulseSource.GenerateImpulse(cameraShakeIntensity);
-        }
+        TriggerShake(laserShakeType);
 
         hitTargetsThisPulse.Clear();
         float pulseElapsed = 0f;
@@ -585,6 +571,21 @@ public class BossEnemyController : MonoBehaviour
     }
 
     // --- HELPER FUNCTIONS ---
+
+    private void TriggerShake(ShakeType shakeType)
+    {
+        if (impulseSource == null) return;
+
+        float multiplier = shakeType switch
+        {
+            ShakeType.Light => 0.5f,
+            ShakeType.Medium => 1.0f,
+            ShakeType.Heavy => 2.0f,
+            _ => 1.0f
+        };
+
+        impulseSource.GenerateImpulse(cameraShakeIntensity * multiplier);
+    }
 
     private Transform FindPlayerInRange()
     {
