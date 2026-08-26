@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: GlidingAbilityEffect
   m_EditorClassIdentifier: Assembly-CSharp::GlidingAbilityEffect
   SetFallMultiplier: 0.1
+  windVFXPrefab: {fileID: 6078153195194854450, guid: 3ef7af02db5128b4eb71393ace2dd2ec, type: 3}
+  windVFXOffset: {x: 0, y: 0.5, z: 0}
