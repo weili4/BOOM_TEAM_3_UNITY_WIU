@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Revive_Data
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Revive Item
-  itemImage: {fileID: 2970796142989700343, guid: edcef2da847ca314c894f4e559ad523e, type: 3}
+  itemImage: {fileID: 6979198408367696379, guid: a4a88d0cf03ee1048aad5f6aa4ceb122, type: 3}
   cooldownTime: 0
   useSound: {fileID: 0}
   itemDescription: What do you expect it revives

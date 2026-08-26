@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpeedData
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Adrenaline Injector
-  itemImage: {fileID: 4074175187089551160, guid: 6b7982ac53de00343a0898debcc31d45, type: 3}
+  itemImage: {fileID: -4243038265196606806, guid: 96ca35f6985ea7844b7407ec30e496b4, type: 3}
   cooldownTime: 0
   useSound: {fileID: 8300000, guid: d246d66ac40b43f44a7d4b333eec0d37, type: 3}
   itemDescription: Biotic Booster improves muscle reaction and stamina, allowing

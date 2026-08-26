@@ -146,6 +146,14 @@ public class Damageable : MonoBehaviour
         onHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
+    /*===================================================================================================================*/
+    public void SetInvulnerable(float Duration)
+    {
+        isInvulnerable = true;
+        iFrameTimer = Duration;
+    }
+    /*===================================================================================================================*/
+
     private void LateUpdate()
     {
         if (spriteRenderer == null) return;

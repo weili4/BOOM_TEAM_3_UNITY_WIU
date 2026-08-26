@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 4074175187089551160, guid: 6b7982ac53de00343a0898debcc31d45, type: 3}
+  m_Sprite: {fileID: -4243038265196606806, guid: 96ca35f6985ea7844b7407ec30e496b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   loseMagnetDistance: 0.25
   magnetSpeed: 2.5
   pickupSound: {fileID: 8300000, guid: 22049c43eeda36343b510d4192727948, type: 3}
-  PickUpDelayDuration: 1.5
+  PickUpDelayDuration: 1
   UpForce: 3
   SideMinForce: -0.5
   SideMaxForce: 0.5

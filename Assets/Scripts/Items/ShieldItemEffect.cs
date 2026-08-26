@@ -7,10 +7,9 @@ public class ShieldItemEffect : ItemEffect
 
     public override void Use(GameObject user)
     {
-        // trigger iframe on damageable
-        if (user.TryGetComponent<Damageable>(out Damageable health))
+        if (user.TryGetComponent<Damageable>(out Damageable User_Damageable))
         {
-            health.TakeDamage(0); // triggers iframe flash without losing hp
+            User_Damageable.SetInvulnerable(invulnerableTime);
         }
     }
 

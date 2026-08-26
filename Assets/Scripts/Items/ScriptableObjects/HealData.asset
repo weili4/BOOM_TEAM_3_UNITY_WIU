@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HealData
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Nanite Injector
-  itemImage: {fileID: 1309359352660515126, guid: 6b7982ac53de00343a0898debcc31d45, type: 3}
+  itemImage: {fileID: 9177969094610700904, guid: a9a10cafa76366a4b88f5c26ea3f37cc, type: 3}
   cooldownTime: 0
   useSound: {fileID: 8300000, guid: 348dcb242c3e1bb47bb1521bbd23bccf, type: 3}
   itemDescription: Restores HP instantly by deploying microscopic repair bots directly

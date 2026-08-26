@@ -378,7 +378,7 @@ MonoBehaviour:
   inventory: {fileID: 0}
   ItemNameToSearch: Key
   ShowDebugLogs: 0
-  openSFX: {fileID: 8300000, guid: 4382b63b71a6f5149b10111c0665a04a, type: 3}
+  openSFX: {fileID: 8300000, guid: fa2a7828195e67c4a9a51a245c5e476c, type: 3}
 --- !u!95 &5460622670775280279
 Animator:
   serializedVersion: 7

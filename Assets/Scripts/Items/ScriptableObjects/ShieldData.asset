@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShieldData
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Bubble Shield
-  itemImage: {fileID: -3149887314497892203, guid: 6b7982ac53de00343a0898debcc31d45, type: 3}
+  itemImage: {fileID: -1513117481581130794, guid: dc5dd1e1cb423894a89ae09a97d22208, type: 3}
   cooldownTime: 0
   useSound: {fileID: 8300000, guid: 999912bf072bbf246adf4f72ac107f0d, type: 3}
   itemDescription: Grants complete invincibility to incoming attacks.

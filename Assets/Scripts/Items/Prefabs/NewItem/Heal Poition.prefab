@@ -84,12 +84,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1309359352660515126, guid: 6b7982ac53de00343a0898debcc31d45, type: 3}
+  m_Sprite: {fileID: 9177969094610700904, guid: a9a10cafa76366a4b88f5c26ea3f37cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.21428572, y: 0.21428572}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -112,7 +112,7 @@ MonoBehaviour:
   loseMagnetDistance: 0.25
   magnetSpeed: 2.5
   pickupSound: {fileID: 8300000, guid: 22049c43eeda36343b510d4192727948, type: 3}
-  PickUpDelayDuration: 1.5
+  PickUpDelayDuration: 1
   UpForce: 3
   SideMinForce: -0.5
   SideMaxForce: 0.5
