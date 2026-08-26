@@ -189,9 +189,9 @@ public class BossEnemyController : MonoBehaviour
         int randomIndex = Random.Range(0, 4);
         switch (randomIndex)
         {
-            case 0: return State.Attack4;
-            case 1: return State.Attack4;
-            case 2: return State.Attack4;
+            case 0: return State.Attack1;
+            case 1: return State.Attack2;
+            case 2: return State.Attack3;
             case 3: return State.Attack4;
             default: return State.Idle;
         }
