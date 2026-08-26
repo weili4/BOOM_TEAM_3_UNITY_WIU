@@ -144,7 +144,7 @@ LineRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -228,8 +228,8 @@ MonoBehaviour:
   lineRenderer: {fileID: 3817969497098725429}
   detectionRange: 10
   laserWidth: 0.1
-  hitboxExtraThickness: 1
-  safeColor: {r: 0, g: 0.7, b: 1, a: 0.75}
-  damagingColor: {r: 1, g: 0.1, b: 0.1, a: 1}
+  hitboxExtraThickness: 0.1
+  safeColor: {r: 0.2839285, g: 0.7354827, b: 0.9308176, a: 0.3137255}
+  damagingColor: {r: 0.91823894, g: 0.1645899, b: 0.1645899, a: 1}
   safeDuration: 2
   damagingDuration: 2

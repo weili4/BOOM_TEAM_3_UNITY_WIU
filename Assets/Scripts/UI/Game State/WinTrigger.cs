@@ -15,4 +15,12 @@ public class WinTrigger : MonoBehaviour
             }
         }
     }
+
+    public void GameWin()
+    {
+        if (EndGameUIManager.Instance != null)
+        {
+            EndGameUIManager.Instance.TriggerWin();
+        }
+    }
 }
