@@ -61055,7 +61055,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 0
-  orthographic size: 3
+  orthographic size: 5.625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -61468,6 +61468,30 @@ PrefabInstance:
     - target: {fileID: 4520140693922680576, guid: f8df37304daadef45861733bf95c10c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.data[0].DropItems
+      value: 
+      objectReference: {fileID: 1035805099123314441, guid: e0058934868c8dc4281614f97c657200, type: 3}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.data[1].DropItems
+      value: 
+      objectReference: {fileID: 1035805099123314441, guid: e0058934868c8dc4281614f97c657200, type: 3}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.data[2].DropItems
+      value: 
+      objectReference: {fileID: 1561197391565245501, guid: 6beb0309a10008e48973ae5a988b782a, type: 3}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.data[1].DropChance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.data[2].DropChance
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -62373,6 +62397,30 @@ PrefabInstance:
     - target: {fileID: 4520140693922680576, guid: f8df37304daadef45861733bf95c10c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.data[0].DropItems
+      value: 
+      objectReference: {fileID: 1035805099123314441, guid: d552416e2517bf54da333e774d64d046, type: 3}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.data[1].DropItems
+      value: 
+      objectReference: {fileID: 1035805099123314441, guid: d552416e2517bf54da333e774d64d046, type: 3}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.data[2].DropItems
+      value: 
+      objectReference: {fileID: 1561197391565245501, guid: 6beb0309a10008e48973ae5a988b782a, type: 3}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.data[1].DropChance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.data[2].DropChance
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -66662,6 +66710,22 @@ PrefabInstance:
     - target: {fileID: 4520140693922680576, guid: f8df37304daadef45861733bf95c10c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.data[0].DropItems
+      value: 
+      objectReference: {fileID: 1035805099123314441, guid: 7902bd314074ce0418ca6e13601a8aa3, type: 3}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.data[2].DropItems
+      value: 
+      objectReference: {fileID: 1561197391565245501, guid: 6beb0309a10008e48973ae5a988b782a, type: 3}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.data[2].DropChance
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

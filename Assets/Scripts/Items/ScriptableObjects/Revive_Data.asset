@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fd7c8d47e66fa4088fda084d5dcb3a, type: 3}
   m_Name: Revive_Data
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: Revive Item
+  itemName: Revival Defibrillator
   itemImage: {fileID: 6979198408367696379, guid: a4a88d0cf03ee1048aad5f6aa4ceb122, type: 3}
   cooldownTime: 0
-  useSound: {fileID: 0}
-  itemDescription: What do you expect it revives
+  useSound: {fileID: 8300000, guid: d7372bffc6922a94fad33b5e71b881b0, type: 3}
+  itemDescription: Deploys an bio signal to instantly revive all fallen squad members
+    to active status.
   UseableItem: 1
