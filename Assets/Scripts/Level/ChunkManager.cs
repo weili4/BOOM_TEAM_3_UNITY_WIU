@@ -68,8 +68,6 @@ public class ChunkManager : MonoBehaviour
             if (objectiveType == ObjectiveType.ReachGate) return true;
             if (objectiveType == ObjectiveType.Keycard)
             {
-                Debug.Log("CHECKING KEYCARD INVENTORY");
-
                 Inventory inventory = FindFirstObjectByType<Inventory>();
                 bool HasItemToUnlock = false;
                 int ItemIndex = -1;
