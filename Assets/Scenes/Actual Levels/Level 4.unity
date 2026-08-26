@@ -37146,6 +37146,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.data[0].DropItems
+      value: 
+      objectReference: {fileID: 1035805099123314441, guid: e0058934868c8dc4281614f97c657200, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39903,6 +39907,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4584007353540800321, guid: f8df37304daadef45861733bf95c10c2, type: 3}
+      propertyPath: DropItemsList.Array.data[0].DropItems
+      value: 
+      objectReference: {fileID: 1035805099123314441, guid: d552416e2517bf54da333e774d64d046, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
