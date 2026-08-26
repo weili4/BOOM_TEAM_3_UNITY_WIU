@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7422709535997224008}
   - component: {fileID: -1600337848362560123}
   - component: {fileID: -7765728495768653269}
-  - component: {fileID: -8189143803271366367}
   m_Layer: 6
   m_Name: BossGrenade
   m_TagString: Enemy
@@ -111,7 +110,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -122,7 +121,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &7422709535997224008
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -181,8 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e432591acadbd4b839c93e450158e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossGrenade
-  fuseTime: 2
-  explosionRadius: 1.5
+  fuseTime: 1.6
+  explosionRadius: 2
   explosionDamage: 30
   damageableLayers:
     serializedVersion: 2
@@ -192,11 +191,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   showRadiusIndicator: 1
-  radiusColor: {r: 1, g: 0, b: 0, a: 0.35}
-  borderWidth: 0.08
+  outerBoundaryColor: {r: 1, g: 0, b: 0, a: 0.23529412}
+  borderWidth: 0.1
   circleSegments: 30
+  innerCirclePrefab: {fileID: 3096442705771761940, guid: 2238f038c6cb4384fb6daa5abe23d6a4, type: 3}
+  fillColor: {r: 1, g: 0, b: 0, a: 0.3529412}
   explosionFXPrefab: {fileID: 6876464647748189856, guid: fd3e86a6868f4654ca1a17c5e6faa7f8, type: 3}
-  explosionSound: {fileID: 8300000, guid: 03f91a75a3aeb6d4f983da80429842f0, type: 3}
+  explosionSound: {fileID: 8300000, guid: b0dbe99c7b817184eaf12058245986d1, type: 3}
   impulseSource: {fileID: 0}
   cameraShakeIntensity: 0.5
 --- !u!114 &-7765728495768653269
@@ -252,31 +253,3 @@ MonoBehaviour:
     DissipationDistance: 100
     PropagationSpeed: 343
   DefaultVelocity: {x: 0, y: -1, z: 0}
---- !u!114 &-8189143803271366367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 204082320606997795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bcebf6f3ee9747489094df5b3e3e1b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Damageable
-  maxHealth: 1000
-  currentHealth: 1000
-  incomingDamageMultiplier: 1
-  healthBarPrefab: {fileID: 0}
-  hitFlashDuration: 0.08
-  spriteRenderer: {fileID: 0}
-  enableIFrames: 1
-  iFrameDuration: 0.8
-  flashSpeed: 25
-  source: {fileID: 0}
-  hitShakeForce: 1.2
-  hitVFXPrefab: {fileID: 0}
-  hitSound: {fileID: 0}
-  onHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []

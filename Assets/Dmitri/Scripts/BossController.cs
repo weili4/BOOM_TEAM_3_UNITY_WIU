@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Cinemachine; // Unity 6 / Cinemachine 3.x namespace.
+using Unity.Cinemachine;
 
 public class BossEnemyController : MonoBehaviour
 {
@@ -38,6 +38,7 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] private float fleeSpeedMultiplier = 1.2f;
 
     [Header("Laser Attack Settings (Attack 1)")]
+    [SerializeField] private ParticleSystem chargingParticles;
     [SerializeField] private LineRenderer laserLine;
     [SerializeField] private float telegraphDuration = 1.5f;
     [SerializeField] private float lockInTime = 0.5f;
@@ -57,6 +58,8 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] private int shotgunPelletCount = 5;
     [SerializeField] private float shotgunSpreadAngle = 30f;
     [SerializeField] private float shotgunFireDelay = 0.3f;
+    [SerializeField] private int burstCount = 3;
+    [SerializeField] private float delayBetweenBursts = 0.2f;
     [SerializeField] private ShakeType shotgunShakeType = ShakeType.Medium;
 
     [Header("Jump Slam Attack Settings (Attack 3)")]
@@ -87,6 +90,7 @@ public class BossEnemyController : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private AudioClip aimWarningSound;
+    [SerializeField] private AudioClip grenadeThrow;
     [SerializeField] private AudioClip attackSound;
     [SerializeField] private AudioClip landSound;
 
@@ -185,9 +189,9 @@ public class BossEnemyController : MonoBehaviour
         int randomIndex = Random.Range(0, 4);
         switch (randomIndex)
         {
-            case 0: return State.Attack1;
-            case 1: return State.Attack2;
-            case 2: return State.Attack3;
+            case 0: return State.Attack4;
+            case 1: return State.Attack4;
+            case 2: return State.Attack4;
             case 3: return State.Attack4;
             default: return State.Idle;
         }
@@ -210,16 +214,16 @@ public class BossEnemyController : MonoBehaviour
             animator.SetBool("IsAttacking", true);
         }
 
-        if (aimWarningSound != null)
+        if (grenadeThrow != null)
         {
-            AudioSource.PlayClipAtPoint(aimWarningSound, transform.position);
+            AudioSource.PlayClipAtPoint(grenadeThrow, transform.position);
         }
 
         yield return new WaitForSeconds(attack4WindupDelay);
 
         Transform spawnPoint = mortarFirePoint != null ? mortarFirePoint : (firePoint != null ? firePoint : transform);
 
-        yield return StartCoroutine(FireUpwardMortarsRoutine(spawnPoint));
+        yield return StartCoroutine(GrenadeBarrageRoutine(spawnPoint));
 
         yield return new WaitForSeconds(0.2f);
 
@@ -233,7 +237,7 @@ public class BossEnemyController : MonoBehaviour
         ChangeState(State.Idle);
     }
 
-    private IEnumerator FireUpwardMortarsRoutine(Transform spawnPoint)
+    private IEnumerator GrenadeBarrageRoutine(Transform spawnPoint)
     {
         if (mortarProjectilePrefab == null) yield break;
 
@@ -248,9 +252,9 @@ public class BossEnemyController : MonoBehaviour
 
             GameObject projObj = Instantiate(mortarProjectilePrefab, spawnPoint.position, mortarProjectilePrefab.transform.rotation);
 
-            if (attackSound != null)
+            if (grenadeThrow != null)
             {
-                AudioSource.PlayClipAtPoint(attackSound, spawnPoint.position);
+                AudioSource.PlayClipAtPoint(grenadeThrow, spawnPoint.position);
             }
 
             if (projObj.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
@@ -292,9 +296,9 @@ public class BossEnemyController : MonoBehaviour
             body.linearVelocity = new Vector2(jumpDirX * jumpMoveSpeed, jumpHeightForce);
         }
 
-        if (attackSound != null)
+        if (landSound != null)
         {
-            AudioSource.PlayClipAtPoint(attackSound, transform.position);
+            AudioSource.PlayClipAtPoint(landSound, transform.position);
         }
 
         yield return new WaitForFixedUpdate();
@@ -404,18 +408,26 @@ public class BossEnemyController : MonoBehaviour
 
         yield return new WaitForSeconds(shotgunFireDelay);
 
-        if (target != null)
+        for (int i = 0; i < burstCount; i++)
         {
-            LookAtTarget();
-            Vector2 aimDir = (target.position - (firePoint != null ? firePoint.position : transform.position)).normalized;
-
-            if (attackSound != null)
+            if (target != null)
             {
-                AudioSource.PlayClipAtPoint(attackSound, transform.position);
+                LookAtTarget();
+                Vector2 aimDir = (target.position - (firePoint != null ? firePoint.position : transform.position)).normalized;
+
+                if (attackSound != null)
+                {
+                    AudioSource.PlayClipAtPoint(attackSound, transform.position);
+                }
+
+                FireShotgunSpread(aimDir);
+                TriggerShake(shotgunShakeType);
             }
 
-            FireShotgunSpread(aimDir);
-            TriggerShake(shotgunShakeType);
+            if (i < burstCount - 1)
+            {
+                yield return new WaitForSeconds(delayBetweenBursts);
+            }
         }
 
         yield return new WaitForSeconds(0.1f);
@@ -486,6 +498,14 @@ public class BossEnemyController : MonoBehaviour
 
         StopMovement();
 
+        ParticleSystem currentParticles = null;
+        if (chargingParticles != null)
+        {
+            Transform spawnPoint = firePoint != null ? firePoint : transform;
+            currentParticles = Instantiate(chargingParticles, spawnPoint.position, spawnPoint.rotation, spawnPoint);
+            currentParticles.Play();
+        }
+
         if (aimWarningSound != null)
         {
             AudioSource.PlayClipAtPoint(aimWarningSound, transform.position);
@@ -524,6 +544,12 @@ public class BossEnemyController : MonoBehaviour
         {
             laserLine.startColor = Color.yellow;
             laserLine.endColor = Color.yellow;
+        }
+
+        if (currentParticles != null)
+        {
+            currentParticles.Stop();
+            Destroy(currentParticles.gameObject, 1f);
         }
 
         yield return new WaitForSeconds(lockInTime);
@@ -565,7 +591,6 @@ public class BossEnemyController : MonoBehaviour
         if (laserLine != null)
             laserLine.enabled = false;
 
-        attackCooldownTimer = globalAttackCooldown;
         isAttackingSequence = false;
         ChangeState(State.Idle);
     }
@@ -580,7 +605,7 @@ public class BossEnemyController : MonoBehaviour
         {
             ShakeType.Light => 0.5f,
             ShakeType.Medium => 1.0f,
-            ShakeType.Heavy => 2.0f,
+            ShakeType.Heavy => 2.5f,
             _ => 1.0f
         };
 
