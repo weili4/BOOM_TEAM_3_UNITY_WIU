@@ -210,9 +210,11 @@ public class BossGrenade : MonoBehaviour
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius, damageableLayers);
         foreach (Collider2D hit in hits)
         {
-            if (hit.TryGetComponent<Damageable>(out Damageable targetHealth))
+            if (hit.TryGetComponent<Damageable>(out Damageable targetHealth) && hit.gameObject.tag == "Player")
             {
-                targetHealth.TakeDamage(explosionDamage);
+                // hack fix to damage player (instead of everyone) when hit with the attack
+                PartyManager.Instance.ActivePlayerObj.GetComponent<Damageable>().TakeDamage(explosionDamage);
+                // targetHealth.TakeDamage(explosionDamage);
             }
         }
 

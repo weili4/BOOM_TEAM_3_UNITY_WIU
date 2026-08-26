@@ -6,7 +6,6 @@ public class GravityBomb : MonoBehaviour
     [SerializeField] private int damage = 35;
     [SerializeField] private float explosionRadius = 2.4f;
     [SerializeField] private LayerMask hitLayers;
-    [SerializeField] private LayerMask playerLayer;
 
     [Header("audio and vfx")]
     [SerializeField] private AudioClip explodeSFX;
@@ -36,14 +35,19 @@ public class GravityBomb : MonoBehaviour
         if (explosionVFX != null)
             Instantiate(explosionVFX, transform.position, Quaternion.identity);
 
-        // check player damage in aoe radius
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, explosionRadius, playerLayer);
-        if (hit != null && hit.CompareTag("Player") && hit.TryGetComponent<Damageable>(out var playerHealth))
-        {
-            Vector2 knockback = ((Vector2)playerHealth.transform.position - (Vector2)transform.position).normalized;
-            playerHealth.TakeDamage(damage, knockback, knockbackForce: 8f);
-        }
 
+        // check player damage in aoe radius
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+        foreach (Collider2D hit in hits)
+        {
+            if (hit.CompareTag("Player") && hit.TryGetComponent<Damageable>(out var playerHealth))
+            {
+                Debug.Log("damaged " + hit.gameObject.name);
+                Vector2 knockback = ((Vector2)playerHealth.transform.position - (Vector2)transform.position).normalized;
+                playerHealth.TakeDamage(damage, knockback, knockbackForce: 8f);
+                break; // remove if multiple players could be hit
+            }
+        }
         Destroy(gameObject);
     }
 }

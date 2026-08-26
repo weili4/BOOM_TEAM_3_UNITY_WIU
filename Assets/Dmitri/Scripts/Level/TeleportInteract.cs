@@ -59,7 +59,7 @@ public class TeleportInteract : MonoBehaviour
 
     private void Update()
     {
-        if (InputSystem.actions["Interact"].WasPressedThisFrame())
+        if (InputSystem.actions["Interact"].WasPressedThisFrame() && isPlayerInside)
         {
             TeleportPlayer();
         }

@@ -371,8 +371,10 @@ public class BossEnemyController : MonoBehaviour
         {
             if (hit.CompareTag("Player") || hit.GetComponent<PlayerController>() != null)
             {
-                if (hit.TryGetComponent<Damageable>(out Damageable playerHealth))
+                if (hit.TryGetComponent<Damageable>(out Damageable playerHealth) && hit.gameObject.tag == "Player")
                 {
+                    // hack fix to damage player (instead of everyone) when hit with the attack
+                    // PartyManager.Instance.ActivePlayerObj.GetComponent<Damageable>().TakeDamage(jumpDamage);
                     playerHealth.TakeDamage(jumpDamage);
                 }
             }
@@ -656,10 +658,13 @@ public class BossEnemyController : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Player") || hit.collider.GetComponent<PlayerController>() != null)
                 {
-                    if (hit.collider.TryGetComponent<Damageable>(out Damageable playerHealth))
+                    if (hit.collider.TryGetComponent<Damageable>(out Damageable playerHealth) && hit.collider.gameObject.tag == "Player")
                     {
                         if (!hitTargetsThisPulse.Contains(playerHealth))
                         {
+                            // hack fix to damage player (instead of everyone) when hit with the attack
+                            // PartyManager.Instance.ActivePlayerObj.GetComponent<Damageable>().TakeDamage(jumpDamage);
+
                             playerHealth.TakeDamage(attackDamage);
                             hitTargetsThisPulse.Add(playerHealth);
                         }

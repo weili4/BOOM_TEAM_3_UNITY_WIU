@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GravityBomb
   damage: 8
-  explosionRadius: 5
+  explosionRadius: 2
   hitLayers:
     serializedVersion: 2
     m_Bits: 264
