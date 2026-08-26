@@ -424,8 +424,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602fe1a6f4f44bc4ab3be65225df2d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoolPrimaryAttack
-  punchInterval: 0.18
-  punchDamage: 12
+  punchInterval: 0.2
+  punchDamage: 10
   punchRange: 0.85
   enemyLayer:
     serializedVersion: 2

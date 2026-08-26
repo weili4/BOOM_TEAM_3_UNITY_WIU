@@ -12,6 +12,7 @@ public class BossDeathHandler : MonoBehaviour
     [SerializeField] private Behaviour[] scriptsToDisable; // e.g., BossAI, Movement, EnemyAttack scripts
 
     [Header("Death Animation & Delays")]
+    [SerializeField] private string deathAnimStateName = "Death"; // Direct state name for instant play
     [SerializeField] private string deathAnimTrigger = "IsDead";
     [SerializeField] private float deathSequenceDuration = 2.5f;
 
@@ -36,7 +37,6 @@ public class BossDeathHandler : MonoBehaviour
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (mainCollider == null) mainCollider = GetComponent<Collider2D>();
 
-        // Auto-fetch sprite renderers if not assigned manually
         if (spriteRenderers == null || spriteRenderers.Length == 0)
         {
             spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
@@ -71,7 +71,25 @@ public class BossDeathHandler : MonoBehaviour
     {
         isDead = true;
 
-        // 1. Disable physics & colliders so player can't bump into or take contact damage
+        // 1. Instantly stop all active AI Coroutines and disable scripts
+        if (scriptsToDisable != null)
+        {
+            foreach (var script in scriptsToDisable)
+            {
+                if (script != null)
+                {
+                    // Cast to MonoBehaviour to access StopAllCoroutines
+                    if (script is MonoBehaviour mono)
+                    {
+                        mono.StopAllCoroutines(); // Kills active attack delays/loops
+                    }
+
+                    script.enabled = false;
+                }
+            }
+        }
+
+        // 2. Disable physics, colliders, and root motion
         if (mainCollider != null) mainCollider.enabled = false;
         if (rb != null)
         {
@@ -79,16 +97,26 @@ public class BossDeathHandler : MonoBehaviour
             rb.simulated = false;
         }
 
-        // 2. Disable all AI/Combat scripts attached to the boss
-        if (scriptsToDisable != null)
+        // 3. Force instant transition to Death Animation
+        if (animator != null)
         {
-            foreach (var script in scriptsToDisable)
+            animator.applyRootMotion = false; // Prevents animation driving position during death
+
+            // Clear common attack triggers to avoid animation queuing
+            animator.ResetTrigger("Attack");
+
+            if (!string.IsNullOrEmpty(deathAnimStateName))
             {
-                if (script != null) script.enabled = false;
+                // Force plays state immediately, interrupting active attacks
+                animator.Play(deathAnimStateName, 0, 0f);
+            }
+            else if (!string.IsNullOrEmpty(deathAnimTrigger))
+            {
+                animator.SetTrigger(deathAnimTrigger);
             }
         }
 
-        // 3. Play VFX & Sound
+        // 4. Play VFX & Sound
         if (deathVFXPrefab != null)
         {
             Instantiate(deathVFXPrefab, transform.position, Quaternion.identity);
@@ -99,19 +127,13 @@ public class BossDeathHandler : MonoBehaviour
             AudioManager.Instance.PlaySFX(deathSFX, transform.position);
         }
 
-        // 4. Trigger Animator Death State
-        if (animator != null && !string.IsNullOrEmpty(deathAnimTrigger))
-        {
-            animator.SetTrigger(deathAnimTrigger);
-        }
-
         // 5. Fade out sprite renderers if enabled
         if (enableFadeOut && spriteRenderers != null && spriteRenderers.Length > 0)
         {
             StartCoroutine(FadeOutRoutine());
         }
 
-        // 6. Wait for the death sequence/animation to finish
+        // 6. Wait for sequence duration
         yield return new WaitForSeconds(deathSequenceDuration);
 
         // 7. Clean up Boss GameObject
@@ -125,7 +147,6 @@ public class BossDeathHandler : MonoBehaviour
             yield return new WaitForSeconds(delayBeforeFade);
         }
 
-        // Store initial colors so we can smoothly interpolate alpha values
         Color[] initialColors = new Color[spriteRenderers.Length];
         for (int i = 0; i < spriteRenderers.Length; i++)
         {
@@ -155,7 +176,6 @@ public class BossDeathHandler : MonoBehaviour
             yield return null;
         }
 
-        // Final cleanup pass to make fully transparent
         for (int i = 0; i < spriteRenderers.Length; i++)
         {
             if (spriteRenderers[i] != null)

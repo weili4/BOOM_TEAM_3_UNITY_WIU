@@ -89,7 +89,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4723107735738678597, guid: 3f6fc6ec8f9af6d4cadbfb9e4e3b97b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0021204948, y: -0.10600473}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -145,7 +145,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.4375, y: 1.03125}
+  m_Size: {x: 1.0007601, y: 0.81924057}
   m_EdgeRadius: 0
 --- !u!50 &8516844361778916244
 Rigidbody2D:
@@ -162,7 +162,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1.5
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -187,55 +187,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossEnemyController
   initialState: 0
-  globalAttackCooldown: 1
+  globalAttackCooldown: 1.5
   detectionRange: 15
   moveSpeed: 2
   stopDistance: 5
   playerLayer:
     serializedVersion: 2
     m_Bits: 1
-  fleeDuration: 0.6
-  fleeSpeedMultiplier: 3
+  fleeDuration: 0.5
+  fleeSpeedMultiplier: 2.2
+  chargingParticles: {fileID: 1980105371791474550, guid: d5c853677adede346ac707cbc39b5adf, type: 3}
   laserLine: {fileID: 1935971772093427349}
-  telegraphDuration: 1
-  lockInTime: 0.5
-  pulseDuration: 0.8
-  maxLaserWidth: 1
+  telegraphDuration: 1.6
+  lockInTime: 0.6
+  pulseDuration: 1.3
+  maxLaserWidth: 0.8
   maxLaserDistance: 20
-  attackDamage: 30
+  attackDamage: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  laserShakeType: 1
   firePoint: {fileID: 17901411723441638}
-  bulletPrefab: {fileID: 5117570328012240234, guid: 4aa7b18b8c5070f4986212f63e501412, type: 3}
+  bulletPrefab: {fileID: 5117570328012240234, guid: b4e56ea8bbd7e434fbf0e3eb6eac3bc3, type: 3}
   playerAndGroundLayer:
     serializedVersion: 2
     m_Bits: 256
   projectileDamage: 20
   projectileSpeed: 1
   shotgunPelletCount: 3
-  shotgunSpreadAngle: 20
+  shotgunSpreadAngle: 15
   shotgunFireDelay: 1
-  jumpHeightForce: 8
-  jumpMoveSpeed: 10
+  burstCount: 3
+  delayBetweenBursts: 0.8
+  shotgunShakeType: 0
+  jumpHeightForce: 10
+  jumpMoveSpeed: 3
   jumpWindupTime: 0.5
   landingDelay: 0
   landingParticlePrefab: {fileID: 1541756242053591071, guid: 2301abdd5f914814191140d43726c8ba, type: 3}
   landingBoxSize: {x: 20, y: 1}
-  landingBoxOffset: {x: 0, y: -1}
-  jumpDamage: 40
+  landingBoxOffset: {x: 0, y: -0.8}
+  jumpDamage: 30
   groundCheckPoint: {fileID: 7573077102308764026}
-  groundCheckRadius: 0.2
+  groundCheckRadius: 0.3
+  jumpSlamShakeType: 2
   attack4WindupDelay: 0.5
   mortarProjectilePrefab: {fileID: 204082320606997795, guid: 76ccad738b777824eb1024b8cb65e835, type: 3}
   mortarFirePoint: {fileID: 17901411723441638}
   mortarCount: 3
-  mortarLaunchForce: 8
-  mortarSpreadAngle: 40
-  mortarFireDelay: 0.1
-  impulseSource: {fileID: 0}
+  mortarLaunchForce: 7
+  mortarSpreadAngle: 60
+  mortarFireDelay: 0.15
+  impulseSource: {fileID: -8832160445112992180}
   cameraShakeIntensity: 1
   aimWarningSound: {fileID: 8300000, guid: 6f889aaf604361f43bbebd9f51a35730, type: 3}
+  grenadeThrow: {fileID: 8300000, guid: eae693c04664b124ba24bffb4fc71825, type: 3}
   attackSound: {fileID: 8300000, guid: 1dff14a880845004f9fc0f338226d1c7, type: 3}
   landSound: {fileID: 8300000, guid: b0dbe99c7b817184eaf12058245986d1, type: 3}
   body: {fileID: 8516844361778916244}
@@ -313,16 +320,16 @@ LineRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 0, g: 0.53272986, b: 1, a: 1}
-      key1: {r: 0, g: 0.53333336, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key1: {r: 0.7254902, g: 1, b: 0.8661518, a: 1}
+      key2: {r: 0, g: 0.53333336, b: 1, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 65535
-      ctime2: 0
+      ctime1: 45875
+      ctime2: 65535
       ctime3: 0
       ctime4: 0
       ctime5: 0
@@ -340,8 +347,8 @@ LineRenderer:
       m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
+    numCornerVertices: 10
+    numCapVertices: 10
     alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 1}
@@ -384,8 +391,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bcebf6f3ee9747489094df5b3e3e1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Damageable
-  maxHealth: 1200
-  currentHealth: 1200
+  maxHealth: 100
+  currentHealth: 100
   incomingDamageMultiplier: 1
   healthBarPrefab: {fileID: 8075217612621501959, guid: 9dcb417fad891fb4d917e4e339b547e9, type: 3}
   hitFlashDuration: 0.08
@@ -394,7 +401,7 @@ MonoBehaviour:
   iFrameDuration: 0.8
   flashSpeed: 25
   source: {fileID: 0}
-  hitShakeForce: 1.2
+  hitShakeForce: 0.1
   hitVFXPrefab: {fileID: 1792412140663129171, guid: 3bcb4c6972706e146a4148ab7ec17180, type: 3}
   hitSound: {fileID: 8300000, guid: 55c99531e04aa2f44928b2008003fff8, type: 3}
   onHealthChanged:
@@ -418,13 +425,14 @@ MonoBehaviour:
   spriteRenderers: []
   scriptsToDisable:
   - {fileID: 6797023340882294737}
+  deathAnimStateName: Death
   deathAnimTrigger: Die
-  deathSequenceDuration: 2.5
+  deathSequenceDuration: 2
   enableFadeOut: 1
-  fadeDuration: 1.5
+  fadeDuration: 1
   delayBeforeFade: 0.5
   deathVFXPrefab: {fileID: 6566373456572243705, guid: 4371c1aafe3b84b44ba2d0b97d2228bb, type: 3}
-  deathSFX: {fileID: 8300000, guid: 03f91a75a3aeb6d4f983da80429842f0, type: 3}
+  deathSFX: {fileID: 8300000, guid: 8a00c1a14f1028f40a76fbc529bd3c22, type: 3}
 --- !u!114 &-8832160445112992180
 MonoBehaviour:
   m_ObjectHideFlags: 0
