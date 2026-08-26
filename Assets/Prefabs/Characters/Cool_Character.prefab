@@ -303,8 +303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bcebf6f3ee9747489094df5b3e3e1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Damageable
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 120
+  currentHealth: 120
   incomingDamageMultiplier: 1
   healthBarPrefab: {fileID: 0}
   hitFlashDuration: 0.08

@@ -36772,7 +36772,7 @@ MonoBehaviour:
   arenaSpawnPoints: []
   waves: []
   delayBetweenWaves: 2
-  timeLimit: 10
+  timeLimit: 15
   timerStartTriggerObject: {fileID: 1927412122}
   waveStartSound: {fileID: 0}
   enemySpawnSound: {fileID: 0}
